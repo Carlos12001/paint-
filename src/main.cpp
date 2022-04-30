@@ -2,7 +2,7 @@
 #include "test/tester.h"
 
 int main(int argc, char *argv[]) {
-    InitProject::start();
+    InitProject::start(argc, argv);
     Tester::testMainWindow(argc, argv);
     return 0;
 }
