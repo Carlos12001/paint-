@@ -27,6 +27,75 @@ sudo apt install -y plantuml doxygen
 ```
 sudo apt-get install -y cowsay
 ```
+# Rules to code
+
+- Always to programing in poo.
+- Use headers files.
+- Follow name recommendations
+
+# Names
+
+## Var names
+
+- Inits in lowerCase and do capitalize if you need more information.
+- Try to be clear what it is the var.
+
+```asm
+    int main(){
+        int numberSize;
+        return 0;
+    }
+```
+
+## Function and Methods names
+
+- Inits in lowerCase and do capitalize if you need more information.
+- Try to be clear what to the function or methods.
+
+```asm
+    #include "iostream"
+    using namespace std;
+    class Printer{
+        public:
+            static void myFunctionPrint(){
+                cout << "I'm the printer." << endl;
+            }
+    };
+
+    int main(){
+        Printer::myFuctionPrint();
+    }
+```
+
+## Class name
+
+- Inits in capitalize and do capitalize if you need more information.
+- Try to be clear what to the function or methods.
+
+```asm
+    #include "iostream"
+    using namespace std;
+    class MyHelloWord{
+        public:
+            static void doIt(){
+                cout << "Hello Word" << endl;
+            }
+    };
+
+    int main(){
+        MyHelloWord::doIt();
+    }
+```
+
+# Rules of git
+- NEVER programing in master.
+- Create a new branch when you finish a feature.
+- Create branch name in English without space (you can use - to represent the space).
+- Commit message as you can in english.
+- Try to be clear in the commit message.
+- Try to commit when you finished a function.
+- Don't merge into a pattern branch, ask always first.
+- When you are going to merge a branch create a new branch for do the merge.
 
 # External Documention
 [ [Google Docs File] ](https://docs.google.com/document/d/1W5c8nUWtCWFqbaTTsP8gLxst3JtPFzRZlmOLFBUMxQU/edit?usp=sharing)
