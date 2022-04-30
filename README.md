@@ -40,7 +40,7 @@ sudo apt-get install -y cowsay
 - Inits in lowerCase and do capitalize if you need more information.
 - Try to be clear what it is the var.
 
-```asm
+```c++
     int main(){
         int numberSize;
         return 0;
@@ -52,7 +52,7 @@ sudo apt-get install -y cowsay
 - Inits in lowerCase and do capitalize if you need more information.
 - Try to be clear what to the function or methods.
 
-```asm
+```c++
     #include "iostream"
     using namespace std;
     class Printer{
@@ -72,7 +72,7 @@ sudo apt-get install -y cowsay
 - Inits in capitalize and do capitalize if you need more information.
 - Try to be clear what to the function or methods.
 
-```asm
+```c++
     #include "iostream"
     using namespace std;
     class MyHelloWord{
