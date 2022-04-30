@@ -28,6 +28,13 @@ sudo apt install -y plantuml doxygen
 sudo apt-get install -y cowsay
 ```
 
+# External Documention
+[ [Google Docs File] ](https://docs.google.com/document/d/1W5c8nUWtCWFqbaTTsP8gLxst3JtPFzRZlmOLFBUMxQU/edit?usp=sharing)
+
+# Jira
+[[Repository in Jira]](https://achen031199.atlassian.net/jira/projects)
+
+
 # References
 
 ## Project 2 - Paint++-JALLAC

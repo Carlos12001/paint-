@@ -1,0 +1,129 @@
+@startuml
+
+DataStructure <|-- DoubleLinkedList
+DataStructure <|-- List
+DataStructure <|-- HashList
+Line <|-- RectLine
+Line <|-- FreeLine
+ObjectPaint <|-- Line
+ObjectPaint <|-- Figure
+ObjectPaint <|-- MatrixImage
+DoubleLinkedList o-- MatrixImage
+MatrixImage o-- ColorHEX
+MatrixImage <-- BFS: utiliza
+
+
+abstract class ObjectPaint{
+    + void updateObject(); //Actualiza como se ve el objeto;
+    + deleteUnPoquitoDeLine(recibeMousePosition (int X, int Y));
+    + deleteAll(); //Borrar el evento
+
+/**
+Todo objecto paint tiene que saber la position de fondo que le toca.
+No es modicable por el usuario sino se actualiza con delte completo de un objeto.
+Cada objecto tiene ID es un counter  wur cuenta el orden que va digitando el usuario
+Este ID esl key del hash de objetos
+*/
+}
+class ColorHEX{
+    string color;
+}
+
+
+abstract class Line{
+    List<int[2]> position;
+    ColorHEX colorLine;
+
+}
+
+class RectLine{
+    int[2] positionInitial;
+    int[2] positionFinal;
+}
+
+class FreeLine{
+
+}
+
+abstract class DataStructure <T>{
+    + void pushBack(<T> data);
+    + <T> popBack();
+}
+
+class List <T>{
+
+}
+
+class DoubleLinkedList <T>{
+
+
+/**
+Guarda el ultimo input o modificacion que realizo el usuario
+Esto es lista de MatrixImage.
+*/
+
+/**
+Enlazada <Event>
+Almacena todos los events del usuario, es doblemente porque necesitamos volver o desvolver un evento.
+
+Condicion si estoy en undo y el usuario realiza un nuevo input este borra apatir de ahi los events posterios
+*/
+
+}
+
+class HashList<T>{
+/**
+
+Almacena todos los ObjectPaint.
+La key seria la indice position en el canva;
+
+*/
+
+}
+
+
+class MatrixImage{
+    enumTypeChop{
+    square, free, magic;
+    };
+
+    int sizeI;
+    int sizeJ;
+    list<list<ColorHEX>>
+
+
+    + ColorHEX getColor(int positionMouseX, int positionMouseY);
+    + void fillBackground(int positionMouseX, int positionMouseY, ColorHEX);  \\Llama a BFS
+
+    + void transpuesta(MatrixImage matrix)
+
+    + void zoom(int positionX, int positionY); // Hacer matriz mas grande y duplicar, triplicar, ... el pixel
+    /**
+    Esta vara aumenta las dimensiones de la imagen
+    Pero la GUI revisa si la imagen excede el tamano de la window, si esto sucede tiene agregar las barras
+    */
+
+    MatrixImage chop(typeChop); //Delete chop es poner en blanco el pixel  \\Llama a BFS
+
+    /**
+
+    *Cuidado con el con el corte magico porque tiene que poner el contorno como color vacio
+
+    */
+
+    + void filterColor();
+
+    + void getImageForQt();
+
+    + MatrixImage convertImagetoMatrixImage();
+
+
+
+}
+
+class BFS{
+
+}
+
+
+@enduml
