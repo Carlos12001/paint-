@@ -4,6 +4,7 @@
 
 #include "init_project.h"
 #include "utils/utilities.h"
-void InitProject::start() {
+void InitProject::start(int argc, char* argv[]) {
     Utilities::callCow();
+
 }

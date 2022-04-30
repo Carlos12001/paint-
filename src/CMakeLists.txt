@@ -1,5 +1,3 @@
-project(${CMAKE_PROJECT_NAME} VERSION 0.1 LANGUAGES CXX)
-set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -std=c++20")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -13,16 +11,16 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
-find_package(nlohmann_json 3.2.0 REQUIRED)
 
-file(GLOB_RECURSE SOURCE_FILES LIST_DIRECTORIES true "./*.cpp" "./*.h" "./*.ui" "./*.qrc")
+file(GLOB_RECURSE SOURCE_FILES true "./*.cpp" "./*.h" "./*.ui" "./*.qrc")
 
-set(PROJECT_SOURCES ${SOURCE_FILES} init_project/init_project.cpp init_project/init_project.h utils/utilities.cpp utils/utilities.h test/tester.cpp test/tester.h)
+set(PROJECT_SOURCES ${SOURCE_FILES})
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(${CMAKE_PROJECT_NAME}
             MANUAL_FINALIZATION
-            ${PROJECT_SOURCES})
+            ${PROJECT_SOURCES}
+            )
     # Define target properties for Android with Qt 6 as:
     #    set_property(TARGET ${CMAKE_PROJECT_NAME} APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
     #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
@@ -30,11 +28,14 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 else()
     if(ANDROID)
         add_library(${CMAKE_PROJECT_NAME} SHARED
-                ${PROJECT_SOURCES})
+                ${PROJECT_SOURCES}
+                )
         # Define properties for Android with Qt 5 after find_package() calls as:
         #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
-        add_executable(${CMAKE_PROJECT_NAME} ${PROJECT_SOURCES})
+        add_executable(${CMAKE_PROJECT_NAME}
+                ${PROJECT_SOURCES}
+                )
     endif()
 endif()
 

@@ -8,7 +8,7 @@
 
 class InitProject {
 public:
-    static void start();
+    static void start(int argc, char* argv[]);
 };
 
 

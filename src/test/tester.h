@@ -7,8 +7,9 @@
 
 
 class Tester {
+public:
 
-    static int testMainWindow(int agrc, char* agrv[]);
+    static int testMainWindow(int argc, char* argv[]);
 };
 
 

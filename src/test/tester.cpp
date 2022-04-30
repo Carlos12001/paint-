@@ -4,11 +4,11 @@
 
 #include "tester.h"
 #include "QApplication"
+#include "gui/controller.h"
 
-int Tester::testMainWindow(int agrc, char **agrv) {
-//    QApplication a(argc, argv);
-//    MainWindow w;
-//    w.show();
-//    return a.exec();
-    return 0;
+int Tester::testMainWindow(int argc, char **argv) {
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+    return a.exec();
 }
