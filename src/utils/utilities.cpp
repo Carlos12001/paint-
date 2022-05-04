@@ -5,7 +5,7 @@
 #include "utilities.h"
 #include "iostream"
 using namespace std;
-#include "stdlib.h"
+#include <cstdlib>
 
 void Utilities::callCow() {
     cout << "I tried to call cow." << endl;
