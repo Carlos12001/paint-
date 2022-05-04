@@ -2,8 +2,8 @@
 // Created by carlo on 5/3/22.
 //
 
-#ifndef PAINT_PAINTPP_H
-#define PAINT_PAINTPP_H
+#ifndef PAINT_PAINT_PP_H
+#define PAINT_PAINT_PP_H
 
 
 class PaintPP {
@@ -11,4 +11,4 @@ class PaintPP {
 };
 
 
-#endif //PAINT_PAINTPP_H
+#endif //PAINT_PAINT_PP_H
