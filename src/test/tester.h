@@ -10,6 +10,8 @@ class Tester {
 public:
 
     static int testMainWindow(int argc, char* argv[]);
+
+    static void bmpImageTest1();
 };
 
 

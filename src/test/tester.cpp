@@ -3,12 +3,33 @@
 //
 
 #include "tester.h"
-#include "QApplication"
+#include <QApplication>
 #include "gui/controller.h"
+#include <iostream>
+using namespace std;
 
 int Tester::testMainWindow(int argc, char **argv) {
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
     return a.exec();
+}
+
+void Tester::bmpImageTest1() {
+    long size = 1200*750;
+    unsigned char sizeChar[4];
+    sizeChar[0] = size;
+    sizeChar[1] = size >> 8;
+    sizeChar[2] = size >> 16;
+    sizeChar[3] = size >> 24;
+
+    cout << "size = " << size << endl;
+    cout << "sizeChar[0] = " << +sizeChar[0] << endl;
+    cout << "sizeChar[1] = " << +(size >> 8) << endl;
+    cout << "sizeChar[1] = " << +sizeChar[1] << endl;
+    cout << "sizeChar[2] = " << +sizeChar[2] << endl;
+    cout << "sizeChar[3] = " << +sizeChar[3] << endl;
+    cout << "sizeChar =\t" << +sizeChar[0] << "\t" << +sizeChar[1] << "\t" << +sizeChar[2] << "\t" << +sizeChar[3] << endl;
+
+    cout << +((unsigned char ) 255) << endl;
 }
