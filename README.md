@@ -27,6 +27,11 @@ sudo apt install -y plantuml doxygen
 ```
 sudo apt-get install -y cowsay
 ```
+
+
+```
+sudo apt-get install -y google-glog
+```
 # Rules to code
 
 - Always to programing in poo.
@@ -104,9 +109,29 @@ sudo apt-get install -y cowsay
 [[Repository in Jira]](https://achen031199.atlassian.net/jira/projects)
 
 
+# Importan Information
+
+## unsigned char with RGB
+
+As for example usages of unsigned char:
+
+unsigned char is often used in computer graphics, which very often (though not always) assigns a single byte to each colour component. It is common to see an RGB (or RGBA) colour represented as 24 (or 32) bits, each an unsigned char. Since unsigned char values fall in the range [0,255], the values are typically interpreted as:
+
+* 0 meaning a total lack of a given colour component.
+* 255 meaning 100% of a given colour pigment.
+So you would end up with RGB red as (255,0,0) -> (100% red, 0% green, 0% blue).
+
+Why not use a signed char? Arithmetic and bit shifting becomes problematic. As explained already, a signed char's range is essentially shifted by -128. A very simple and naive (mostly unused) method for converting RGB to grayscale is to average all three colour components, but this runs into problems when the values of the colour components are negative. Red (255, 0, 0) averages to (85, 85, 85) when using unsigned char arithmetic. However, if the values were signed chars (127,-128,-128), we would end up with (-99, -99, -99), which would be (29, 29, 29) in our unsigned char space, which is incorrect.
+
 # References
 
 ## Project 2 - Paint++-JALLAC
 
-- [[QGridLayout]](https://chowdera.com/2021/04/20210403063919149m.html)
-- [[README.md Links]](https://www.codegrepper.com/code-examples/whatever/how+to+create+link+in+readme.md)
+- [ [QGridLayout] ](https://chowdera.com/2021/04/20210403063919149m.html)
+- [ [README.md Links] ](https://www.codegrepper.com/code-examples/whatever/how+to+create+link+in+readme.md)
+- [ [unsiged char] ](https://stackoverflow.com/questions/75191/what-is-an-unsigned-char)
+- [ [>> in numbers] ](http://www.cplusplus.com/forum/beginner/95670/)
+- [ [unsiged char propieties] ](https://www.geeksforgeeks.org/maximum-value-of-unsigned-char-in-c/)
+- [ [differences between #include "..." and include<...>] ](https://stackoverflow.com/questions/21593/what-is-the-difference-between-include-filename-and-include-filename)
+- [ [implement our own Vector Class in C++] ](https://www.geeksforgeeks.org/how-to-implement-our-own-vector-class-in-c/)
+- [ [create bitmap in c++] ](https://www.youtube.com/watch?v=vqT5j38bWGg)
