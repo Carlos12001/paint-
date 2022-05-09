@@ -4,6 +4,8 @@
 
 #include "init_project.h"
 #include "utils/utilities.h"
+#include "test/tester.h"
 void InitProject::start(int argc, char* argv[]) {
     Utilities::callCow();
+    Tester::bmpImageTest1();
 }
