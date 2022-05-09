@@ -22,8 +22,6 @@ struct Color{
     Color();
 
     Color(float r, float b, float g);
-
-    ~Color();
 };
 
 
