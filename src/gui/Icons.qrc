@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>PaintIcons/bucket.png</file>
+        <file>PaintIcons/circle.png</file>
+        <file>PaintIcons/dropper.png</file>
+        <file>PaintIcons/grosser.png</file>
+        <file>PaintIcons/magicselect.png</file>
+        <file>PaintIcons/open.png</file>
+        <file>PaintIcons/palette.png</file>
+        <file>PaintIcons/pen.png</file>
+        <file>PaintIcons/pencil.png</file>
+        <file>PaintIcons/save.png</file>
+        <file>PaintIcons/select.png</file>
+        <file>PaintIcons/square.png</file>
+        <file>PaintIcons/triangle.png</file>
+        <file>PaintIcons/filter.png</file>
+    </qresource>
+</RCC>
