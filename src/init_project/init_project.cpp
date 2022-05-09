@@ -6,6 +6,7 @@
 #include "utils/utilities.h"
 #include "test/tester.h"
 void InitProject::start(int argc, char* argv[]) {
-    Utilities::callCow();
-    Tester::bmpImageTest1();
+    Utilities::startLog(argv);
+
+    Utilities::finishLog();
 }

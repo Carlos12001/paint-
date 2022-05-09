@@ -6,6 +6,7 @@
 #include <QApplication>
 #include "gui/controller.h"
 #include <iostream>
+#include <glog/logging.h>
 using namespace std;
 
 int Tester::testMainWindow(int argc, char **argv) {
@@ -23,13 +24,13 @@ void Tester::bmpImageTest1() {
     sizeChar[2] = size >> 16;
     sizeChar[3] = size >> 24;
 
-    cout << "size = " << size << endl;
-    cout << "sizeChar[0] = " << +sizeChar[0] << endl;
-    cout << "sizeChar[1] = " << +(size >> 8) << endl;
-    cout << "sizeChar[1] = " << +sizeChar[1] << endl;
-    cout << "sizeChar[2] = " << +sizeChar[2] << endl;
-    cout << "sizeChar[3] = " << +sizeChar[3] << endl;
-    cout << "sizeChar =\t" << +sizeChar[0] << "\t" << +sizeChar[1] << "\t" << +sizeChar[2] << "\t" << +sizeChar[3] << endl;
+    LOG(INFO) << "size = " << size << endl;
+    LOG(INFO) << "sizeChar[0] = " << +sizeChar[0] << endl;
+    LOG(INFO)  << "sizeChar[1] = " << +(size >> 8) << endl;
+    LOG(INFO)  << "sizeChar[1] = " << +sizeChar[1] << endl;
+    LOG(INFO)  << "sizeChar[2] = " << +sizeChar[2] << endl;
+    LOG(INFO)  << "sizeChar[3] = " << +sizeChar[3] << endl;
+    LOG(INFO)  << "sizeChar =\t" << +sizeChar[0] << "\t" << +sizeChar[1] << "\t" << +sizeChar[2] << "\t" << +sizeChar[3] << endl;
 
-    cout << +((unsigned char ) 255) << endl;
+    LOG(INFO)  << +((unsigned char ) 255) << endl;
 }

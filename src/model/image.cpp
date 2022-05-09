@@ -31,7 +31,7 @@ void Image::exportImage(const string path) {
     file.open(path, ios::out | ios::binary);
 
     if(!file.is_open()){
-
+        LOG(ERROR) << "We couldn't open the file " << path;
     }
     return;
 }

@@ -8,7 +8,7 @@
 using namespace std;
 #include <fstream>
 #include <vector>
-#include <glob.h>
+#include <glog/logging.h>
 
 
 struct Color{
