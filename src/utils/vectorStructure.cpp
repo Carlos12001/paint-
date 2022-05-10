@@ -1,15 +1,15 @@
 //
 // Created by joan on 09/05/22.
 //
-
 #include "vectorStructure.h"
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 template<typename T>
-vectorStructure<T>::vectorStructure() {
-        addressVector = new T[1];
-        storageCapacity = 1;
-        numberOfElement = 0;
+vectorStructure<T>::vectorStructure(){
+    cout << "Creando Objeto"<< endl;
+    addressVector = new T[1];
+    storageCapacity = 1;
+    numberOfElement = 0;
 }
 template<typename T>
 void vectorStructure<T>::addElement(T data) {
@@ -59,3 +59,4 @@ void vectorStructure<T>::showVector() {
     }
     cout << endl;
 }
+
