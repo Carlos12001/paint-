@@ -13,7 +13,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 file(GLOB_RECURSE SOURCE_FILES true "./*.cpp" "./*.h" "./*.ui" "./*.qrc")
 
-set(PROJECT_SOURCES ${SOURCE_FILES} utils/vectorStructure.cpp utils/vectorStructure.h)
+set(PROJECT_SOURCES ${SOURCE_FILES} utils/vectorStructure.cpp utils/vectorStructure.h utils/doublyLinkedList.cpp utils/doublyLinkedList.h)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(${CMAKE_PROJECT_NAME}
