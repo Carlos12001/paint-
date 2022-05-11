@@ -38,8 +38,11 @@ void Tester::bmpImageTest1() {
 
 void Tester::bmpImageTest2() {
     LOG(INFO) << "Trying to create image object.";
-    Image* image = new Image(200,200);
-    LOG(INFO) << "Creating an image waith the size " << image->getWidth() << "x" << image->getHeight() ;
+    int widthC = 1280;
+    int heightC = 720;
+    auto imageN = Image::createImageEmpty(widthC,heightC);
+    LOG(INFO) << "Creating an image waith the size " << imageN->getWidth() << "x" << imageN->getHeight() ;
+    imageN->exportImage("canvas.bmp");
     return;
 }
 

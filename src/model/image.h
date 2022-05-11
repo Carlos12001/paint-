@@ -53,14 +53,12 @@ public:
 
     /**
      * @brief Import the image. Doesn't working.
-     * @todo Start to working
      * @param path The path of the image.
      */
     void exportImage(const string& path);
 
     /**
      * @brief Create an white image with size widthxheight.
-     * @todo Start to working.
      * @param widthN Width of the image.
      * @param heightN Height of the image.
      * @return The white image created.

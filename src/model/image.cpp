@@ -23,9 +23,7 @@ Image::~Image() {
 }
 
 void Image::setColor(const Color &color, int x, int y){
-    (colors[y*height + x]).r = color.r;
-    (colors[y*height + x]).g = color.g;
-    (colors[y*height + x]).b = color.b;
+    colors.push_back(color);
     return;
 }
 
@@ -35,9 +33,9 @@ void Image::exportImage(const string& path) {
 
     if(!file.is_open()){
         LOG(ERROR) << "We couldn't open the file " << path;
-        return;
+        exit(-1);
     }else{
-        LOG(ERROR) << "We could open the file "  << path;
+        LOG(INFO) << "We could open the file "  << path;
     }
 
     unsigned char bmpPad[3] = {0,0,0};
@@ -118,18 +116,16 @@ void Image::exportImage(const string& path) {
     informationHeader[37] = 0;
     informationHeader[38] = 0;
     informationHeader[39] = 0;
-    LOG(ERROR) << "Writing the fileHeader.";
     file.write(reinterpret_cast<char*>(fileHeader), (fileHeaderSize));
-    LOG(ERROR) << "Writing the informationHeader.";
     file.write(reinterpret_cast<char*>(informationHeader), (informationHeaderSize));
-
+    LOG(INFO) << paddingAmount;
     for (int j = 0; j < height; ++j) {
         for (int i = 0; i < width; ++i) {
             auto tempColor = getColor(i, j);
-            auto r = static_cast<unsigned char>(tempColor.r * 255.0f);
-            auto b = static_cast<unsigned char>(tempColor.b * 255.0f);
-            auto g = static_cast<unsigned char>(tempColor.g * 255.0f);
-            unsigned char color[] = {r, b, g};
+            auto r = static_cast<unsigned char>(tempColor.r);
+            auto b = static_cast<unsigned char>(tempColor.b);
+            auto g = static_cast<unsigned char>(tempColor.g);
+            unsigned char color[] = {g, b, r};
             file.write(reinterpret_cast<char *>(color), 3);
         }
         file.write(reinterpret_cast<char*>(bmpPad), paddingAmount);
@@ -140,11 +136,10 @@ void Image::exportImage(const string& path) {
 }
 
 auto Image::createImageEmpty(int widthN, int heightN)-> Image * {
-
     auto image = new Image(widthN, heightN);
     for (int j = 0; j < heightN; ++j) {
         for (int i = 0; i < widthN; ++i) {
-            image->setColor(Color((float)i / (float)widthN, 1.0f - ((float)i / (float)widthN), (float)j / (float)heightN), i, j);
+            image->setColor(Color(255, 255, 255), i, j);
         }
     }
     return image;
