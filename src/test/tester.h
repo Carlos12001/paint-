@@ -12,6 +12,10 @@ public:
     static int testMainWindow(int argc, char* argv[]);
 
     static void bmpImageTest1();
+
+    static void bmpImageTest2();
+
+    static void bmpImageTest3();
 };
 
 
