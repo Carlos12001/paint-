@@ -21,10 +21,10 @@ void Utilities::startLog(char* argv[]){
     google::SetLogDestination(google::GLOG_INFO, cwd);
     google::SetStderrLogging(google::GLOG_INFO);
     google::SetLogFilenameExtension(".log");
-    google::EnableLogCleaner(3);
+    google::EnableLogCleaner(1);
     FLAGS_colorlogtostderr = true;  // Set log color
     FLAGS_logbufsecs = 0;  // Set log output speed(s)
-    FLAGS_max_log_size = 1024;  // Set max log file size
+    FLAGS_max_log_size = 10;  // Set max log file size
     FLAGS_stop_logging_if_full_disk = true;  // If disk is full
 }
 
