@@ -10,9 +10,9 @@ using namespace std;
 class Tester {
 public:
 
-    static int testMainWindow(int argc, char* argv[]);
+    [[maybe_unused]] static int testMainWindow(int argc, char* argv[]);
 
-    static void bmpImageTest1();
+    [[maybe_unused]] static void bmpImageTest1();
 
     static void bmpImageTest2();
 

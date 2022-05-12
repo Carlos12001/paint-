@@ -61,20 +61,17 @@ public:
     void exportImage(const string& path);
 
     /**
-     * @brief Create an white image with size widthxheight.
+     * @brief Create an white image with size width x height.
      * @param widthN Width of the image.
      * @param heightN Height of the image.
      * @return The white image created.
      */
     static auto createImageEmpty(int widthN, int heightN)-> Image *;
 
-    const int getWidth();
+    int getWidth();
 
-    const int getHeight();
+    int getHeight();
 
-    vector<Color> &getColors();
-
-    void setColors(vector<Color> &colors);
 };
 
 #endif //PAINT_IMAGE_H

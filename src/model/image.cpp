@@ -19,9 +19,7 @@ Color Image::getColor(int x, int y) {
     return colors.getElement(y * width + x);
 }
 
-Image::~Image() {
-
-}
+Image::~Image() = default;
 
 void Image::setColor(const Color &color, int i, int j){
     colors.addElement(color, j * width + i);
@@ -144,11 +142,11 @@ auto Image::createImageEmpty(int widthN, int heightN)-> Image * {
     return image;
 }
 
-const int Image::getWidth(){
+int Image::getWidth(){
     return width;
 }
 
-const int Image::getHeight(){
+int Image::getHeight(){
     return height;
 }
 

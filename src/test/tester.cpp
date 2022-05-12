@@ -16,14 +16,14 @@ using namespace std;
 using namespace std;
 
 
-int Tester::testMainWindow(int argc, char **argv) {
+[[maybe_unused]] int Tester::testMainWindow(int argc, char **argv) {
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
     return a.exec();
 }
 
-void Tester::bmpImageTest1() {
+[[maybe_unused]] void Tester::bmpImageTest1() {
 //    long size = 1200*750;
 //    unsigned char sizeChar[4];
 //    sizeChar[0] = size;
