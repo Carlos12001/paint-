@@ -6,7 +6,11 @@
 #define PAINT_TESTER_H
 #include "utils/vectorStructure.h"
 #include <iostream>
+#include "QApplication"
+#include "gui/controller.h"
+#include <iostream>
 using namespace std;
+#include "model/image.h"
 class Tester {
 public:
 
@@ -16,7 +20,7 @@ public:
 
     static void bmpImageTest2();
 
-    static void bmpImageTest3();
+    [[maybe_unused]] static void bmpImageTest3();
 };
 
 

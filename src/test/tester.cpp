@@ -3,13 +3,6 @@
 //
 
 #include "tester.h"
-#include "QApplication"
-#include "gui/controller.h"
-#include <QApplication>
-#include <iostream>
-using namespace std;
-#include "model/image.h"
-#include "utils/vectorStructure.h"
 
 
 #include <iostream>
@@ -20,7 +13,7 @@ using namespace std;
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
-    return a.exec();
+    return QApplication::exec();
 }
 
 [[maybe_unused]] void Tester::bmpImageTest1() {
@@ -48,13 +41,13 @@ void Tester::bmpImageTest2() {
     int widthC = 1280;
     int heightC = 720;
     auto imageN = Image::createImageEmpty(widthC,heightC);
-    Utilities::printMessageInfo(string("Creating an image waith the size ") + to_string(imageN->getWidth()) + string("x")  + to_string(imageN->getHeight()));
+    Utilities::printMessageInfo(string("Creating an image with the size ") + to_string(imageN->getWidth()) + string("x")  + to_string(imageN->getHeight()));
     imageN->exportImage("canvas.bmp");
     return;
 }
 
 
-void Tester::bmpImageTest3() {
+[[maybe_unused]] void Tester::bmpImageTest3() {
     int widthC = 1280;
     int heightC = 720;
     for (int j = 0; j < heightC; ++j) {
