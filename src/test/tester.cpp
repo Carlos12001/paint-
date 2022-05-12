@@ -46,7 +46,6 @@ void Tester::bmpImageTest2() {
     return;
 }
 
-
 [[maybe_unused]] void Tester::bmpImageTest3() {
     int widthC = 1280;
     int heightC = 720;
