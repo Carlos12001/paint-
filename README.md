@@ -143,5 +143,4 @@ Why not use a signed char? Arithmetic and bit shifting becomes problematic. As e
 - [ [glog use 3] ](https://programming.vip/docs/basic-usage-of-glog.html)
 - [ [under cursor widget qt] ](https://stackoverflow.com/questions/27363267/get-all-widgets-under-cursor)
 - [ [number to string in c++] ](https://www.simplilearn.com/tutorials/cpp-tutorial/int-to-string-cpp#:~:text=The%20next%20method%20in%20this,data%20type%20into%20a%20string.&text=The%20to_string()%20method%20is,string%3E%20or%20.)
-- [ [copy directories before cmake buil]](https://stackoverflow.com/questions/13429656/how-to-copy-contents-of-a-directory-into-build-directory-after-make-with-cmake)
 - [ [create bin directory with cmake] ](https://stackoverflow.com/questions/6594796/how-do-i-make-cmake-output-into-a-bin-dir)
