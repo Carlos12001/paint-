@@ -4,8 +4,9 @@
 
 #ifndef PAINT_TESTER_H
 #define PAINT_TESTER_H
-
-
+#include "utils/vectorStructure.h"
+#include <iostream>
+using namespace std;
 class Tester {
 public:
 
@@ -16,6 +17,7 @@ public:
     static void bmpImageTest2();
 
     static void bmpImageTest3();
+    void testVec(int data);
 };
 
 

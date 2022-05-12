@@ -1,7 +1,6 @@
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -std=c++20")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -15,12 +14,13 @@ find_package (glog 0.6.0 REQUIRED)
 
 file(GLOB_RECURSE SOURCE_FILES true "./*.cpp" "./*.h" "./*.ui" "./*.qrc")
 
-set(PROJECT_SOURCES ${SOURCE_FILES})
+set(PROJECT_SOURCES ${SOURCE_FILES} utils/vectorStructure.h utils/doublyLinkedList.cpp utils/doublyLinkedList.h)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(${CMAKE_PROJECT_NAME}
             MANUAL_FINALIZATION
             ${PROJECT_SOURCES}
+            Icons.qrc
             )
     # Define target properties for Android with Qt 6 as:
     #    set_property(TARGET ${CMAKE_PROJECT_NAME} APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

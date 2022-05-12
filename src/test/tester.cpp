@@ -3,12 +3,19 @@
 //
 
 #include "tester.h"
+#include "QApplication"
 #include "gui/controller.h"
 #include <QApplication>
 #include <iostream>
 using namespace std;
 #include <glog/logging.h>
 #include "model/image.h"
+#include "utils/vectorStructure.h"
+
+
+#include <iostream>
+using namespace std;
+
 
 int Tester::testMainWindow(int argc, char **argv) {
     QApplication a(argc, argv);
