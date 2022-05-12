@@ -18,9 +18,11 @@ public:
 
     [[maybe_unused]] static void bmpImageTest1();
 
-    static void bmpImageTest2();
+    [[maybe_unused]] static void bmpImageTest2();
 
     [[maybe_unused]] static void bmpImageTest3();
+
+    [[maybe_unused]] static void bmpImageTest4();
 };
 
 

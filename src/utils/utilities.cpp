@@ -46,5 +46,6 @@ void Utilities::printMessageError(string message) {
 }
 
 void Utilities::printMessageFatal(string message) {
-    LOG(FATAL) << message;
+    LOG(ERROR) << message;
+    exit(-1);
 }

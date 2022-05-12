@@ -36,7 +36,7 @@ using namespace std;
     return;
 }
 
-void Tester::bmpImageTest2() {
+[[maybe_unused]] void Tester::bmpImageTest2() {
     Utilities::printMessageInfo("Trying to create image object.");
     int widthC = 1280;
     int heightC = 720;
@@ -55,4 +55,8 @@ void Tester::bmpImageTest2() {
         }
         cout << endl;
     }
+}
+
+[[maybe_unused]] void Tester::bmpImageTest4() {
+
 }
