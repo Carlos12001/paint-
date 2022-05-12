@@ -3,6 +3,7 @@
 //
 
 #include "image.h"
+#include "utils/vectorStructure.h"
 
 Color::Color():r(0), b(0), g(0){}
 
@@ -15,15 +16,15 @@ fileSize(fileHeaderSize + informationHeaderSize + width*height*3 + paddingAmount
 }
 
 Color Image::getColor(int x, int y) {
-    return colors[y * width + x];
+    return colors.getElement(y * width + x);
 }
 
 Image::~Image() {
 
 }
 
-void Image::setColor(const Color &color, int x, int y){
-    colors.push_back(color);
+void Image::setColor(const Color &color, int i, int j){
+    colors.addElement(color, j * width + i);
     return;
 }
 
@@ -32,13 +33,12 @@ void Image::exportImage(const string& path) {
     file.open(path, ios::out | ios::binary);
 
     if(!file.is_open()){
-        LOG(ERROR) << "We couldn't open the file " << path;
-        exit(-1);
+        Utilities::printMessageFatal(string("We couldn't open the file ") + path);
     }else{
-        LOG(INFO) << "We could open the file "  << path;
+        Utilities::printMessageInfo(string("We could open the file ") + path);
     }
 
-    unsigned char bmpPad[3] = {0,0,0};
+//    unsigned char bmpPad[3] = {0,0,0};
 
     unsigned char fileHeader[fileHeaderSize];
 
@@ -118,7 +118,6 @@ void Image::exportImage(const string& path) {
     informationHeader[39] = 0;
     file.write(reinterpret_cast<char*>(fileHeader), (fileHeaderSize));
     file.write(reinterpret_cast<char*>(informationHeader), (informationHeaderSize));
-    LOG(INFO) << paddingAmount;
     for (int j = 0; j < height; ++j) {
         for (int i = 0; i < width; ++i) {
             auto tempColor = getColor(i, j);
@@ -128,10 +127,10 @@ void Image::exportImage(const string& path) {
             unsigned char color[] = {g, b, r};
             file.write(reinterpret_cast<char *>(color), 3);
         }
-        file.write(reinterpret_cast<char*>(bmpPad), paddingAmount);
+//        file.write(reinterpret_cast<char*>(bmpPad), paddingAmount);
     }
     file.close();
-    LOG(INFO) << "The file was created.";
+    Utilities::printMessageInfo("The file was created.");
     return;
 }
 
@@ -139,7 +138,7 @@ auto Image::createImageEmpty(int widthN, int heightN)-> Image * {
     auto image = new Image(widthN, heightN);
     for (int j = 0; j < heightN; ++j) {
         for (int i = 0; i < widthN; ++i) {
-            image->setColor(Color(255, 255, 255), i, j);
+            image->setColor(Color(255, 255, 255));
         }
     }
     return image;
@@ -152,6 +151,12 @@ const int Image::getWidth(){
 const int Image::getHeight(){
     return height;
 }
+
+void Image::setColor(const Color &color) {
+    colors.addElement(color);
+    return;
+}
+
 
 
 

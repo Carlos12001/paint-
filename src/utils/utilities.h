@@ -23,6 +23,15 @@ public:
     static void startLog(char* argv[]);
 
     static void finishLog();
+
+    static void printMessageInfo(string message);
+
+    static void printMessageWarning(string message);
+
+    static void printMessageError(string message);
+
+    static void printMessageFatal(string message);
+
 };
 
 

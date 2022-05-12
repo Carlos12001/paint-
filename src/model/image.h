@@ -7,7 +7,8 @@
 #include <iostream>
 #include <fstream>
 #include "iostream"
-#include <glog/logging.h>
+#include "utils/vectorStructure.h"
+#include "utils/utilities.h"
 using namespace std;
 
 struct Color{
@@ -39,7 +40,9 @@ private:
 
     const int fileSize;
 
-    vector<Color> colors;
+    vectorStructure<Color> colors;
+
+    void setColor(const Color& color);
 
 public:
 
@@ -49,7 +52,7 @@ public:
 
     Color getColor(int x, int y);
 
-    void setColor(const Color& color, int x, int y);
+    void setColor(const Color& color, int i, int j);
 
     /**
      * @brief Import the image. Doesn't working.

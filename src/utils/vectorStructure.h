@@ -47,6 +47,9 @@ public:
         if(elementLocation < numberOfElement) {
             return addressVector[elementLocation];
         }
+        else{
+            exit(-1);
+        }
     };
     void pop(){
         numberOfElement --;

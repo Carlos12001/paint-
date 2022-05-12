@@ -5,7 +5,7 @@
 #include "utilities.h"
 
 void Utilities::callCow() {
-    LOG(INFO) << "I tried to call cow." << endl;
+    printMessageInfo("Hellow");
     system("cowsay Welcome to Paint++!");
 }
 
@@ -30,4 +30,21 @@ void Utilities::startLog(char* argv[]){
 
 void Utilities::finishLog() {
     google::ShutdownGoogleLogging();
+}
+
+void Utilities::printMessageInfo(string message) {
+    LOG(INFO) << message;
+
+}
+
+void Utilities::printMessageWarning(string message) {
+    LOG(WARNING) << message;
+}
+
+void Utilities::printMessageError(string message) {
+    LOG(ERROR) << message;
+}
+
+void Utilities::printMessageFatal(string message) {
+    LOG(FATAL) << message;
 }
