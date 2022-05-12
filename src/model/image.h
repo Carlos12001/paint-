@@ -42,7 +42,7 @@ private:
 
     vectorStructure<Color> colors;
 
-    void setColor(const Color& color);
+    [[maybe_unused]] void setColor(const Color& color);
 
 public:
 
@@ -66,7 +66,9 @@ public:
      * @param heightN Height of the image.
      * @return The white image created.
      */
-    static auto createImageEmpty(int widthN, int heightN)-> Image *;
+    static auto createImageEmpty(int widthN, int heightN) -> Image*;
+
+    static auto readImage(const string& path) -> Image*;
 
     int getWidth();
 

@@ -32,11 +32,8 @@ void Image::exportImage(const string& path) {
 
     if(!file.is_open()){
         Utilities::printMessageFatal(string("We couldn't open the file ") + path);
-    }else{
-        Utilities::printMessageInfo(string("We could open the file ") + path);
     }
-
-//    unsigned char bmpPad[3] = {0,0,0};
+    Utilities::printMessageInfo(string("We could open the file ") + path);
 
     unsigned char fileHeader[fileHeaderSize];
 
@@ -116,13 +113,15 @@ void Image::exportImage(const string& path) {
     informationHeader[39] = 0;
     file.write(reinterpret_cast<char*>(fileHeader), (fileHeaderSize));
     file.write(reinterpret_cast<char*>(informationHeader), (informationHeaderSize));
+
+    //    unsigned char bmpPad[3] = {0,0,0};
     for (int j = 0; j < height; ++j) {
         for (int i = 0; i < width; ++i) {
             auto tempColor = getColor(i, j);
             auto r = static_cast<unsigned char>(tempColor.r);
             auto b = static_cast<unsigned char>(tempColor.b);
             auto g = static_cast<unsigned char>(tempColor.g);
-            unsigned char color[] = {g, b, r};
+            unsigned char color[] = {b, g, r};
             file.write(reinterpret_cast<char *>(color), 3);
         }
 //        file.write(reinterpret_cast<char*>(bmpPad), paddingAmount);
@@ -136,7 +135,7 @@ auto Image::createImageEmpty(int widthN, int heightN)-> Image * {
     auto image = new Image(widthN, heightN);
     for (int j = 0; j < heightN; ++j) {
         for (int i = 0; i < widthN; ++i) {
-            image->setColor(Color(255, 255, 255));
+            image->setColor(Color(255, 255, 255), i, j);
         }
     }
     return image;
@@ -150,9 +149,51 @@ int Image::getHeight(){
     return height;
 }
 
-void Image::setColor(const Color &color) {
+[[maybe_unused]] void Image::setColor(const Color &color) {
     colors.addElement(color);
     return;
+}
+
+auto Image::readImage(const string &path)->Image*{
+    Image* image;
+
+    ifstream file;
+    file.open(path, ios::in | ios::binary);
+
+    if(!file.is_open()){
+        Utilities::printMessageFatal("File doesn't can open. The path of the file was " + path);
+    }
+
+    unsigned char fileHeader[fileHeaderSize];
+    file.read(reinterpret_cast<char*>(fileHeader), fileHeaderSize);
+
+    if(fileHeader[0]!='B' or fileHeader[1]!='M'){
+        file.close();
+        Utilities::printMessageFatal("File isn't an bitmap. The path of the file was " + path);
+    }
+
+    unsigned char informationHeader[informationHeaderSize];
+    file.read(reinterpret_cast<char*>(informationHeader), informationHeaderSize);
+
+//    const int fileSizeN = fileHeader[2] + (fileHeader[3] << 8) + (fileHeader[4] << 16) + (fileHeader[5] << 24);
+
+    const int widthN = informationHeader[4] + (informationHeader[5] << 8) + (informationHeader[6] << 16) + (informationHeader[7] << 24);
+
+    const int heightN = informationHeader[8] + (informationHeader[9] << 8) + (informationHeader[10] << 16) + (informationHeader[11] << 24);
+
+    image = new Image(widthN, heightN);
+//    int paddingAmount = (((4 - (widthN % 3) % 4) % 4));
+    for (int j = 0; j < heightN; ++j) {
+        for (int i = 0; i < widthN; ++i) {
+            unsigned char color[] = {0, 0, 0};
+            file.read(reinterpret_cast<char*>(color), 3);
+            image->setColor(Color(color[2], color[1], color[0]), i, j);
+        }
+//        file.ignore(paddingAmount);
+    }
+    file.close();
+
+    return image;
 }
 
 
