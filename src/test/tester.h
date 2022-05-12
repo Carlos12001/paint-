@@ -17,7 +17,6 @@ public:
     static void bmpImageTest2();
 
     static void bmpImageTest3();
-    void testVec(int data);
 };
 
 
