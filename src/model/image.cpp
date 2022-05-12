@@ -5,9 +5,9 @@
 #include "image.h"
 #include "utils/vectorStructure.h"
 
-Color::Color():r(1), g(1), b(1), a(0){}
+Color::Color():r(255), g(255), b(255), a(255){}
 
-Color::Color(float r, float g, float b):r(r), g(g), b(b), a(0) {}
+Color::Color(float r, float g, float b):r(r), g(g), b(b), a(255) {}
 
 Color::Color(float r, float g, float b, float a):r(r), g(g), b(b), a(a) {}
 
@@ -120,10 +120,10 @@ void Image::exportImage(const string& path) {
     for (int j = 0; j < height; ++j) {
         for (int i = 0; i < width; ++i) {
             auto tempColor = getColor(i, j);
-            auto r = static_cast<unsigned char>(tempColor.r*255.0f);
-            auto g = static_cast<unsigned char>(tempColor.g*255.0f);
-            auto b = static_cast<unsigned char>(tempColor.b*255.0f);
-            auto a = static_cast<unsigned char>(tempColor.a*255.0f);
+            auto r = static_cast<unsigned char>(tempColor.r);
+            auto g = static_cast<unsigned char>(tempColor.g);
+            auto b = static_cast<unsigned char>(tempColor.b);
+            auto a = static_cast<unsigned char>(tempColor.a);
 
             unsigned char color[] = {a, b, g, r};
 
@@ -141,7 +141,7 @@ auto Image::createImageEmpty(int widthN, int heightN)-> Image * {
     for (int j = 0; j < heightN; ++j) {
         for (int i = 0; i < widthN; ++i) {
 //            image->setColor(Color((float)i/(float)widthN, 1.0f-(float)i/(float)widthN, (float)j/(float)heightN), i, j);
-            image->setColor(Color(1, 1, 1), i, j);
+            image->setColor(Color(255,255,255,255), i, j);
         }
     }
     return image;
@@ -195,7 +195,7 @@ auto Image::readImage(const string &path)->Image*{
         for (int i = 0; i < widthN; ++i) {
             unsigned char color[] = {0, 0, 0, 1};
             file.read(reinterpret_cast<char*>(color), bitePerPixel);
-            image->setColor(Color(color[3]/255.0f,color[2]/255.0f, color[1]/255.0f, color[0]/255.0f), i, j);
+            image->setColor(Color(color[3],color[2], color[1], color[0]), i, j);
         }
         file.ignore(paddingAmount);
     }
