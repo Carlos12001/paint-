@@ -8,6 +8,6 @@
 void InitProject::start(int argc, char* argv[]) {
     Utilities::startLog(argv);
 //    Tester::testMainWindow(argc, argv);
-    Tester::bmpImageTest2();
+    Tester::bmpImageTest4();
     Utilities::finishLog();
 }

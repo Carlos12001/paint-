@@ -38,9 +38,11 @@ using namespace std;
 
 [[maybe_unused]] void Tester::bmpImageTest2() {
     Utilities::printMessageInfo("Trying to create image object.");
+
     int widthC = 1280;
     int heightC = 720;
     auto imageN = Image::createImageEmpty(widthC,heightC);
+
     Utilities::printMessageInfo(string("Creating an image with the size ") + to_string(imageN->getWidth()) + string("x")  + to_string(imageN->getHeight()));
     imageN->exportImage("canvas.bmp");
     return;
@@ -58,5 +60,11 @@ using namespace std;
 }
 
 [[maybe_unused]] void Tester::bmpImageTest4() {
-
+    string path = "ai-hayasaka.bmp";
+    Utilities::printMessageInfo("Trying to load image. The path is " + path);
+    auto image = Image::createImageEmpty(640, 480);
+    image->exportImage("canvas.bmp");
+    auto imageN = Image::readImage("canvas.bmp");
+    imageN->exportImage(path);
+    return;
 }
