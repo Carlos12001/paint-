@@ -15,13 +15,17 @@ struct Color{
 
     float r;
 
+    float g;
+
     float b;
 
-    float g;
+    float a;
 
     Color();
 
     Color(float r, float b, float g);
+
+    Color(float r, float g, float b, float a);
 };
 
 
@@ -45,6 +49,8 @@ private:
     [[maybe_unused]] void setColor(const Color& color);
 
 public:
+
+    static const int bitePerPixel = 4;
 
     Image(int width, int height);
 

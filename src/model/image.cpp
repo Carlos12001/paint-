@@ -5,14 +5,16 @@
 #include "image.h"
 #include "utils/vectorStructure.h"
 
-Color::Color():r(0), b(0), g(0){}
+Color::Color():r(1), g(1), b(1), a(0){}
 
-Color::Color(float r, float b, float g):r(r), b(b), g(g) {}
+Color::Color(float r, float g, float b):r(r), g(g), b(b), a(0) {}
+
+Color::Color(float r, float g, float b, float a):r(r), g(g), b(b), a(a) {}
 
 Image::Image(int width, int height):
 width(width), height(height),
-paddingAmount(((4 - (width * 3) % 4) % 4)),
-fileSize(fileHeaderSize + informationHeaderSize + width*height*3 + paddingAmount*height){
+paddingAmount(((4 - (width * bitePerPixel) % 4) % 4)),
+fileSize(fileHeaderSize + informationHeaderSize + width*height*bitePerPixel + paddingAmount*height){
 }
 
 Color Image::getColor(int x, int y) {
@@ -79,7 +81,7 @@ void Image::exportImage(const string& path) {
     informationHeader[12] = 1;
     informationHeader[13] = 0;
     // Bits per pixel
-    informationHeader[14] = 24;
+    informationHeader[14] = bitePerPixel*8;
     informationHeader[15] = 0;
     // Compression (No compression)
     informationHeader[16] = 0;
@@ -114,15 +116,18 @@ void Image::exportImage(const string& path) {
     file.write(reinterpret_cast<char*>(fileHeader), (fileHeaderSize));
     file.write(reinterpret_cast<char*>(informationHeader), (informationHeaderSize));
 
-        unsigned char bmpPad[3] = {0,0,0};
+    unsigned char bmpPad[] = {0,0,0,1};
     for (int j = 0; j < height; ++j) {
         for (int i = 0; i < width; ++i) {
             auto tempColor = getColor(i, j);
             auto r = static_cast<unsigned char>(tempColor.r*255.0f);
-            auto b = static_cast<unsigned char>(tempColor.b*255.0f);
             auto g = static_cast<unsigned char>(tempColor.g*255.0f);
-            unsigned char color[] = {b, g, r};
-            file.write(reinterpret_cast<char *>(color), 3);
+            auto b = static_cast<unsigned char>(tempColor.b*255.0f);
+            auto a = static_cast<unsigned char>(tempColor.a*255.0f);
+
+            unsigned char color[] = {a, b, g, r};
+
+            file.write(reinterpret_cast<char *>(color), bitePerPixel);
         }
         file.write(reinterpret_cast<char*>(bmpPad), paddingAmount);
     }
@@ -135,8 +140,8 @@ auto Image::createImageEmpty(int widthN, int heightN)-> Image * {
     auto image = new Image(widthN, heightN);
     for (int j = 0; j < heightN; ++j) {
         for (int i = 0; i < widthN; ++i) {
-            image->setColor(Color((float)i/(float)widthN, 1.0f-(float)i/(float)widthN, (float)j/(float)heightN), i, j);
-//            image->setColor(Color(1, 1, 1), i, j);
+//            image->setColor(Color((float)i/(float)widthN, 1.0f-(float)i/(float)widthN, (float)j/(float)heightN), i, j);
+            image->setColor(Color(1, 1, 1), i, j);
         }
     }
     return image;
@@ -185,12 +190,12 @@ auto Image::readImage(const string &path)->Image*{
     const int heightN = informationHeader[8] + (informationHeader[9] << 8) + (informationHeader[10] << 16) + (informationHeader[11] << 24);
 
     image = new Image(widthN, heightN);
-    int paddingAmount = (((4 - (widthN % 3) % 4) % 4));
+    int paddingAmount = (((4 - (widthN * bitePerPixel) % 4) % 4));
     for (int j = 0; j < heightN; ++j) {
         for (int i = 0; i < widthN; ++i) {
-            unsigned char color[] = {0, 0, 0};
-            file.read(reinterpret_cast<char*>(color), 3);
-            image->setColor(Color(color[2]/255.0f, color[1]/255.0f, color[0]/255.0f), i, j);
+            unsigned char color[] = {0, 0, 0, 1};
+            file.read(reinterpret_cast<char*>(color), bitePerPixel);
+            image->setColor(Color(color[3]/255.0f,color[2]/255.0f, color[1]/255.0f, color[0]/255.0f), i, j);
         }
         file.ignore(paddingAmount);
     }

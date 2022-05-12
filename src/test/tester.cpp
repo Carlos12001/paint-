@@ -61,10 +61,17 @@ using namespace std;
 
 [[maybe_unused]] void Tester::bmpImageTest4() {
     string path = "ai-hayasaka.bmp";
-    Utilities::printMessageInfo("Trying to load image. The path is " + path);
-    auto image = Image::createImageEmpty(640, 480);
-    image->exportImage("canvas.bmp");
-    auto imageN = Image::readImage("canvas.bmp");
-    imageN->exportImage(path);
+//    string path2  = "canvas2.bmp";
+    string path3  = "canvas3.bmp";
+    string path4  = "canvas4.bmp";
+//    Utilities::printMessageInfo("Trying to load image. The path is " + path);
+//    auto image = Image::createImageEmpty(640, 480);
+//    image->exportImage(path2);
+
+    auto imageN = Image::readImage(path);
+    imageN->exportImage(path3);
+
+    auto imageM = Image::readImage(path3);
+    imageM->exportImage(path4);
     return;
 }
