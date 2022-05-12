@@ -3,8 +3,6 @@
 //
 
 #include "tester.h"
-
-
 #include <iostream>
 using namespace std;
 
