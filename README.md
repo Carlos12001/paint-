@@ -141,3 +141,4 @@ Why not use a signed char? Arithmetic and bit shifting becomes problematic. As e
 - [ [glog use 1] ](https://codeyarns.com/tech/2017-10-26-how-to-install-and-use-glog.html)
 - [ [glog use 2] ](https://rpg.ifi.uzh.ch/docs/glog.html#:~:text=Google%20glog%20defines%20a%20series,verbose%20logging%20levels%2C%20and%20more.)
 - [ [glog use 3] ](https://programming.vip/docs/basic-usage-of-glog.html)
+- [ [under cursor widget qt] ](https://stackoverflow.com/questions/27363267/get-all-widgets-under-cursor)
