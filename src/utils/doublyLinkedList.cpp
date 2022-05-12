@@ -1,7 +1,7 @@
 //
 // Created by joan on 10/05/22.
 //
-
+/**
 #include "doublyLinkedList.h"
 #include <bits/stdc++.h>
 
@@ -68,4 +68,4 @@ void doublyLinkedList<T>::printList(doublyLinkedList<T> *node) {
         std::cout<<" " << last->data << " ";
         last = last->prevNode;
     }
-}
+}**/

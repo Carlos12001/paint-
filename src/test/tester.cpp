@@ -5,8 +5,9 @@
 #include "tester.h"
 #include "QApplication"
 #include "gui/controller.h"
-#include <utils/vectorStructure.h>
-#include <utils/vectorStructure.cpp>
+#include "utils/vectorStructure.h"
+#include "utils/vectorStructure.cpp"
+
 
 #include <iostream>
 using namespace std;
