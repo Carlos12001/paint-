@@ -204,6 +204,10 @@ auto Image::readImage(const string &path)->Image*{
     return image;
 }
 
+vectorStructure<Color> Image::getColors() {
+    return colors;
+}
+
 
 
 

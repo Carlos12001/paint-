@@ -80,6 +80,8 @@ public:
 
     int getHeight();
 
+    vectorStructure<Color> getColors();
+
 };
 
 #endif //PAINT_IMAGE_H
