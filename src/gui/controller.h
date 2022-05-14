@@ -2,7 +2,7 @@
 #define MAIN_WINDOW_H
 
 #include "QMainWindow"
-
+#include "model/paintpp.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -15,6 +15,10 @@ public:
     ~MainWindow() override;
 
 private:
+
     Ui::MainWindow *ui;
+
+    PaintPP* paintPP = nullptr;
+
 };
 #endif // MAIN_WINDOW_H
