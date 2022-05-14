@@ -9,9 +9,14 @@ template<typename T>
 class doublyLinkedList {
 public:
     T data;
-    doublyLinkedList<T> *nextNode;
-    doublyLinkedList<T> *prevNode;
+    doublyLinkedList<T> *nextNode = nullptr;
+    doublyLinkedList<T> *prevNode = nullptr;
 
+    /**
+     * @brief Insierta el nuevo nodo al principio. El nodo nuevo nodo pasa a ser el head.
+     * @param head_ref
+     * @param new_data
+     */
     void insertNode(doublyLinkedList<T> **head_ref, T new_data) {
         doublyLinkedList<T> *new_node = new doublyLinkedList<T>();
 
@@ -25,6 +30,11 @@ public:
         (*head_ref) = new_node;
     }
 
+    /**
+     * Inisiert gusto despues del nodo que recibe. Y corre sus hermanos a la derecha el nuevo nodo.
+     * @param prev_node
+     * @param new_data
+     */
     void insertAfter(doublyLinkedList<T> *prev_node, T new_data) {
         if (prev_node == NULL) {
             std::cout << "The given node cannot be NULL";
@@ -45,6 +55,11 @@ public:
 
     };
 
+    /**
+     * @brief Insierta hasta al final el dato. No cambia el head.
+     * @param prev_node
+     * @param new_data
+     */
     void append(doublyLinkedList<T> **head_ref, T new_data) {
         doublyLinkedList<T> *new_node = new doublyLinkedList<T>();
 
@@ -75,6 +90,11 @@ public:
             std::cout << " " << last->data << " ";
             last = last->prevNode;
         };
+    }
+
+    ~doublyLinkedList() {
+        if(this->nextNode != nullptr)
+            delete this->nextNode;
     };
 };
 
