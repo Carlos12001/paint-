@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1300</width>
+    <width>1399</width>
     <height>1000</height>
    </rect>
   </property>
@@ -18,13 +18,13 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>1299</width>
+    <width>1399</width>
     <height>999</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1300</width>
+    <width>1400</width>
     <height>1000</height>
    </size>
   </property>
@@ -526,6 +526,27 @@
      </rect>
     </property>
    </widget>
+   <widget class="QFrame" name="centralFrame">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>109</y>
+      <width>1280</width>
+      <height>720</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#centralFrame {
+	background-color: rgba(0, 0, 0, 1);
+}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
    <zorder>columnView</zorder>
    <zorder>open</zorder>
    <zorder>save</zorder>
@@ -539,8 +560,8 @@
    <zorder>filter</zorder>
    <zorder>paintfill</zorder>
    <zorder>pickcolor</zorder>
+   <zorder>centralFrame</zorder>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
