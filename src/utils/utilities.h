@@ -7,7 +7,6 @@
 #include "iostream"
 using namespace std;
 #include <cstdlib>
-#include <glog/logging.h>
 
 
 class Utilities {
@@ -19,10 +18,6 @@ class Utilities {
 
 public:
     static void callCow();
-
-    static void startLog(char* argv[]);
-
-    static void finishLog();
 
     static void printMessageInfo(string message);
 
