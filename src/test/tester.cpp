@@ -73,3 +73,14 @@ using namespace std;
     imageM->exportImage(path4);
     return;
 }
+
+[[maybe_unused]] void Tester::deleteNullPointers(){
+    int* ptr = new int(12);
+    int* ptr2 = nullptr;
+    int* ptr3 = NULL;
+    delete ptr;
+    delete ptr2;
+    delete ptr3;
+    Utilities::printMessageInfo("All good.");
+    return;
+}

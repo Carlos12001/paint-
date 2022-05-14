@@ -23,6 +23,8 @@ public:
     [[maybe_unused]] static void bmpImageTest3();
 
     [[maybe_unused]] static void bmpImageTest4();
+
+    [[maybe_unused]] static void deleteNullPointers();
 };
 
 
