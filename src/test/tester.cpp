@@ -63,7 +63,7 @@ using namespace std;
     string path3  = "canvas3.bmp";
     string path4  = "canvas4.bmp";
     Utilities::printMessageInfo("Trying to load image. The path is " + path);
-    auto image = Image::createImageEmpty(640, 480);
+    auto image = Image::createImageEmpty(1, 2);
     image->exportImage(path2);
 
     auto imageN = Image::readImage(path);
