@@ -41,6 +41,7 @@ public:
     virtual ~PaintPP();
 
 
+    void saveImage();
 };
 
 

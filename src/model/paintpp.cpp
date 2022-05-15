@@ -60,3 +60,8 @@ int PaintPP::getWidthCanvas(){
 int PaintPP::getHeightCanvas(){
     return currentImage->getHeight();
 }
+
+void PaintPP::saveImage(){
+    auto path = historyImage->data;
+    currentImage->exportImage(path);
+}
