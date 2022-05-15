@@ -73,7 +73,6 @@ void MainWindow::printCurrentImage(){
     auto colors = paintPP->getColorOfCurrentImage();
     int width =  paintPP->getWidthCanvas();
     int height =  paintPP->getHeightCanvas();
-    cout << "(" << width << "," << height << ")" << "\t";
     for (int j = 0; j < height; ++j) {
         for (int i = 0; i < width; ++i) {
             Color tempColor = colors.getElement(j*width+i);
@@ -81,12 +80,10 @@ void MainWindow::printCurrentImage(){
             auto g = (tempColor.g);
             auto b = (tempColor.b);
             auto a = (tempColor.a);
-            QPen pen(QColor(r+0, g+0, b+0, a+0));
+            QPen pen(QColor(r, g, b, a-a+255));
             mPainter->setPen(pen);
             mPainter->drawPoint(i, height-j);
         }
-//        cout << endl;
     }
-
     update();
 }
