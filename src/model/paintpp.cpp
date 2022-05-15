@@ -52,3 +52,11 @@ string PaintPP::getNextHistoryName(){
 PaintPP::~PaintPP() {
 
 }
+
+int PaintPP::getWidthCanvas(){
+    return currentImage->getWidth();
+}
+
+int PaintPP::getHeightCanvas(){
+    return currentImage->getHeight();
+}

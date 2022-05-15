@@ -24,6 +24,8 @@ class PaintPP {
 
     string getNextHistoryName();
 
+    void createImageCanvas(string path);
+
 public:
 
     PaintPP(int width, int height);
@@ -32,9 +34,13 @@ public:
 
     vectorStructure<Color> getColorOfCurrentImage();
 
+    int getWidthCanvas();
+
+    int getHeightCanvas();
+
     virtual ~PaintPP();
 
-    void createImageCanvas(string path);
+
 };
 
 
