@@ -4,18 +4,44 @@
 
 #include "paintpp.h"
 
-void PaintPP::createImage(){
+PaintPP::PaintPP(int width, int height) {
+    createEmptyCanvas(width, height);
+}
+
+PaintPP::PaintPP(string pathImage) {
+    createImageCanvas(pathImage);
+}
+
+void PaintPP::createEmptyCanvas(int width, int height){
     historyImage->append(&historyImage, getNextHistoryName());
-    currentImage = Image::createImageEmpty(1280,720);
+    if(width<=1280 && height<= 720){
+        currentImage = Image::createImageEmpty(width,height);
+    }
+    else{
+        Utilities::printMessageError("The canvas is too big. "
+                                     "The program is going to create the default size.");
+        currentImage = Image::createImageEmpty(1280,720);
+    }
     return;
 }
 
-vectorStructure<Color> PaintPP::getCurrentImage() {
-    if(currentImage == nullptr){
-        Utilities::printMessageError("No exist current image. "
-                                     "I'm going to create the default image.");
-        createImage();
+void PaintPP::createImageCanvas(string path){
+    historyImage->append(&historyImage, getNextHistoryName());
+    ifstream file;
+    file.open(path, ios::in | ios::binary);
+    if(file.is_open()) {
+        file.close();
+        currentImage = Image::readImage(path);
     }
+    else{
+        Utilities::printMessageError("Exception opening/reading file. "
+                                     "The program is going to create the default canvas.");
+        createEmptyCanvas(1280, 720);
+    }
+    return;
+}
+
+vectorStructure<Color> PaintPP::getColorOfCurrentImage() {
     return currentImage->getColors();
 }
 

@@ -10,6 +10,7 @@ using namespace std;
 #include "utils/vectorStructure.h"
 #include "utils/utilities.h"
 #include "image.h"
+#include "fstream"
 
 class PaintPP {
 
@@ -19,15 +20,21 @@ class PaintPP {
 
     Image* currentImage = nullptr;
 
+    void createEmptyCanvas(int width, int height);
+
+    string getNextHistoryName();
+
 public:
 
-    vectorStructure<Color> getCurrentImage();
+    PaintPP(int width, int height);
 
-    void createImage();
+    PaintPP(string pathImage);
+
+    vectorStructure<Color> getColorOfCurrentImage();
 
     virtual ~PaintPP();
 
-    string getNextHistoryName();
+    void createImageCanvas(string path);
 };
 
 
