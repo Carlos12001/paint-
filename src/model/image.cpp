@@ -155,7 +155,7 @@ int Image::getHeight(){
     return height;
 }
 
-[[maybe_unused]] void Image::setColor(const Color &color) {
+void Image::setColor(const Color &color) {
     colors.addElement(color);
     return;
 }

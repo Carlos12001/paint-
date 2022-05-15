@@ -46,7 +46,7 @@ private:
 
     vectorStructure<Color> colors;
 
-    [[maybe_unused]] void setColor(const Color& color);
+    void setColor(const Color& color);
 
 public:
 
