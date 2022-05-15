@@ -73,3 +73,13 @@ using namespace std;
     imageM->exportImage(path4);
     return;
 }
+
+[[maybe_unused]]void Tester::eraseImageTest1(){
+    string path1 = "canvas3.bmp";
+    auto ImageEdit = Image::readImage(path1);
+    Utilities::printMessageInfo("Trying to erase a part of the image. The path is " + path1);
+    vectorStructure<int> eraseMoveX = PaintPP::mouseMovement(600);
+    vectorStructure<int> MoveY = PaintPP::mouseMovement(600);
+    auto image5 = PaintPP::erase(eraseMoveX,MoveY,ImageEdit,10);
+    image5->exportImage("canvas5.bmp");
+}

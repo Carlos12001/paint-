@@ -8,6 +8,7 @@
 #include <iostream>
 #include "QApplication"
 #include "gui/controller.h"
+#include "model/paintpp.h"
 #include <iostream>
 using namespace std;
 #include "model/image.h"
@@ -23,6 +24,8 @@ public:
     [[maybe_unused]] static void bmpImageTest3();
 
     [[maybe_unused]] static void bmpImageTest4();
+
+    [[maybe_unused]] static void eraseImageTest1();
 };
 
 
