@@ -25,6 +25,8 @@ public:
     [[maybe_unused]] static void bmpImageTest4();
 
     [[maybe_unused]] static void deleteNullPointers();
+
+    [[maybe_unused]] static int programWindow(int argc, char **argv);
 };
 
 

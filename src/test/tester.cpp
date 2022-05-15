@@ -84,3 +84,11 @@ using namespace std;
     Utilities::printMessageInfo("All good.");
     return;
 }
+
+[[maybe_unused]] int Tester::programWindow(int argc, char **argv) {
+    QApplication app =  QApplication(argc, argv);
+    MainWindow w;
+    w.initGUIPaintPP();
+    w.show();
+    return app.exec();
+}
