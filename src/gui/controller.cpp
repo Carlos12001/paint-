@@ -42,31 +42,33 @@ void MainWindow::paintEvent(QPaintEvent *event) {
 
 void MainWindow::mousePressEvent(QMouseEvent *event) {
     enablePainter = true;
-    mBegin = event->pos();
-    Utilities::printMessageInfo("CLICK!");
-    Utilities::printMessageInfo("Me muevo! En x: " + to_string(mBegin.rx()-minimumMoveX) + + " .En y: " + to_string(mBegin.ry()-minimumMoveY));
+    restartVectorMove();
+    addElementVectorMove(event->pos().rx(), event->pos().ry());
     event->accept();
 }
 
 void MainWindow::mouseMoveEvent(QMouseEvent *event) {
-    if(!enablePainter){
+    if(enablePainter){
+        addElementVectorMove(event->pos().rx(), event->pos().ry());
+        event->accept();
+    }else{
         event->accept();
         return;
-    }else{
-//        QPen pen(Qt::white);
-//        pen.setCapStyle(Qt::RoundCap);
-//        pen.setWidth(10);
-//        mEnd = event->pos();
-//        mPainter->setPen(pen);
-//        mPainter->drawLine(mBegin, mEnd);
-        update();
-        event->accept();
     }
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent *event) {
+//    if(enablePainter){
+//        Color colorSelect = Color(0,0,0);
+//        int brushSize = 5;
+//        paintPP->draw(vectorMove, colorSelect,brushSize; );
+//    }
+//    else if (enableDelete){
+//
+//    }
     enablePainter = false;
     event->accept();
+    update();
 }
 
 void MainWindow::printCurrentImage(){
@@ -87,3 +89,26 @@ void MainWindow::printCurrentImage(){
     }
     update();
 }
+
+
+void MainWindow::restartVectorMove(){
+    while (vectorMove.size()!=0){
+        vectorMove.pop();
+    }
+}
+
+void MainWindow::addElementVectorMove(int i, int j){
+    bool canAdded = true;
+    canAdded = canAdded && i>= minimumMoveX;
+    canAdded = canAdded && i<= minimumMoveX+paintPP->getWidthCanvas();
+    canAdded = canAdded && j>= minimumMoveY;
+    canAdded = canAdded && j<= minimumMoveY+paintPP->getHeightCanvas();
+
+    if(canAdded){
+        auto pos = PointImage(i - minimumMoveX, j - minimumMoveY);
+        vectorMove.addElement(pos);
+    }
+
+}
+
+

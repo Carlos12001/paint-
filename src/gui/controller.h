@@ -8,6 +8,7 @@ using namespace std;
 #include <QImage>
 #include "QMainWindow"
 #include "model/paintpp.h"
+#include "model/point_image.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -38,11 +39,7 @@ private:
 
     QImage* canvasImage;
 
-    QWidget* canvasQWidget;
-
-    QPoint mBegin;
-
-    QPoint mEnd;
+    vectorStructure<PointImage> vectorMove;
 
     bool enablePainter = false;
 
@@ -58,5 +55,9 @@ protected:
     void mouseReleaseEvent(QMouseEvent* event) override;
 
     void printCurrentImage();
+
+    void restartVectorMove();
+
+    void addElementVectorMove(int i, int j);
 };
 #endif // MAIN_WINDOW_H
