@@ -343,6 +343,9 @@ background-color: rgb(0,0,255);</string>
     </property>
    </widget>
    <widget class="QPushButton" name="undoButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -364,6 +367,9 @@ background-color: rgb(0,0,255);</string>
     </property>
    </widget>
    <widget class="QPushButton" name="redoButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>90</x>
