@@ -6,33 +6,44 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     ui->setupUi(this);
     connect((ui->openButton), SIGNAL(clicked()), this,
             SLOT(openAction()));
+    connect(ui->undoButton, SIGNAL(clicked()), this,
+            SLOT(undoAction()));
+    connect(ui->redoButton, SIGNAL(clicked()), this,
+            SLOT(redoAction()));
     connect(ui->saveButton, SIGNAL(clicked()), this,
             SLOT(saveAction()));
     connect(ui->magicSelectButton, SIGNAL(clicked()), this,
             SLOT(magicSelectAction()));
     connect(ui->chopSquareButton, SIGNAL(clicked()), this,
             SLOT(chopSquareAction()));
-//    connect(ui->saveButton, SIGNAL(clicked()), this,
-//            SLOT(saveAction()));
-//    connect(ui->saveButton, SIGNAL(clicked()), this,
-//            SLOT(saveAction()));
-//    connect(ui->saveButton, SIGNAL(clicked()), this,
-//            SLOT(saveAction()));
-//    connect(ui->saveButton, SIGNAL(clicked()), this,
-//            SLOT(saveAction()));
-//    connect(ui->saveButton, SIGNAL(clicked()), this,
-//            SLOT(saveAction()));
-//    connect(ui->saveButton, SIGNAL(clicked()), this,
-//            SLOT(saveAction()));
-//    connect(ui->saveButton, SIGNAL(clicked()), this,
-//            SLOT(saveAction()));
-//    connect(ui->saveButton, SIGNAL(clicked()), this,
-//            SLOT(saveAction()));
-//    connect(ui->saveButton, SIGNAL(clicked()), this,
-//            SLOT(saveAction()));
-
-
-
+    connect(ui->chopFreeButton, SIGNAL(clicked()), this,
+            SLOT(chopFreeAction()));
+    connect(ui->drawButton, SIGNAL(clicked()), this,
+            SLOT(drawAction()));
+    connect(ui->eraseButton, SIGNAL(clicked()), this,
+            SLOT(eraseAction()));
+    connect(ui->lineButton, SIGNAL(clicked()), this,
+            SLOT(lineAction()));
+    connect(ui->squareButton, SIGNAL(clicked()), this,
+            SLOT(figureSquareAction()));
+    connect(ui->triangleButton, SIGNAL(clicked()), this,
+            SLOT(figureTriangleAction()));
+    connect(ui->rectangleButton, SIGNAL(clicked()), this,
+            SLOT(figureRectangleAction()));
+    connect(ui->paintfillButton, SIGNAL(clicked()), this,
+            SLOT(paintFillAction()));
+    connect(ui->pickColorButton, SIGNAL(clicked()), this,
+            SLOT(colorPickerAction()));
+    connect(ui->filterRButton, SIGNAL(clicked()), this,
+            SLOT(filterRAction()));
+    connect(ui->filterGButton, SIGNAL(clicked()), this,
+            SLOT(filterGAction()));
+    connect(ui->filterBButton, SIGNAL(clicked()), this,
+            SLOT(filterBAction()));
+    connect(ui->colorSelectButton, SIGNAL(clicked()), this,
+            SLOT(selectColorAction()));
+    connect(ui->rotateButton, SIGNAL(clicked()), this,
+            SLOT(rotateAction()));
 }
 
 MainWindow::~MainWindow(){
@@ -41,7 +52,6 @@ MainWindow::~MainWindow(){
     delete mPainter;
     delete canvasImage;
 }
-
 
 void MainWindow::initGUIPaintPP(){
 
@@ -148,7 +158,6 @@ void MainWindow::addElementVectorMove(int i, int j){
     cout<<"\n--------------------------------\n";
 }
 
-
 int MainWindow::selectWidth(){
     // Stores button value
     bool ok = false;
@@ -236,7 +245,7 @@ void MainWindow::eraseAction() {
 
 }
 
-void MainWindow::rectLineAction() {
+void MainWindow::lineAction() {
 
 }
 
@@ -276,7 +285,7 @@ void MainWindow::openAction() {
 
 }
 
-void MainWindow::selectColor() {
+void MainWindow::selectColorAction() {
 
 }
 
@@ -289,5 +298,9 @@ void MainWindow::filterGAction() {
 }
 
 void MainWindow::drawAction() {
+
+}
+
+void MainWindow::rotateAction() {
 
 }

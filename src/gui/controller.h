@@ -87,7 +87,7 @@ private slots:
 
     void eraseAction();
 
-    void rectLineAction();
+    void lineAction();
 
     void figureSquareAction();
 
@@ -107,13 +107,15 @@ private slots:
 
     void openAction();
 
-    void selectColor();
+    void selectColorAction();
 
     void filterRAction();
 
     void filterGAction();
 
     void filterBAction();
+
+    void rotateAction();
 
 };
 #endif // MAIN_WINDOW_H
