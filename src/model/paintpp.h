@@ -11,14 +11,22 @@
 #include "image.h"
 #include "utils/vectorStructure.h"
 #include "utils/utilities.h"
+#include "utils/vectorMovement.h"
+#include <math.h>
 using namespace std;
 
 class PaintPP {
+    private:
+
+    static auto paintCoordinates(vectorStructure<vectorMovement> vectorMove, Image* imageCanvas, int grossorE, Color colorPaint)->Image*;
+    static vectorStructure<vectorMovement> rectLine(vectorStructure<vectorMovement> coordinates,int distance,vectorDireccion lineDireccion);
+
     public:
 
-    static auto erase(vectorStructure<int> VectorX, vectorStructure<int> VectorY, Image* imageCanvas, int grossorE)->Image*;
-    static vectorStructure<int> mouseMovement(int position);
+    static vectorStructure<vectorMovement> mouseMovement(int positionX, int positionY);
+    static auto erase(vectorStructure<vectorMovement> vectorMove, Image* imageCanvas,int grossorE)->Image*;
+    static auto pencil(vectorStructure<vectorMovement> vectorMove, Image* imageCanvas,int grossorE, Color colorSelect)->Image*;
+    static auto pen(vectorStructure<vectorMovement> vectorTwoCordinates, Image* imageCanvas, int grossorE, Color colorSelect)->Image*;
 };
-
 
 #endif //PAINT_PAINT_PP_H

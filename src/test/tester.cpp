@@ -78,8 +78,12 @@ using namespace std;
     string path1 = "canvas3.bmp";
     auto ImageEdit = Image::readImage(path1);
     Utilities::printMessageInfo("Trying to erase a part of the image. The path is " + path1);
-    vectorStructure<int> eraseMoveX = PaintPP::mouseMovement(600);
-    vectorStructure<int> MoveY = PaintPP::mouseMovement(600);
-    auto image5 = PaintPP::erase(eraseMoveX,MoveY,ImageEdit,10);
+    vectorStructure<vectorMovement> Move = PaintPP::mouseMovement(700,700);
+    vectorStructure<vectorMovement> Line;
+    Line.addElement(vectorMovement(40,10));
+    Line.addElement(vectorMovement(40,200));
+    auto image5 = PaintPP::pencil(Move,ImageEdit,20,Color(0,255,0));
+    image5 = PaintPP::pen(Line,image5,10,Color(5,25,0));
+    image5 = PaintPP::erase(Move,image5,10);
     image5->exportImage("canvas5.bmp");
 }
