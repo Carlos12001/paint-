@@ -6,7 +6,10 @@ using namespace std;
 #include <QPaintEvent>
 #include <QMouseEvent>
 #include <QImage>
-#include "QMainWindow"
+#include <QDesktopWidget>
+#include <QInputDialog>
+#include <QMainWindow>
+#include <QMessageBox>
 #include "model/paintpp.h"
 #include "model/point_image.h"
 
@@ -61,5 +64,15 @@ protected:
     void addElementVectorMove(int i, int j);
 
     void printVectorMove();
+
+    int selectWidth();
+
+    int selectHeight();
+
+    void chooseOption();
+
+    void openImage();
+
+    void createEmptyCanvas();
 };
 #endif // MAIN_WINDOW_H

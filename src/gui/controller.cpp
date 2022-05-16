@@ -1,6 +1,7 @@
 #include "controller.h"
 #include "./ui_mainwindow.h"
-#include <QDesktopWidget>
+
+
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
 }
@@ -15,21 +16,16 @@ MainWindow::~MainWindow(){
 
 void MainWindow::initGUIPaintPP(){
     Utilities::printMessageInfo("Init the GUIPaintPP");
-    bool openImage =  true;
-    if(openImage){
-        string pathImage = "ai-hayasaka.bmp";
-        paintPP = new PaintPP(pathImage);
-    }
-    else{
-        int width = 1280;
-        int height = 720;
-        paintPP = new PaintPP(width, height);
-    }
-
+    chooseOption();
     canvasImage = new QImage(1280,720, QImage::Format_ARGB32_Premultiplied);
     mPainter = new QPainter(canvasImage);
 
     printCurrentImage();
+
+//    // Create pen width action and tie to MainWindow::penWidth()
+//    penWidthAct = new QAction(tr("Pen &Width..."), this);
+//    connect(penWidthAct, SIGNAL(triggered()), this, SLOT(penWidth()));
+
 
     return;
 }
@@ -122,3 +118,69 @@ void  MainWindow::printVectorMove(){
 }
 
 
+int MainWindow::selectWidth(){
+    // Stores button value
+    bool ok = false;
+    int width = QInputDialog::getInt(this, tr("Select width"),
+                                     tr("Select width:"),
+                                     1280, 1, 1280, 1, &ok);
+    // Change the pen width
+    if (ok){
+        return width;
+    }
+    else{
+        return 1280;
+    }
+}
+
+int MainWindow::selectHeight(){
+    // Stores button value
+    bool ok = false;
+    int height = QInputDialog::getInt(this, tr("Select height"),
+                                      tr("Select pen height:"),
+                                      720, 1, 720, 1, &ok);
+    // Change the pen width
+    if (ok) {
+        return height;
+    }
+    else{
+        return 720;
+    }
+}
+
+void MainWindow::chooseOption(){
+    QMessageBox msgBox;
+    msgBox.setText("You want to open an image o create an empty canvas.");
+    msgBox.setInformativeText("Choose");
+    msgBox.setStandardButtons(QMessageBox::Open | QMessageBox::No);
+    msgBox.setDefaultButton(QMessageBox::No);
+    int ret = msgBox.exec();
+
+    switch (ret) {
+        case QMessageBox::Open:
+            openImage();
+            break;
+        case QMessageBox::No:
+            createEmptyCanvas();
+            break;
+        default:
+            break;
+    }
+}
+
+void MainWindow::openImage(){
+    QString pathInput = QInputDialog::getText(this,
+                                              "Ingrese el nombre del imagen",
+                                              "Recuerde que la iamgen tiene que encontrar a la par del ejecutable.");
+    string pathImage;
+//    pathImage = "ai-hayasaka.bmp";
+    pathImage = pathInput.toStdString();
+    if(paintPP == nullptr)
+        paintPP = new PaintPP(pathImage);
+}
+
+void MainWindow::createEmptyCanvas(){
+    int width = selectWidth();
+    int height = selectHeight();
+    paintPP = new PaintPP(width, height);
+}
