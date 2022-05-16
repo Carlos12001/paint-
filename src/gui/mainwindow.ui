@@ -99,7 +99,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="penButton">
+   <widget class="QPushButton" name="drawButton">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -115,7 +115,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="pencilButton">
+   <widget class="QPushButton" name="eraseButton">
     <property name="geometry">
      <rect>
       <x>490</x>
@@ -374,7 +374,7 @@ background-color: rgb(255,0,0);</string>
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="chooseColorButton">
+   <widget class="QPushButton" name="colorSelectButton">
     <property name="geometry">
      <rect>
       <x>560</x>
@@ -392,7 +392,7 @@ background-color: rgb(255,0,0);</string>
      <string notr="true"/>
     </property>
     <property name="text">
-     <string>Selec Color</string>
+     <string>Select Color</string>
     </property>
    </widget>
    <widget class="QPushButton" name="chopFreeButton">
@@ -516,8 +516,8 @@ background-color: rgb(255,0,0);</string>
    <zorder>saveButton</zorder>
    <zorder>magicSelectButton</zorder>
    <zorder>chopSquareButton</zorder>
-   <zorder>penButton</zorder>
-   <zorder>pencilButton</zorder>
+   <zorder>drawButton</zorder>
+   <zorder>eraseButton</zorder>
    <zorder>ticknessScrollArea</zorder>
    <zorder>figuresGroupBox</zorder>
    <zorder>filterBButton</zorder>
@@ -527,7 +527,7 @@ background-color: rgb(255,0,0);</string>
    <zorder>redoButton</zorder>
    <zorder>filterGButton</zorder>
    <zorder>filterRButton</zorder>
-   <zorder>chooseColorButton</zorder>
+   <zorder>colorSelectButton</zorder>
    <zorder>chopFreeButton</zorder>
    <zorder>squareButton</zorder>
    <zorder>rectangleButton</zorder>
