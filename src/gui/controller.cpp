@@ -111,4 +111,14 @@ void MainWindow::addElementVectorMove(int i, int j){
 
 }
 
+void  MainWindow::printVectorMove(){
+    for (int i = 0; i < vectorMove.size() ; ++i) {
+        cout << "(";
+        cout << vectorMove.getElement(i).x << ':';
+        cout << vectorMove.getElement(i).y;
+        cout << ")\t";
+    }
+    cout<<"\n--------------------------------\n";
+}
+
 

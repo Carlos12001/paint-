@@ -59,5 +59,7 @@ protected:
     void restartVectorMove();
 
     void addElementVectorMove(int i, int j);
+
+    void printVectorMove();
 };
 #endif // MAIN_WINDOW_H
