@@ -98,4 +98,20 @@ using namespace std;
         vectorMove.pop();
         cout << "Deleting an element\t";
     }
+}[[maybe_unused]]void Tester::eraseImageTest1(){
+    string path1 = "canvas3.bmp";
+    auto ImageEdit = Image::readImage(path1);
+    Utilities::printMessageInfo("Trying to erase a part of the image. The path is " + path1);
+    vectorStructure<PointImage> Move = PaintPP::mouseMovement(700,700);
+    vectorStructure<PointImage> Line;
+    Line.addElement(PointImage(40,10));
+    Line.addElement(PointImage(40,200));
+    auto image5 = PaintPP::pencil(Move,ImageEdit,20,Color(0,255,0));
+    image5 = PaintPP::pen(Line,image5,10,Color(5,25,0));
+    image5 = PaintPP::erase(Move,image5,10);
+    image5 = PaintPP::figureSquare(PointImage(400,400),image5,5,Color(10,10,10),200);
+    image5 = PaintPP::figureRectangle(PointImage(800,400),image5,5,Color(10,10,10),200,400);
+    image5 = PaintPP::figureTriangle(PointImage(400,500),image5,5,Color(10,10,10),400);
+
+    image5->exportImage("canvas5.bmp");
 }
