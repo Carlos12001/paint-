@@ -6,7 +6,6 @@
 #include <iostream>
 using namespace std;
 
-
 [[maybe_unused]] int Tester::testMainWindow(int argc, char **argv) {
     QApplication a(argc, argv);
     MainWindow w;
