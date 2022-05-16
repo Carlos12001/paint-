@@ -63,7 +63,7 @@ protected:
 
     void addElementVectorMove(int i, int j);
 
-    void printVectorMove();
+    [[maybe_unused]] void printVectorMove();
 
     int selectWidth();
 
@@ -74,5 +74,46 @@ protected:
     void openImage();
 
     void createEmptyCanvas();
+
+private slots:
+
+    void magicSelectAction();
+
+    void chopSquareAction();
+
+    void chopFreeAction();
+
+    void drawAction();
+
+    void eraseAction();
+
+    void rectLineAction();
+
+    void figureSquareAction();
+
+    void figureTriangleAction();
+
+    void figureRectangleAction();
+
+    void colorPickerAction();
+
+    void paintFillAction();
+
+    void undoAction();
+
+    void redoAction();
+
+    void saveAction();
+
+    void openAction();
+
+    void selectColor();
+
+    void filterRAction();
+
+    void filterGAction();
+
+    void filterBAction();
+
 };
 #endif // MAIN_WINDOW_H

@@ -4,6 +4,35 @@
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
+    connect((ui->openButton), SIGNAL(clicked()), this,
+            SLOT(openAction()));
+    connect(ui->saveButton, SIGNAL(clicked()), this,
+            SLOT(saveAction()));
+    connect(ui->magicSelectButton, SIGNAL(clicked()), this,
+            SLOT(magicSelectAction()));
+    connect(ui->chopSquareButton, SIGNAL(clicked()), this,
+            SLOT(chopSquareAction()));
+//    connect(ui->saveButton, SIGNAL(clicked()), this,
+//            SLOT(saveAction()));
+//    connect(ui->saveButton, SIGNAL(clicked()), this,
+//            SLOT(saveAction()));
+//    connect(ui->saveButton, SIGNAL(clicked()), this,
+//            SLOT(saveAction()));
+//    connect(ui->saveButton, SIGNAL(clicked()), this,
+//            SLOT(saveAction()));
+//    connect(ui->saveButton, SIGNAL(clicked()), this,
+//            SLOT(saveAction()));
+//    connect(ui->saveButton, SIGNAL(clicked()), this,
+//            SLOT(saveAction()));
+//    connect(ui->saveButton, SIGNAL(clicked()), this,
+//            SLOT(saveAction()));
+//    connect(ui->saveButton, SIGNAL(clicked()), this,
+//            SLOT(saveAction()));
+//    connect(ui->saveButton, SIGNAL(clicked()), this,
+//            SLOT(saveAction()));
+
+
+
 }
 
 MainWindow::~MainWindow(){
@@ -15,6 +44,9 @@ MainWindow::~MainWindow(){
 
 
 void MainWindow::initGUIPaintPP(){
+
+
+
     Utilities::printMessageInfo("Init the GUIPaintPP");
     chooseOption();
     canvasImage = new QImage(1280,720, QImage::Format_ARGB32_Premultiplied);
@@ -86,7 +118,6 @@ void MainWindow::printCurrentImage(){
     update();
 }
 
-
 void MainWindow::restartVectorMove(){
     while (vectorMove.size()!=0){
         vectorMove.pop();
@@ -107,7 +138,7 @@ void MainWindow::addElementVectorMove(int i, int j){
 
 }
 
-void  MainWindow::printVectorMove(){
+[[maybe_unused]] void  MainWindow::printVectorMove(){
     for (int i = 0; i < vectorMove.size() ; ++i) {
         cout << "(";
         cout << vectorMove.getElement(i).x << ':';
@@ -183,4 +214,80 @@ void MainWindow::createEmptyCanvas(){
     int width = selectWidth();
     int height = selectHeight();
     paintPP = new PaintPP(width, height);
+}
+
+void MainWindow::magicSelectAction() {
+
+}
+
+void MainWindow::chopSquareAction() {
+
+}
+
+void MainWindow::chopFreeAction() {
+
+}
+
+void MainWindow::filterBAction() {
+
+}
+
+void MainWindow::eraseAction() {
+
+}
+
+void MainWindow::rectLineAction() {
+
+}
+
+void MainWindow::figureSquareAction() {
+
+}
+
+void MainWindow::figureTriangleAction() {
+
+}
+
+void MainWindow::figureRectangleAction() {
+
+}
+
+void MainWindow::colorPickerAction() {
+
+}
+
+void MainWindow::paintFillAction() {
+
+}
+
+void MainWindow::undoAction() {
+
+}
+
+void MainWindow::redoAction() {
+
+}
+
+void MainWindow::saveAction() {
+
+}
+
+void MainWindow::openAction() {
+
+}
+
+void MainWindow::selectColor() {
+
+}
+
+void MainWindow::filterRAction() {
+
+}
+
+void MainWindow::filterGAction() {
+
+}
+
+void MainWindow::drawAction() {
+
 }
