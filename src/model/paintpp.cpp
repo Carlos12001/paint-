@@ -169,6 +169,26 @@ vectorStructure<vectorMovement> PaintPP::rectLine(vectorStructure<vectorMovement
     return allCoordinates;
 }
 
+auto PaintPP::figureSquare(vectorMovement coord, Image *imageCanvas, int grossorE, Color colorSelect, int Size) -> Image * {
+    vectorStructure<vectorMovement> SquareVertices;
+    vectorStructure<vectorMovement>Square;
+    SquareVertices.addElement(vectorMovement(coord.PosX,coord.PosY));
+    SquareVertices.addElement(vectorMovement(coord.PosX + Size, coord.PosY));
+    Square = PaintPP::rectLine(SquareVertices, Size, vectorDireccion(true, false, true, false));
+    imageCanvas = PaintPP::paintCoordinates(Square, imageCanvas,grossorE,colorSelect);
+    SquareVertices.addElement(vectorMovement(coord.PosX, coord.PosY + Size), 1);
+    Square = PaintPP::rectLine(SquareVertices, Size, vectorDireccion(true, true, false, true));
+    imageCanvas = PaintPP::paintCoordinates(Square, imageCanvas,grossorE,colorSelect);
+    SquareVertices.addElement(vectorMovement(coord.PosX + Size, coord.PosY + Size), 1);
+    Square = PaintPP::rectLine(SquareVertices, Size, vectorDireccion(true, true, false, true));
+    imageCanvas = PaintPP::paintCoordinates(Square, imageCanvas,grossorE,colorSelect);
+    SquareVertices.addElement(vectorMovement(coord.PosX + Size, coord.PosY + Size), 1);
+    Square = PaintPP::rectLine(SquareVertices, Size, vectorDireccion(true, false, true, false));
+    imageCanvas = PaintPP::paintCoordinates(Square, imageCanvas,grossorE,colorSelect);
+    return imageCanvas;
+}
+
+
 
 
 

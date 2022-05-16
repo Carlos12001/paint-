@@ -27,6 +27,7 @@ class PaintPP {
     static auto erase(vectorStructure<vectorMovement> vectorMove, Image* imageCanvas,int grossorE)->Image*;
     static auto pencil(vectorStructure<vectorMovement> vectorMove, Image* imageCanvas,int grossorE, Color colorSelect)->Image*;
     static auto pen(vectorStructure<vectorMovement> vectorTwoCordinates, Image* imageCanvas, int grossorE, Color colorSelect)->Image*;
+    static auto figureSquare(vectorMovement coord, Image* imageCanvas, int grossorE,Color colorSelect,int Size)->Image*;
 };
 
 #endif //PAINT_PAINT_PP_H

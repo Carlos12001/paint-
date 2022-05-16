@@ -85,5 +85,6 @@ using namespace std;
     auto image5 = PaintPP::pencil(Move,ImageEdit,20,Color(0,255,0));
     image5 = PaintPP::pen(Line,image5,10,Color(5,25,0));
     image5 = PaintPP::erase(Move,image5,10);
+    image5 = PaintPP::figureSquare(vectorMovement(400,400),image5,5,Color(10,10,10),200);
     image5->exportImage("canvas5.bmp");
 }
