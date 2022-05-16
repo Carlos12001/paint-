@@ -27,6 +27,8 @@ public:
     [[maybe_unused]] static void deleteNullPointers();
 
     [[maybe_unused]] static int programWindow(int argc, char **argv);
+
+    [ [maybe_unused] ] static void testPopVectorMove();
 };
 
 

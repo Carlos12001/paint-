@@ -92,3 +92,11 @@ using namespace std;
     w.show();
     return app.exec();
 }
+
+[[maybe_unused]] void Tester::testPopVectorMove() {
+    vectorStructure<int> vectorMove;
+    while (vectorMove.size()!=0){
+        vectorMove.pop();
+        cout << "Deleting an element\t";
+    }
+}
