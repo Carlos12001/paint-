@@ -32,7 +32,10 @@
    <string>Paint++</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="open">
+   <widget class="QPushButton" name="openButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -48,10 +51,10 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="save">
+   <widget class="QPushButton" name="saveButton">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>150</x>
       <y>10</y>
       <width>41</width>
       <height>31</height>
@@ -64,10 +67,10 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="magicSelect">
+   <widget class="QPushButton" name="magicSelectButton">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>150</x>
       <y>40</y>
       <width>41</width>
       <height>31</height>
@@ -80,10 +83,10 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="select">
+   <widget class="QPushButton" name="chopSquareButton">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>200</x>
       <y>10</y>
       <width>61</width>
       <height>61</height>
@@ -96,10 +99,10 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="pen">
+   <widget class="QPushButton" name="penButton">
     <property name="geometry">
      <rect>
-      <x>200</x>
+      <x>340</x>
       <y>10</y>
       <width>61</width>
       <height>61</height>
@@ -112,26 +115,31 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="pencil">
+   <widget class="QPushButton" name="pencilButton">
     <property name="geometry">
      <rect>
-      <x>270</x>
+      <x>410</x>
       <y>10</y>
       <width>61</width>
       <height>61</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/PaintIcons/pen.png);</string>
+     <string notr="true"/>
     </property>
     <property name="text">
-     <string/>
+     <string>Eraser</string>
     </property>
    </widget>
-   <widget class="QScrollArea" name="Grosor">
+   <widget class="QScrollArea" name="ticknessScrollArea">
     <property name="geometry">
      <rect>
-      <x>340</x>
+      <x>550</x>
       <y>10</y>
       <width>71</width>
       <height>61</height>
@@ -149,7 +157,7 @@
        <height>59</height>
       </rect>
      </property>
-     <widget class="QRadioButton" name="G1">
+     <widget class="QRadioButton" name="tickness1Button">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -162,7 +170,7 @@
        <string/>
       </property>
      </widget>
-     <widget class="QRadioButton" name="G2">
+     <widget class="QRadioButton" name="tickness2Button">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -175,7 +183,7 @@
        <string/>
       </property>
      </widget>
-     <widget class="QRadioButton" name="G3">
+     <widget class="QRadioButton" name="tickness3Button">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -188,7 +196,7 @@
        <string/>
       </property>
      </widget>
-     <widget class="QFrame" name="frame">
+     <widget class="QFrame" name="ticknessFrame">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -209,7 +217,7 @@
      </widget>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="figures">
+   <widget class="QGroupBox" name="figuresGroupBox">
     <property name="geometry">
      <rect>
       <x>700</x>
@@ -221,7 +229,7 @@
     <property name="title">
      <string/>
     </property>
-    <widget class="QPushButton" name="circle">
+    <widget class="QPushButton" name="rectangleButton">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -230,14 +238,19 @@
        <height>21</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>6</pointsize>
+      </font>
+     </property>
      <property name="styleSheet">
-      <string notr="true">image: url(:/PaintIcons/circle.png);</string>
+      <string notr="true"/>
      </property>
      <property name="text">
-      <string/>
+      <string>Rectangle</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="triangle">
+    <widget class="QPushButton" name="triangleButton">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -253,7 +266,7 @@
       <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="square">
+    <widget class="QPushButton" name="squareButton">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -270,7 +283,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QPushButton" name="filter">
+   <widget class="QPushButton" name="filter1Button">
     <property name="geometry">
      <rect>
       <x>750</x>
@@ -280,13 +293,14 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/PaintIcons/filter.png);</string>
+     <string notr="true">image: url(:/PaintIcons/filter.png);
+background-color: rgb(0,0,255);</string>
     </property>
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="paintfill">
+   <widget class="QPushButton" name="paintfillButton">
     <property name="geometry">
      <rect>
       <x>650</x>
@@ -302,7 +316,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="pickcolor">
+   <widget class="QPushButton" name="pickColorButton">
     <property name="geometry">
      <rect>
       <x>650</x>
@@ -318,28 +332,152 @@
      <string/>
     </property>
    </widget>
-   <widget class="QColumnView" name="columnView">
+   <widget class="QColumnView" name="menuColumnView">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>801</width>
+      <width>881</width>
       <height>91</height>
      </rect>
     </property>
    </widget>
-   <zorder>columnView</zorder>
-   <zorder>open</zorder>
-   <zorder>save</zorder>
-   <zorder>magicSelect</zorder>
-   <zorder>select</zorder>
-   <zorder>pen</zorder>
-   <zorder>pencil</zorder>
-   <zorder>Grosor</zorder>
-   <zorder>figures</zorder>
-   <zorder>filter</zorder>
-   <zorder>paintfill</zorder>
-   <zorder>pickcolor</zorder>
+   <widget class="QPushButton" name="undoButton">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>10</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>Undo</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="redoButton">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>40</y>
+      <width>41</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>Redo</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="filter2Button">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>20</y>
+      <width>31</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/PaintIcons/filter.png);
+background-color: rgb(0,255,0);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="filter3Button">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>20</y>
+      <width>31</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/PaintIcons/filter.png);
+background-color: rgb(255,0,0);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="chooseColorButton">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>10</y>
+      <width>61</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>Selec Color</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="chopFreeButton">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>10</y>
+      <width>61</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>Free Chop</string>
+    </property>
+   </widget>
+   <zorder>menuColumnView</zorder>
+   <zorder>openButton</zorder>
+   <zorder>saveButton</zorder>
+   <zorder>magicSelectButton</zorder>
+   <zorder>chopSquareButton</zorder>
+   <zorder>penButton</zorder>
+   <zorder>pencilButton</zorder>
+   <zorder>ticknessScrollArea</zorder>
+   <zorder>figuresGroupBox</zorder>
+   <zorder>filter1Button</zorder>
+   <zorder>paintfillButton</zorder>
+   <zorder>pickColorButton</zorder>
+   <zorder>undoButton</zorder>
+   <zorder>redoButton</zorder>
+   <zorder>filter2Button</zorder>
+   <zorder>filter3Button</zorder>
+   <zorder>chooseColorButton</zorder>
+   <zorder>chopFreeButton</zorder>
   </widget>
  </widget>
  <resources/>
