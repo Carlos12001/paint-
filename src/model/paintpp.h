@@ -19,22 +19,17 @@ using namespace std;
 class PaintPP {
     private:
 
+    static auto paintCoordinates(vectorStructure<PointImage> vectorMove, Image* imageCanvas, int grossorE, Color colorPaint)->Image*;
+    static vectorStructure<PointImage> rectLine(vectorStructure<PointImage> coordinates,int distance,vectorDireccion lineDireccion);
+    static auto figureFourLines(PointImage coord, Image* imageCanvas, int grossorE,Color colorSelect,int Side, int Bottom)->Image*;
+    static auto figureThreeLines(PointImage coord, Image *imageCanvas, int grossorE, Color colorSelect,
+                                 int base) -> Image *;
+
     int counterImage = 0;
 
     doublyLinkedList<string>* historyImage = nullptr;
 
     Image* currentImage = nullptr;
-
-    static auto paintCoordinates(vectorStructure<vectorMovement> vectorMove, Image* imageCanvas, int grossorE, Color colorPaint)->Image*;
-    static vectorStructure<vectorMovement> rectLine(vectorStructure<vectorMovement> coordinates,int distance,vectorDireccion lineDireccion);
-
-    static auto erase(vectorStructure<vectorMovement> vectorMove, Image* imageCanvas,int grossorE)->Image*;
-
-    static auto pencil(vectorStructure<vectorMovement> vectorMove, Image* imageCanvas,int grossorE, Color colorSelect)->Image*;
-
-    static auto pen(vectorStructure<vectorMovement> vectorTwoCordinates, Image* imageCanvas, int grossorE, Color colorSelect)->Image*;
-
-    static auto figureSquare(vectorMovement coord, Image* imageCanvas, int grossorE,Color colorSelect,int Size)->Image*;
 
     void createEmptyCanvas(int width, int height);
 
@@ -58,7 +53,26 @@ public:
 
     virtual ~PaintPP();
 
-    [[maybe_unused]] static vectorStructure<vectorMovement> mouseMovementEmulation(int positionX, int positionY);
+
+
+
+    void saveImage();
+
+
+    static vectorStructure<PointImage> mouseMovement(int positionX, int positionY);
+
+    static auto erase(vectorStructure<PointImage> vectorMove, Image* imageCanvas,int grossorE)->Image*;
+
+    static auto pencil(vectorStructure<PointImage> vectorMove, Image* imageCanvas,int grossorE, Color colorSelect)->Image*;
+
+    static auto pen(vectorStructure<PointImage> vectorTwoCordinates, Image* imageCanvas, int grossorE, Color colorSelect)->Image*;
+
+    static auto figureSquare(PointImage coord, Image* imageCanvas, int grossorE,Color colorSelect,int Size)->Image*;
+
+    static auto figureRectangle(PointImage coord, Image *imageCanvas, int grossorE, Color colorSelect, int side, int bottom)-> Image*;
+
+    static auto figureTriangle(PointImage coord, Image *imageCanvas, int grossorE, Color colorSelect, int side)-> Image*;
+
 
     void updateCurrentImage(Image* theNewImage);
 
@@ -99,7 +113,6 @@ public:
     void doFilterBImage();
 
     void rotateImage();
-
 };
 
 

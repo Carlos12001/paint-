@@ -30,6 +30,10 @@ public:
     [[maybe_unused]] static void testPopVectorMove();
 
     [[maybe_unused]] static void deleteNullPointers();
+
+    static void eraseImageTest1();
+
+    [[maybe_unused]]     static void BFSTest();
 };
 
 

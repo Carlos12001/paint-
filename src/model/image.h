@@ -23,9 +23,8 @@ struct Color{
 
     Color();
 
-    Color(float r, float b, float g);
 
-    Color(float r, float g, float b, float a);
+    Color(float a, float r, float g, float b);
 };
 
 

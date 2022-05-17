@@ -147,5 +147,5 @@ Why not use a signed char? Arithmetic and bit shifting becomes problematic. As e
 - [ [not resizeable window in qt] ](https://www.youtube.com/watch?v=--NkRG0UZTg)
 - [ [color selector in qt] ](https://www.youtube.com/watch?v=rtgOb03xl_U)
 - [ [qt input dialog text] ](https://www.youtube.com/watch?v=wj1Ua__K1kY)
-- [ [qt input dialog int] ](https://www.newthinktank.com/2018/07/qt-tutorial-5-paint-app/)
-- [ [qt input dialog option] ](https://doc.qt.io/qt-5/qmessagebox.html)
+- [ [not resizeable window] ](https://www.youtube.com/watch?v=--NkRG0UZTg)
+- [[Check for implement the BFS]](https://www.geeksforgeeks.org/largest-connected-component-on-a-grid/?ref=gcse)
