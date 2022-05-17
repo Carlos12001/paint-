@@ -66,7 +66,7 @@ auto PaintPP::paintCoordinates(vectorStructure<vectorMovement> vectorMove, Image
     return imageCanvas;
 }
 
-vectorStructure<vectorMovement> PaintPP::mouseMovement(int positionX, int positionY) {
+[[maybe_unused]] vectorStructure<vectorMovement> PaintPP::mouseMovementEmulation(int positionX, int positionY) {
     vectorStructure<vectorMovement> eraseMove;
     for(int startPosX = 1; startPosX < positionX; startPosX++)
         eraseMove.addElement(vectorMovement(startPosX,startPosX));
@@ -189,10 +189,6 @@ auto PaintPP::figureSquare(vectorMovement coord, Image *imageCanvas, int grossor
 }
 
 
-
-
-
-
 PaintPP::PaintPP(int width, int height) {
     createEmptyCanvas(width, height);
 }
@@ -239,7 +235,8 @@ string PaintPP::getNextHistoryName(){
 }
 
 PaintPP::~PaintPP() {
-
+    delete currentImage;
+    delete historyImage;
 }
 
 int PaintPP::getWidthCanvas(){
@@ -250,11 +247,20 @@ int PaintPP::getHeightCanvas(){
     return currentImage->getHeight();
 }
 
-void PaintPP::saveImage(){
-    auto path = historyImage->data;
-    currentImage->exportImage(path);
-}
-
 int PaintPP::getCounterImage() {
     return counterImage;
+}
+
+void PaintPP::saveImage(string path) {
+//    auto path = historyImage->data;
+    if(!string("").compare(path)){
+        path += ".bmp";
+        currentImage->exportImage(path);
+    }
+    else{
+        currentImage->exportImage("imageSaved.bmp");
+    }
+}
+
+void PaintPP::drawImage(vectorStructure<PointImage> vectorMove, int thickness, Color color){
 }

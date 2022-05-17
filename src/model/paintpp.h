@@ -13,19 +13,28 @@ using namespace std;
 #include <fstream>
 #include <math.h>
 #include "utils/vectorMovement.h"
+#include "point_image.h"
 
 
 class PaintPP {
     private:
-
-    static auto paintCoordinates(vectorStructure<vectorMovement> vectorMove, Image* imageCanvas, int grossorE, Color colorPaint)->Image*;
-    static vectorStructure<vectorMovement> rectLine(vectorStructure<vectorMovement> coordinates,int distance,vectorDireccion lineDireccion);
 
     int counterImage = 0;
 
     doublyLinkedList<string>* historyImage = nullptr;
 
     Image* currentImage = nullptr;
+
+    static auto paintCoordinates(vectorStructure<vectorMovement> vectorMove, Image* imageCanvas, int grossorE, Color colorPaint)->Image*;
+    static vectorStructure<vectorMovement> rectLine(vectorStructure<vectorMovement> coordinates,int distance,vectorDireccion lineDireccion);
+
+    static auto erase(vectorStructure<vectorMovement> vectorMove, Image* imageCanvas,int grossorE)->Image*;
+
+    static auto pencil(vectorStructure<vectorMovement> vectorMove, Image* imageCanvas,int grossorE, Color colorSelect)->Image*;
+
+    static auto pen(vectorStructure<vectorMovement> vectorTwoCordinates, Image* imageCanvas, int grossorE, Color colorSelect)->Image*;
+
+    static auto figureSquare(vectorMovement coord, Image* imageCanvas, int grossorE,Color colorSelect,int Size)->Image*;
 
     void createEmptyCanvas(int width, int height);
 
@@ -45,23 +54,50 @@ public:
 
     int getHeightCanvas();
 
+    int getCounterImage();
+
     virtual ~PaintPP();
 
-    void saveImage();
+    [[maybe_unused]] static vectorStructure<vectorMovement> mouseMovementEmulation(int positionX, int positionY);
 
-    public:
+    void drawImage(vectorStructure<PointImage> vectorMove, int thickness, Color color);
 
-    static vectorStructure<vectorMovement> mouseMovement(int positionX, int positionY);
+    void eraseImage(vectorStructure<PointImage> vectorMove, int thickness);
 
-    static auto erase(vectorStructure<vectorMovement> vectorMove, Image* imageCanvas,int grossorE)->Image*;
+    void createLineImage(PointImage* arrayPoints, int thickness);
 
-    static auto pencil(vectorStructure<vectorMovement> vectorMove, Image* imageCanvas,int grossorE, Color colorSelect)->Image*;
+    void magicSelectImage(PointImage pointCickled);
 
-    static auto pen(vectorStructure<vectorMovement> vectorTwoCordinates, Image* imageCanvas, int grossorE, Color colorSelect)->Image*;
+    void chopSquareImage(PointImage* arrayPoints);
 
-    static auto figureSquare(vectorMovement coord, Image* imageCanvas, int grossorE,Color colorSelect,int Size)->Image*;
+    void chopFreeImage(vectorStructure<PointImage> vectorMove);
 
-    int getCounterImage();
+    void createSquareImage(PointImage pointCickled);
+
+    void createTriangleImage(PointImage pointCickled);
+
+    void createRectangleImage(PointImage pointCickled);
+
+    Color getPicker(PointImage pointCickled);
+
+    void paintFill(vectorStructure<PointImage> vectorMove, Color color);
+
+    void saveImage(string pathImage);
+
+    void redoImage();
+
+    void undoImage();
+
+    void openImage(string pathImage);
+
+    void doFilterRImage();
+
+    void doFilterGImage();
+
+    void doFilterBImage();
+
+    void rotateImage();
+
 };
 
 
