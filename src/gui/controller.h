@@ -10,6 +10,7 @@ using namespace std;
 #include <QInputDialog>
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QColorDialog>
 #include "model/paintpp.h"
 #include "model/point_image.h"
 

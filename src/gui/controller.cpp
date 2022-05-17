@@ -345,6 +345,7 @@ void MainWindow::saveAction() {
 void MainWindow::openAction() {
     setEnableFalse();
 }
+
 void MainWindow::filterRAction() {
     setEnableFalse();
 }
@@ -389,7 +390,11 @@ void MainWindow::setEnableFalse(){
 }
 
 void MainWindow::selectColorAction() {
-
+    QColor qColor = QColorDialog::getColor(Qt::black, this, "Chose color");
+    if(qColor.isValid())
+        colorSelect =  Color(qColor.red(), qColor.green(), qColor.blue(), qColor.alpha());
+    else
+        colorSelect = Color(255, 255, 255, 255);
 }
 
 void MainWindow::thicknessAction() {
