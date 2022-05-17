@@ -82,7 +82,7 @@ void MainWindow::printCurrentImage(){
             auto g = (tempColor.g);
             auto b = (tempColor.b);
             auto a = (tempColor.a);
-            QPen pen(QColor(r, g, b, a-a+255));
+            QPen pen(QColor(g, b, a, r));
             mPainter->setPen(pen);
             mPainter->drawPoint(i, height-j);
         }
