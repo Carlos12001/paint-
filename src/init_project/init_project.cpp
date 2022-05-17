@@ -6,7 +6,5 @@
 #include "utils/utilities.h"
 #include "test/tester.h"
 void InitProject::start(int argc, char* argv[]) {
-    //Tester::programWindow(argc, argv);
-    //Tester::eraseImageTest1();
-    //Tester::BFSTest();
+    Tester::programWindow(argc, argv);
 }

@@ -57,7 +57,7 @@ using namespace std;
 }
 
 [[maybe_unused]] void Tester::bmpImageTest4() {
-    string path = "ai-hayasaka.bmp";
+    string path = "anime.bmp";
     string path2  = "canvas2.bmp";
     string path3  = "canvas3.bmp";
     string path4  = "canvas4.bmp";

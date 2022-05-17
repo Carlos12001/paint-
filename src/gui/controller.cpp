@@ -392,7 +392,7 @@ void MainWindow::setEnableFalse(){
 void MainWindow::selectColorAction() {
     QColor qColor = QColorDialog::getColor(Qt::black, this, "Chose color");
     if(qColor.isValid())
-        colorSelect =  Color(qColor.red(), qColor.green(), qColor.blue(), qColor.alpha());
+        colorSelect =  Color(qColor.alpha(), qColor.red(), qColor.green(), qColor.blue());
     else
         colorSelect = Color(255, 255, 255, 255);
 }
