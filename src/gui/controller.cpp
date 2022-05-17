@@ -140,7 +140,6 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event) {
 //        paintPP->chopFree(vectorMove);
 //        printCurrentImage();
     }
-    setEnableFalse();
     restartVectorMove();
     event->accept();
     update();
