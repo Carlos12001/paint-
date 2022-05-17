@@ -157,7 +157,7 @@
        <height>59</height>
       </rect>
      </property>
-     <widget class="QRadioButton" name="tickness1Button">
+     <widget class="QRadioButton" name="tickness1RadioButton">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -173,7 +173,7 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QRadioButton" name="tickness2Button">
+     <widget class="QRadioButton" name="tickness2RadioButton">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -186,7 +186,7 @@
        <string/>
       </property>
      </widget>
-     <widget class="QRadioButton" name="tickness3Button">
+     <widget class="QRadioButton" name="tickness3RadioButton">
       <property name="geometry">
        <rect>
         <x>0</x>

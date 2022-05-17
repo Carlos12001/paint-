@@ -44,6 +44,12 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
             SLOT(selectColorAction()));
     connect(ui->rotateButton, SIGNAL(clicked()), this,
             SLOT(rotateAction()));
+    connect(ui->tickness1RadioButton, SIGNAL(clicked()), this,
+            SLOT(thicknessAction()));
+    connect(ui->tickness2RadioButton, SIGNAL(clicked()), this,
+            SLOT(thicknessAction()));
+    connect(ui->tickness3RadioButton, SIGNAL(clicked()), this,
+            SLOT(thicknessAction()));
 }
 
 MainWindow::~MainWindow(){
@@ -378,5 +384,12 @@ void MainWindow::selectColorAction() {
 }
 
 void MainWindow::thicknessAction() {
-
+    if(ui->tickness1RadioButton->isChecked())
+        thickness = 5;
+    else if(ui->tickness2RadioButton->isChecked())
+        thickness = 10;
+    else if(ui->tickness3RadioButton->isChecked())
+        thickness = 15;
+    else
+        thickness = 5;
 }
