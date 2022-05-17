@@ -264,3 +264,7 @@ void PaintPP::saveImage(string path) {
 
 void PaintPP::drawImage(vectorStructure<PointImage> vectorMove, int thickness, Color color){
 }
+
+void PaintPP::updateCurrentImage(Image *theNewImage) {
+
+}

@@ -60,6 +60,8 @@ public:
 
     [[maybe_unused]] static vectorStructure<vectorMovement> mouseMovementEmulation(int positionX, int positionY);
 
+    void updateCurrentImage(Image* theNewImage);
+
     void drawImage(vectorStructure<PointImage> vectorMove, int thickness, Color color);
 
     void eraseImage(vectorStructure<PointImage> vectorMove, int thickness);
