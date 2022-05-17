@@ -75,10 +75,12 @@ void MainWindow::paintEvent(QPaintEvent *event) {
 
 void MainWindow::mousePressEvent(QMouseEvent *event) {
     if(enableDraw){
+        restartVectorMove();
         addElementVectorMove(event->pos().rx(), event->pos().ry());
         getInformationMouseMove = true;
     }
     else if(enableErase){
+        restartVectorMove();
         addElementVectorMove(event->pos().rx(), event->pos().ry());
         getInformationMouseMove = true;
     }
@@ -92,6 +94,7 @@ void MainWindow::mousePressEvent(QMouseEvent *event) {
 
     }
     else if(enableChopFree){
+        restartVectorMove();
         addElementVectorMove(event->pos().rx(), event->pos().ry());
         getInformationMouseMove = true;
     }
@@ -129,18 +132,20 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event) {
         getInformationMouseMove = false;
 //        paintPP->drawImage(vectorMove, colorSelect, thickness);
 //        printCurrentImage();
+        restartVectorMove();
     }
     else if (enableErase){
         getInformationMouseMove = false;
 //        paintPP->eraseImage(vectorMove, thickness);
 //        printCurrentImage();
+        restartVectorMove();
     }
     else if (enableChopFree){
         getInformationMouseMove = false;
 //        paintPP->chopFree(vectorMove);
 //        printCurrentImage();
+        restartVectorMove();
     }
-    restartVectorMove();
     event->accept();
     update();
 }
