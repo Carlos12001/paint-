@@ -54,21 +54,10 @@ MainWindow::~MainWindow(){
 }
 
 void MainWindow::initGUIPaintPP(){
-
-
-
-    Utilities::printMessageInfo("Init the GUIPaintPP");
     chooseOption();
     canvasImage = new QImage(1280,720, QImage::Format_ARGB32_Premultiplied);
     mPainter = new QPainter(canvasImage);
-
     printCurrentImage();
-
-//    // Create pen width action and tie to MainWindow::penWidth()
-//    penWidthAct = new QAction(tr("Pen &Width..."), this);
-//    connect(penWidthAct, SIGNAL(triggered()), this, SLOT(penWidth()));
-
-
     return;
 }
 
@@ -79,14 +68,48 @@ void MainWindow::paintEvent(QPaintEvent *event) {
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *event) {
-    enablePainter = true;
-    restartVectorMove();
-    addElementVectorMove(event->pos().rx(), event->pos().ry());
+    if(enableDraw){
+        addElementVectorMove(event->pos().rx(), event->pos().ry());
+        getInformationMouseMove = true;
+    }
+    else if(enableErase){
+        addElementVectorMove(event->pos().rx(), event->pos().ry());
+        getInformationMouseMove = true;
+    }
+    else if(enableLine){
+
+    }
+    else if(enableMagicSelect){
+
+    }
+    else if(enableChopSquare){
+
+    }
+    else if(enableChopFree){
+        addElementVectorMove(event->pos().rx(), event->pos().ry());
+        getInformationMouseMove = true;
+    }
+    else if(enableFigureSquare){
+
+    }
+    else if(enableFigureRectangle){
+
+    }
+    else if(enableFigureTriangle){
+
+    }
+    else if(enableColorPicker){
+
+    }
+    else if(enablePaintFill){
+
+    }
+
     event->accept();
 }
 
 void MainWindow::mouseMoveEvent(QMouseEvent *event) {
-    if(enablePainter){
+    if(getInformationMouseMove){
         addElementVectorMove(event->pos().rx(), event->pos().ry());
         event->accept();
     }else{
@@ -96,15 +119,23 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event) {
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent *event) {
-//    if(enablePainter){
-//        Color colorSelect = Color(0,0,0);
-//        int brushSize = 5;
-//        paintPP->draw(vectorMove, colorSelect,brushSize; );
-//    }
-//    else if (enableDelete){
-//
-//    }
-    enablePainter = false;
+    if(enableDraw){
+        getInformationMouseMove = false;
+//        paintPP->drawImage(vectorMove, colorSelect, thickness);
+//        printCurrentImage();
+    }
+    else if (enableErase){
+        getInformationMouseMove = false;
+//        paintPP->eraseImage(vectorMove, thickness);
+//        printCurrentImage();
+    }
+    else if (enableChopFree){
+        getInformationMouseMove = false;
+//        paintPP->chopFree(vectorMove);
+//        printCurrentImage();
+    }
+    setEnableFalse();
+    restartVectorMove();
     event->accept();
     update();
 }
@@ -159,12 +190,10 @@ void MainWindow::addElementVectorMove(int i, int j){
 }
 
 int MainWindow::selectWidth(){
-    // Stores button value
     bool ok = false;
     int width = QInputDialog::getInt(this, tr("Select width"),
                                      tr("Select width:"),
                                      1280, 1, 1280, 1, &ok);
-    // Change the pen width
     if (ok){
         return width;
     }
@@ -174,12 +203,10 @@ int MainWindow::selectWidth(){
 }
 
 int MainWindow::selectHeight(){
-    // Stores button value
     bool ok = false;
     int height = QInputDialog::getInt(this, tr("Select height"),
                                       tr("Select pen height:"),
                                       720, 1, 720, 1, &ok);
-    // Change the pen width
     if (ok) {
         return height;
     }
@@ -213,7 +240,6 @@ void MainWindow::openImage(){
                                               "Ingrese el nombre del imagen",
                                               "Recuerde que la iamgen tiene que encontrar a la par del ejecutable.");
     string pathImage;
-//    pathImage = "ai-hayasaka.bmp";
     pathImage = pathInput.toStdString();
     if(paintPP == nullptr)
         paintPP = new PaintPP(pathImage);
@@ -226,81 +252,131 @@ void MainWindow::createEmptyCanvas(){
 }
 
 void MainWindow::magicSelectAction() {
+    setEnableFalse();
 
+    enableMagicSelect = true;
 }
 
 void MainWindow::chopSquareAction() {
+    setEnableFalse();
 
+    enableChopSquare = true;
 }
 
 void MainWindow::chopFreeAction() {
+    setEnableFalse();
 
+    enableChopFree = true;
 }
 
 void MainWindow::filterBAction() {
-
+    setEnableFalse();
 }
 
 void MainWindow::eraseAction() {
+    setEnableFalse();
 
+    enableErase = true;
 }
 
 void MainWindow::lineAction() {
+    setEnableFalse();
 
+    enableLine = true;
 }
 
 void MainWindow::figureSquareAction() {
+    setEnableFalse();
 
+    enableFigureSquare = true;
 }
 
 void MainWindow::figureTriangleAction() {
+    setEnableFalse();
 
+    enableFigureTriangle = true;
 }
 
 void MainWindow::figureRectangleAction() {
+    setEnableFalse();
 
+    enableFigureRectangle = true;
 }
 
 void MainWindow::colorPickerAction() {
+    setEnableFalse();
 
+    enableColorPicker = true;
 }
 
 void MainWindow::paintFillAction() {
+    setEnableFalse();
 
+    enablePaintFill = true;
 }
 
 void MainWindow::undoAction() {
-
+    setEnableFalse();
 }
 
 void MainWindow::redoAction() {
-
+    setEnableFalse();
 }
 
 void MainWindow::saveAction() {
-
+    setEnableFalse();
 }
 
 void MainWindow::openAction() {
+    setEnableFalse();
+}
+void MainWindow::filterRAction() {
+    setEnableFalse();
+}
 
+void MainWindow::filterGAction() {
+    setEnableFalse();
+}
+
+void MainWindow::drawAction() {
+    setEnableFalse();
+
+    enableDraw = true;
+}
+
+void MainWindow::rotateAction() {
+    setEnableFalse();
+}
+
+void MainWindow::setEnableFalse(){
+
+    enableDraw = false;
+
+    enableErase = false;
+
+    enableLine = false;
+
+    enableMagicSelect = false;
+
+    enableChopSquare = false;
+
+    enableChopFree = false;
+
+    enableFigureSquare = false;
+
+    enableFigureRectangle = false;
+
+    enableFigureTriangle = false;
+
+    enableColorPicker = false;
+
+    enablePaintFill = false;
 }
 
 void MainWindow::selectColorAction() {
 
 }
 
-void MainWindow::filterRAction() {
-
-}
-
-void MainWindow::filterGAction() {
-
-}
-
-void MainWindow::drawAction() {
-
-}
-
-void MainWindow::rotateAction() {
+void MainWindow::thicknessAction() {
 
 }

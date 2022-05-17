@@ -44,10 +44,33 @@ private:
 
     vectorStructure<PointImage> vectorMove;
 
-    bool enablePainter = false;
+    bool getInformationMouseMove = false;
 
+    bool enableDraw = false;
 
-protected:
+    bool enableErase = false;
+
+    bool enableLine = false;
+
+    bool enableMagicSelect = false;
+
+    bool enableChopSquare = false;
+
+    bool enableChopFree = false;
+
+    bool enableFigureSquare = false;
+
+    bool enableFigureRectangle = false;
+
+    bool enableFigureTriangle = false;
+
+    bool enableColorPicker = false;
+
+    bool enablePaintFill = false;
+
+    Color colorSelect = Color(0,0,0,255);
+    
+    int thickness = 5;
 
     void paintEvent(QPaintEvent* event) override;
 
@@ -74,6 +97,8 @@ protected:
     void openImage();
 
     void createEmptyCanvas();
+
+    void setEnableFalse();
 
 private slots:
 
@@ -117,5 +142,6 @@ private slots:
 
     void rotateAction();
 
+    void thicknessAction();
 };
 #endif // MAIN_WINDOW_H
