@@ -254,3 +254,7 @@ void PaintPP::saveImage(){
     auto path = historyImage->data;
     currentImage->exportImage(path);
 }
+
+int PaintPP::getCounterImage() {
+    return counterImage;
+}

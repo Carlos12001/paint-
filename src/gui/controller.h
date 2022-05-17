@@ -143,5 +143,9 @@ private slots:
     void rotateAction();
 
     void thicknessAction();
+
+    void checkUndo();
+
+    void checkRedo();
 };
 #endif // MAIN_WINDOW_H

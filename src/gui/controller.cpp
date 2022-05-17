@@ -74,6 +74,9 @@ void MainWindow::paintEvent(QPaintEvent *event) {
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *event) {
+    checkUndo();
+    checkRedo();
+
     if(enableDraw){
         restartVectorMove();
         addElementVectorMove(event->pos().rx(), event->pos().ry());
@@ -146,6 +149,8 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event) {
 //        printCurrentImage();
         restartVectorMove();
     }
+    checkUndo();
+    checkRedo();
     event->accept();
     update();
 }
@@ -396,4 +401,18 @@ void MainWindow::thicknessAction() {
         thickness = 15;
     else
         thickness = 5;
+}
+
+void MainWindow::checkUndo(){
+    int counter = paintPP->getCounterImage();
+    if(counter>0){
+        ui->undoButton->setEnabled(true);
+    }
+    else{
+        ui->undoButton->setEnabled(false);
+    }
+}
+
+void MainWindow::checkRedo() {
+    ui->redoButton->setEnabled(false);
 }
