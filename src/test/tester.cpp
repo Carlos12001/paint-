@@ -120,5 +120,12 @@ using namespace std;
 
 [[maybe_unused]] void Tester::BFSTest(){
     // Create a graph given in the above diagram
+    string path1 = "canvas3.bmp";
+    auto Imagebfs = Image::createImageEmpty(200,200);
+    Imagebfs = PaintPP::figureSquare(PointImage(50,50),Imagebfs,5,Color(255,0,200,0),100);
+    Imagebfs = PaintPP::figureSquare(PointImage(50,70),Imagebfs,5,Color(255,0,200,0),50);
+    PointImage cord = PointImage(70,50);
+    Imagebfs = bfsPaintFill::paintFill(cord,Color(255,255,0,0),Imagebfs);
+    Imagebfs->exportImage("canvas6.bmp");
 
 }

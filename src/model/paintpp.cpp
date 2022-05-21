@@ -109,6 +109,7 @@ auto PaintPP::pen(vectorStructure<PointImage> vectorTwoCordinates, Image *imageC
     int distance = (int)sqrt(pow((vectorTwoCordinates.getElement(0).x)-(vectorTwoCordinates.getElement(1).x),2)
             +pow((vectorTwoCordinates.getElement(0).y)-(vectorTwoCordinates.getElement(1).y),2));
     Utilities::printMessageInfo(to_string(distance) + "Distance");
+
     vectorStructure<PointImage> Move = PaintPP::rectLine(vectorTwoCordinates,distance,lineDireccion);
     imageCanvas = PaintPP::paintCoordinates(Move,imageCanvas,grossorE,colorSelect);
     return imageCanvas;
