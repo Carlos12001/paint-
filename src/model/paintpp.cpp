@@ -2,6 +2,7 @@
 // Created by carlo on 5/3/22.
 //
 
+#include <cstring>
 #include "paintpp.h"
 #include "utils/vectorStructure.h"
 
@@ -9,7 +10,7 @@ auto PaintPP::paintCoordinates(vectorStructure<PointImage> vectorMove, Image *im
                                int grossorE, Color colorPaint) -> Image * {
     int WIDTH = imageCanvas->getWidth();
     int HEIGHT = imageCanvas->getHeight();
-    Utilities::printMessageInfo(to_string(vectorMove.size()) + " y: " + to_string(vectorMove.size()));
+//    Utilities::printMessageInfo(to_string(vectorMove.size()) + " y: " + to_string(vectorMove.size()));
     int mayorElementY = vectorMove.getElement(vectorMove.size()-1).y;
     int mayorElementX = vectorMove.getElement(vectorMove.size()-1).x;
     int menorElementY = vectorMove.getElement(0).y;
@@ -196,84 +197,11 @@ auto PaintPP::figureFourLines(PointImage coord, Image *imageCanvas, int grossorE
     return imageCanvas;
 }
 
-
-PaintPP::PaintPP(int width, int height) {
-    createEmptyCanvas(width, height);
-}
-
-PaintPP::PaintPP(string pathImage) {
-    createImageCanvas(pathImage);
-}
-
-void PaintPP::createEmptyCanvas(int width, int height){
-    historyImage->append(&historyImage, getNextHistoryName());
-    if(width<=1280 && height<= 720){
-        currentImage = Image::createImageEmpty(width,height);
-    }
-    else{
-        Utilities::printMessageError("The canvas is too big. "
-                                     "The program is going to create the default size.");
-        currentImage = Image::createImageEmpty(1280,720);
-    }
-    return;
-}
-
-void PaintPP::createImageCanvas(string path){
-    historyImage->append(&historyImage, getNextHistoryName());
-    ifstream file;
-    file.open(path, ios::in | ios::binary);
-    if(file.is_open()) {
-        file.close();
-        currentImage = Image::readImage(path);
-    }
-    else{
-        Utilities::printMessageError("Exception opening/reading file. "
-                                     "The program is going to create the default canvas.");
-        createEmptyCanvas(1280, 720);
-    }
-    return;
-}
-
-vectorStructure<Color> PaintPP::getColorOfCurrentImage() {
-    return currentImage->getColors();
-}
-
-string PaintPP::getNextHistoryName(){
-    return string("canvas_") + to_string(++counterImage) + string(".bmp");
-}
-
-PaintPP::~PaintPP() {
-    delete currentImage;
-    delete historyImage;
-}
-
-int PaintPP::getWidthCanvas(){
-    return currentImage->getWidth();
-}
-
-int PaintPP::getHeightCanvas(){
-    return currentImage->getHeight();
-}
-
-int PaintPP::getCounterImage() {
-    return counterImage;
-}
-
-void PaintPP::saveImage(string path) {
-//    auto path = historyImage->data;
-    if(!string("").compare(path)){
-        path += ".bmp";
-        currentImage->exportImage(path);
-    }
-    else{
-        currentImage->exportImage("imageSaved.bmp");
-    }
-}
-
 auto PaintPP::figureSquare(PointImage coord, Image *imageCanvas, int grossorE, Color colorSelect, int Size) -> Image * {
     imageCanvas = PaintPP::figureFourLines(coord,imageCanvas,grossorE,colorSelect,Size,Size);
     return imageCanvas;
 }
+
 auto PaintPP::figureRectangle(PointImage coord, Image *imageCanvas, int grossorE, Color colorSelect, int side,int bottom) -> Image * {
     imageCanvas = PaintPP::figureFourLines(coord,imageCanvas,grossorE,colorSelect,side,bottom);
     return imageCanvas;
@@ -301,11 +229,130 @@ auto PaintPP::figureThreeLines(PointImage coord, Image *imageCanvas, int grossor
     return imageCanvas;
 }
 
-
-
-void PaintPP::drawImage(vectorStructure<PointImage> vectorMove, int thickness, Color color){
+PaintPP::PaintPP(int width, int height) {
+    historyImage->append(&historyImage, getNextHistoryName());
+    createEmptyCanvas(width, height);
 }
 
-void PaintPP::updateCurrentImage(Image *theNewImage) {
+PaintPP::PaintPP(string pathImage) {
+    historyImage->append(&historyImage, getNextHistoryName());
+    createImageCanvas(pathImage);
+}
 
+void PaintPP::createEmptyCanvas(int width, int height){
+    if(width<=1280 && height<= 720){
+        currentImage = Image::createImageEmpty(width,height);
+    }
+    else{
+        Utilities::printMessageError("The canvas is too big. "
+                                     "The program is going to create the default size.");
+        currentImage = Image::createImageEmpty(1280,720);
+    }
+    return;
+}
+
+void PaintPP::createImageCanvas(string path){
+    ifstream file;
+    file.open(path, ios::in | ios::binary);
+    if(file.is_open()) {
+        file.close();
+        currentImage = Image::readImage(path);
+    }
+    else{
+        Utilities::printMessageError("Exception opening/reading file. "
+                                     "The program is going to create the default canvas.");
+        createEmptyCanvas(1280, 720);
+    }
+    return;
+}
+
+vectorStructure<Color> PaintPP::getColorOfCurrentImage() {
+    return currentImage->getColors();
+}
+
+string PaintPP::getNextHistoryName(){
+    return string("canvas_") + to_string(++counterImage);
+}
+
+PaintPP::~PaintPP() {
+    delete currentImage;
+    delete historyImage;
+}
+
+int PaintPP::getWidthCanvas(){
+    return currentImage->getWidth();
+}
+
+int PaintPP::getHeightCanvas(){
+    return currentImage->getHeight();
+}
+
+int PaintPP::getCounterImage() {
+    return counterImage;
+}
+
+void PaintPP::saveImage(string path) {
+//    auto path = historyImage->data;
+    if(string("").compare(path)){
+        path += ".bmp";
+        currentImage->exportImage(path);
+    }
+    else{
+        currentImage->exportImage("imageSaved.bmp");
+    }
+}
+
+void PaintPP::drawImage(vectorStructure<PointImage> vectorMove, int thickness, Color color){
+    checkEraseHistory();
+    auto newer = pencil(vectorMove, currentImage, thickness, color);
+    changeCurrentImage(newer);
+}
+
+void PaintPP::changeCurrentImage(Image* newer) {
+    string name = historyImage->data;
+    saveImage(name);
+    readyUndo = true;
+    historyImage->append(&historyImage, getNextHistoryName());
+    if(historyImage->nextNode!= nullptr){
+        Utilities::printMessageInfo("The new path is " + historyImage->nextNode->data);
+        historyImage = historyImage->nextNode;
+    }
+    else{
+        Utilities::printMessageError("The next node is null and the current node is: " + historyImage->data);
+    }
+    currentImage = newer;
+}
+
+bool PaintPP::getReadyUndo(){
+    return readyUndo;
+}
+
+bool PaintPP::getReadyRedo() {
+    return readyRedo;
+}
+
+void PaintPP::checkEraseHistory(){
+    if(readyRedo){
+        auto& tmp = historyImage;
+        while (tmp!=nullptr){
+            string command = "rm ";
+            command += historyImage->data + ".bmp";
+            char * cstr = new char [command.length()+1];
+            strcpy(cstr, command.c_str());
+            system(cstr);
+            tmp = historyImage->prevNode;
+            counterImage--;
+            delete tmp->nextNode;
+            delete[] cstr;
+        }
+        readyRedo = false;
+    }
+}
+
+void PaintPP::vectorPrint(vectorStructure<PointImage>vectorMove){
+    cout << "-----------Vector MOVE----------"<< endl;
+    for (int i = 0; i < vectorMove.size(); ++i) {
+        cout << "(" << vectorMove.getElement(i).x << "," << vectorMove.getElement(i).y << ")" << "\t";
+    }
+    cout << endl;
 }

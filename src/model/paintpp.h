@@ -12,6 +12,7 @@ using namespace std;
 #include "image.h"
 #include <fstream>
 #include <math.h>
+#include <cstdlib>
 #include "utils/vectorMovement.h"
 #include "point_image.h"
 
@@ -44,6 +45,10 @@ class PaintPP {
 
     int counterImage = 0;
 
+    bool readyUndo = false;
+
+    bool readyRedo = false;
+
     doublyLinkedList<string>* historyImage = nullptr;
 
     Image* currentImage = nullptr;
@@ -53,6 +58,10 @@ class PaintPP {
     string getNextHistoryName();
 
     void createImageCanvas(string path);
+
+    void changeCurrentImage(Image* newer);
+
+    void checkEraseHistory();
 
 public:
 
@@ -69,8 +78,6 @@ public:
     int getCounterImage();
 
     virtual ~PaintPP();
-
-    void updateCurrentImage(Image* theNewImage);
 
     void drawImage(vectorStructure<PointImage> vectorMove, int thickness, Color color);
 
@@ -109,6 +116,12 @@ public:
     void doFilterBImage();
 
     void rotateImage();
+
+    bool getReadyUndo();
+
+    bool getReadyRedo();
+
+    void vectorPrint(vectorStructure<PointImage> vectorMove);
 };
 
 
