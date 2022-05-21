@@ -64,6 +64,7 @@ void MainWindow::initGUIPaintPP(){
     canvasImage = new QImage(1280,720, QImage::Format_ARGB32_Premultiplied);
     mPainter = new QPainter(canvasImage);
     printCurrentImage();
+    update();
     return;
 }
 
@@ -133,8 +134,14 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event) {
 void MainWindow::mouseReleaseEvent(QMouseEvent *event) {
     if(enableDraw){
         getInformationMouseMove = false;
-//        paintPP->drawImage(vectorMove, colorSelect, thickness);
-//        printCurrentImage();
+        paintPP->drawImage(vectorMove, thickness, colorSelect);
+
+        QPen pen2(QColor(255, 0, 0));
+        printCurrentImage();
+        mPainter->setPen(pen2);
+        for (int i = 0; i < 600; ++i) {
+            mPainter->drawPoint(500,i);
+        }
         restartVectorMove();
     }
     else if (enableErase){
@@ -171,7 +178,6 @@ void MainWindow::printCurrentImage(){
             mPainter->drawPoint(i, height-j);
         }
     }
-    update();
 }
 
 void MainWindow::restartVectorMove(){
