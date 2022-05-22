@@ -335,11 +335,11 @@ void PaintPP::checkEraseHistory(){
         auto& tmp = historyImage;
         while (tmp!=nullptr){
             string command = "rm ";
-            command += historyImage->data + ".bmp";
+            command += tmp->data + ".bmp";
             char * cstr = new char [command.length()+1];
             strcpy(cstr, command.c_str());
             system(cstr);
-            tmp = historyImage->prevNode;
+            tmp = tmp->prevNode;
             counterImage--;
             delete tmp->nextNode;
             delete[] cstr;
