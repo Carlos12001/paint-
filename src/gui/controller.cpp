@@ -385,6 +385,7 @@ void MainWindow::filterBAction() {
 
     paintPP->doFilterBImage();
     printCurrentImage();
+    restartVectorMove();
     checkUndo();
     checkRedo();
     update();
@@ -395,6 +396,7 @@ void MainWindow::filterRAction() {
 
     paintPP->doFilterRImage();
     printCurrentImage();
+    restartVectorMove();
     checkUndo();
     checkRedo();
     update();
@@ -405,6 +407,7 @@ void MainWindow::filterGAction() {
 
     paintPP->doFilterGImage();
     printCurrentImage();
+    restartVectorMove();
     checkUndo();
     checkRedo();
     update();
@@ -418,6 +421,12 @@ void MainWindow::drawAction() {
 
 void MainWindow::rotateAction() {
     setEnableFalse();
+    paintPP->rotateImage();
+    checkUndo();
+    checkRedo();
+    restartVectorMove();
+    printCurrentImage();
+    update();
 }
 
 void MainWindow::setEnableFalse(){

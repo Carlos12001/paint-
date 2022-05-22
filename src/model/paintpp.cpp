@@ -478,3 +478,35 @@ void PaintPP::clearAllCanvasImage() {
     changeCurrentImage();
     changedColor(currentImage, FiltersImage::White);
 }
+
+void PaintPP::createSquareImage(PointImage pointCickled,int tickness, Color color,int size) {
+    checkEraseHistory();
+    changeCurrentImage();
+    figureSquare(pointCickled,currentImage, tickness, color, size);
+}
+
+void PaintPP::createTriangleImage(PointImage pointCickled,int tickness, Color color,int size) {
+    checkEraseHistory();
+    changeCurrentImage();
+    figureTriangle(pointCickled,currentImage, tickness, color, size);
+}
+
+void PaintPP::createRectangleImage(PointImage pointCickled,int tickness, Color color,int size, int size2) {
+    checkEraseHistory();
+    changeCurrentImage();
+    figureRectangle(pointCickled,currentImage, tickness, color, size, size2);
+}
+
+
+void PaintPP::rotateImage(){
+    checkEraseHistory();
+    changeCurrentImage();
+    int heightN = currentImage->getHeight();
+    int widthN = currentImage->getWidth();
+    auto colors = getColorOfCurrentImage();
+    for (int j = 0; j < heightN; ++j) {
+        for (int i = 0; i < widthN; ++i) {
+            currentImage->setColor(colors.getElement(j*widthN+i), widthN-i, heightN-j);
+        }
+    }
+}

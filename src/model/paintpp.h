@@ -106,11 +106,11 @@ public:
 
     void chopFreeImage(vectorStructure<PointImage> vectorMove);
 
-    void createSquareImage(PointImage pointCickled);
+    void createSquareImage(PointImage pointCickled,int tickness, Color color,int size);
 
-    void createTriangleImage(PointImage pointCickled);
+    void createTriangleImage(PointImage pointCickled,int tickness, Color color,int size);
 
-    void createRectangleImage(PointImage pointCickled);
+    void createRectangleImage(PointImage pointCickled,int tickness, Color color,int size, int size2);
 
     Color getPicker(PointImage pointCickled);
 
