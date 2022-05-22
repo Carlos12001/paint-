@@ -275,6 +275,7 @@ string PaintPP::getNextHistoryName(){
 }
 
 PaintPP::~PaintPP() {
+    removeHistory();
     delete currentImage;
 }
 
@@ -386,3 +387,10 @@ void PaintPP::redoImage() {
     readyUndo =  (positionInHistory>=1) &&positionInHistory!=0 && positionInHistory%10!=0;
 }
 
+void PaintPP::removeHistory(){
+    string command = "rm canvas_*";
+    char * cstr = new char [command.length()+1];
+    strcpy(cstr, command.c_str());
+    system(cstr);
+    delete[] cstr;
+}

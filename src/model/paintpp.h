@@ -122,6 +122,8 @@ public:
     bool getReadyRedo();
 
     void vectorPrint(vectorStructure<PointImage> vectorMove);
+
+    void removeHistory();
 };
 
 
