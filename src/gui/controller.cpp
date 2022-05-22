@@ -64,6 +64,8 @@ void MainWindow::initGUIPaintPP(){
     canvasImage = new QImage(1280,720, QImage::Format_ARGB32_Premultiplied);
     mPainter = new QPainter(canvasImage);
     printCurrentImage();
+    checkUndo();
+    checkRedo();
     update();
     return;
 }
@@ -347,10 +349,15 @@ void MainWindow::paintFillAction() {
 void MainWindow::undoAction() {
     setEnableFalse();
     paintPP->undoImage();
+    checkUndo();
+    checkRedo();
 }
 
 void MainWindow::redoAction() {
     setEnableFalse();
+//
+    checkUndo();
+    checkRedo();
 }
 
 void MainWindow::saveAction() {
@@ -435,6 +442,12 @@ void MainWindow::checkUndo(){
 }
 
 void MainWindow::checkRedo() {
-    ui->redoButton->setEnabled(false);
-    ui->redoButton->setStyleSheet("background-color: rgb(255,0,0);");
+    if(paintPP->getReadyRedo()){
+        ui->redoButton->setEnabled(true);
+        ui->redoButton->setStyleSheet("background-color: rgb(0,255,0);");
+    }
+    else{
+        ui->redoButton->setEnabled(false);
+        ui->redoButton->setStyleSheet("background-color: rgb(255,0,0);");
+    }
 }
