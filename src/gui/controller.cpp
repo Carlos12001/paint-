@@ -127,7 +127,10 @@ void MainWindow::mousePressEvent(QMouseEvent *event) {
 
     }
     else if(enableColorPicker){
-
+        restartVectorMove();
+        addElementVectorMove(event->pos().rx(), event->pos().ry());
+        colorSelect = paintPP->getPicker(vectorMove.getElement(0));
+        colorSelect = Color(colorSelect.r, colorSelect.g, colorSelect.b, colorSelect.a);
     }
     else if(enablePaintFill){
 
@@ -425,7 +428,8 @@ void MainWindow::setEnableFalse(){
 }
 
 void MainWindow::selectColorAction() {
-    QColor qColor = QColorDialog::getColor(Qt::black, this, "Chose color");
+    QColor defaultColor = QColor(colorSelect.g, colorSelect.b, colorSelect.a, colorSelect.r);
+    QColor qColor = QColorDialog::getColor(defaultColor, this, "Chose color");
     if(qColor.isValid())
         colorSelect =  Color(qColor.alpha(), qColor.red(), qColor.green(), qColor.blue());
     else

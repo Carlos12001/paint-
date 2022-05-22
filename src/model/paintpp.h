@@ -75,8 +75,6 @@ public:
 
     int getHeightCanvas();
 
-    int getCounterImage();
-
     virtual ~PaintPP();
 
     void drawImage(vectorStructure<PointImage> vectorMove, int thickness, Color color);
@@ -117,11 +115,13 @@ public:
 
     void rotateImage();
 
+    void clearAllCanvasImage();
+
     bool getReadyUndo();
 
     bool getReadyRedo();
 
-    void vectorPrint(vectorStructure<PointImage> vectorMove);
+    [[maybe_unused]] void vectorPrint(vectorStructure<PointImage> vectorMove);
 
     void removeHistory();
 

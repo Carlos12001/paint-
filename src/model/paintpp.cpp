@@ -291,10 +291,6 @@ int PaintPP::getHeightCanvas(){
     return currentImage->getHeight();
 }
 
-int PaintPP::getCounterImage() {
-    return positionInHistory;
-}
-
 void PaintPP::saveImage(string path) {
 //    auto path = historyImage->data;
     if(string("").compare(path)){
@@ -346,7 +342,7 @@ void PaintPP::checkEraseHistory(){
     readyUndo =  (positionInHistory>=1) &&positionInHistory!=0 && positionInHistory%10!=0;
 }
 
-void PaintPP::vectorPrint(vectorStructure<PointImage>vectorMove){
+[[maybe_unused]] void PaintPP::vectorPrint(vectorStructure<PointImage>vectorMove){
     cout << "-----------Vector MOVE----------\n"<< endl;
     for (int i = 0; i < vectorMove.size(); ++i) {
         cout << "(" << vectorMove.getElement(i).x << "," << vectorMove.getElement(i).y << ")" << "\t";
@@ -410,4 +406,8 @@ string PaintPP::stringCheckCanvas(string text){
         else return text;
     }
     return text;
+}
+
+Color PaintPP::getPicker(PointImage pointCickled) {
+    return currentImage->getColor(pointCickled.x, pointCickled.y);
 }
