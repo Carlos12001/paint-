@@ -135,6 +135,8 @@ void MainWindow::mousePressEvent(QMouseEvent *event) {
 }
 
 void MainWindow::mouseMoveEvent(QMouseEvent *event) {
+    checkUndo();
+    checkRedo();
     if(getInformationMouseMove){
         addElementVectorMove(event->pos().rx(), event->pos().ry());
         event->accept();
@@ -344,6 +346,7 @@ void MainWindow::paintFillAction() {
 
 void MainWindow::undoAction() {
     setEnableFalse();
+    paintPP->undoImage();
 }
 
 void MainWindow::redoAction() {
@@ -421,15 +424,17 @@ void MainWindow::thicknessAction() {
 }
 
 void MainWindow::checkUndo(){
-    int counter = paintPP->getCounterImage();
-    if(counter>0){
+    if(paintPP->getReadyUndo()){
         ui->undoButton->setEnabled(true);
+        ui->undoButton->setStyleSheet("background-color: rgb(0,255,0);");
     }
     else{
         ui->undoButton->setEnabled(false);
+        ui->undoButton->setStyleSheet("background-color: rgb(255,0,0);");
     }
 }
 
 void MainWindow::checkRedo() {
     ui->redoButton->setEnabled(false);
+    ui->redoButton->setStyleSheet("background-color: rgb(255,0,0);");
 }

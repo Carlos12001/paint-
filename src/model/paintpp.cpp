@@ -324,7 +324,7 @@ bool PaintPP::getReadyRedo() {
 }
 
 void PaintPP::checkEraseHistory(){
-    if(readyRedo){
+    if(readyRedo&&false){
         auto& tmp = historyImage;
         int final = tmp.size();
         for (int i = positionInHistory; i < final; ++i) {
@@ -338,6 +338,8 @@ void PaintPP::checkEraseHistory(){
         }
         readyRedo = false;
     }
+    readyUndo =  (positionInHistory>=1) && positionInHistory%10!=0;
+    cout <<endl<<endl<< readyUndo<< endl << endl;
 }
 
 void PaintPP::vectorPrint(vectorStructure<PointImage>vectorMove){
@@ -358,5 +360,15 @@ void PaintPP::createLineImage(vectorStructure<PointImage> vectorMove, int thickn
     checkEraseHistory();
     changeCurrentImage();
     pen(vectorMove, currentImage, thickness, color);
+}
+
+void PaintPP::undoImage() {
+    if(readyUndo){
+        if(!readyRedo){
+            string name = string("canvas_") + to_string(positionInHistory);
+            saveImage(name);
+        }
+        readyRedo = true;
+    }
 }
 
