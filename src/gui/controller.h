@@ -11,6 +11,7 @@ using namespace std;
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QColorDialog>
+#include <cmath>
 #include "model/paintpp.h"
 #include "model/point_image.h"
 

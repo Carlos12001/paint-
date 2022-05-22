@@ -59,7 +59,7 @@ class PaintPP {
 
     void createImageCanvas(string path);
 
-    void changeCurrentImage(Image* newer);
+    void changeCurrentImage();
 
     void checkEraseHistory();
 

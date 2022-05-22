@@ -191,9 +191,8 @@ void MainWindow::addElementVectorMove(int i, int j){
     canAdded = canAdded && i<= minimumMoveX+paintPP->getWidthCanvas();
     canAdded = canAdded && j>= minimumMoveY;
     canAdded = canAdded && j<= minimumMoveY+paintPP->getHeightCanvas();
-
     if(canAdded){
-        auto pos = PointImage(i - minimumMoveX, j - minimumMoveY);
+        auto pos = PointImage(i - minimumMoveX, abs(paintPP->getHeightCanvas()-j + minimumMoveY));
         vectorMove.addElement(pos);
     }
 

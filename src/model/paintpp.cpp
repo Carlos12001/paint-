@@ -304,11 +304,11 @@ void PaintPP::saveImage(string path) {
 
 void PaintPP::drawImage(vectorStructure<PointImage> vectorMove, int thickness, Color color){
     checkEraseHistory();
-//    newer = Image::readImage("anime.bmp");
-    changeCurrentImage(pencil(vectorMove, currentImage, thickness, color));
+    changeCurrentImage();
+    pencil(vectorMove, currentImage, thickness, color);
 }
 
-void PaintPP::changeCurrentImage(Image* newer) {
+void PaintPP::changeCurrentImage() {
     string name = historyImage->data;
     saveImage(name);
     readyUndo = true;
@@ -320,7 +320,6 @@ void PaintPP::changeCurrentImage(Image* newer) {
     else{
         Utilities::printMessageError("The next node is null and the current node is: " + historyImage->data);
     }
-    currentImage = newer;
 }
 
 bool PaintPP::getReadyUndo(){
