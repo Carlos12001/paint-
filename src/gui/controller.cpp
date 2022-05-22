@@ -351,6 +351,9 @@ void MainWindow::undoAction() {
     paintPP->undoImage();
     checkUndo();
     checkRedo();
+    restartVectorMove();
+    printCurrentImage();
+    update();
 }
 
 void MainWindow::redoAction() {
@@ -358,6 +361,9 @@ void MainWindow::redoAction() {
 //
     checkUndo();
     checkRedo();
+    restartVectorMove();
+//    printCurrentImage();
+    update();
 }
 
 void MainWindow::saveAction() {

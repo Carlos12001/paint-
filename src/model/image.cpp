@@ -203,7 +203,7 @@ auto Image::readImage(const string &path)->Image*{
     return image;
 }
 
-auto Image::readImage(const string &path, Image* image)->Image*{
+auto Image::readImage(const string &path, Image*& image)->Image*&{
     ifstream file;
     file.open(path, ios::in | ios::binary);
 
