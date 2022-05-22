@@ -411,3 +411,70 @@ string PaintPP::stringCheckCanvas(string text){
 Color PaintPP::getPicker(PointImage pointCickled) {
     return currentImage->getColor(pointCickled.x, pointCickled.y);
 }
+
+void PaintPP::changedColor(Image *imageCanvas, PaintPP::FiltersImage setFilter) {
+    for (int j = 0; j < imageCanvas->getHeight(); ++j) {
+        for (int i = 0; i < imageCanvas->getWidth(); ++i) {
+            Color colorTemp;
+            switch (setFilter) {
+                case FiltersImage::White:
+                    colorTemp = filterWhite();
+                    break;
+                case FiltersImage::Blue:
+                    colorTemp = filterBlue(imageCanvas->getColor(i,j));
+                    break;
+                case FiltersImage::Green:
+                    colorTemp = filterBlue(imageCanvas->getColor(i,j));
+                    break;
+                case FiltersImage::Red:
+                    colorTemp = filterBlue(imageCanvas->getColor(i,j));
+                    break;
+                default:
+                    colorTemp = filterWhite();
+                    break;
+            }
+            imageCanvas->setColor(colorTemp,i ,j);
+        }
+    }
+
+}
+
+Color PaintPP::filterWhite() {
+    return Color(255, 255, 255, 255);
+}
+
+Color PaintPP::filterBlue(Color colorTemp) {
+    return Color(colorTemp.b, colorTemp.r, colorTemp.a, colorTemp.g);
+}
+
+Color PaintPP::filterGreen(Color colorTemp) {
+    return Color(colorTemp.g, colorTemp.g, colorTemp.r, colorTemp.g);
+}
+
+Color PaintPP::filterRed(Color colorTemp) {
+    return Color(colorTemp.a, colorTemp.r, colorTemp.b, colorTemp.a);
+}
+
+void PaintPP::doFilterRImage() {
+    checkEraseHistory();
+    changeCurrentImage();
+    changedColor(currentImage, FiltersImage::Red);
+}
+
+void PaintPP::doFilterGImage() {
+    checkEraseHistory();
+    changeCurrentImage();
+    changedColor(currentImage, FiltersImage::Green);
+}
+
+void PaintPP::doFilterBImage() {
+    checkEraseHistory();
+    changeCurrentImage();
+    changedColor(currentImage, FiltersImage::Blue);
+}
+
+void PaintPP::clearAllCanvasImage() {
+    checkEraseHistory();
+    changeCurrentImage();
+    changedColor(currentImage, FiltersImage::White);
+}

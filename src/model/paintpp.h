@@ -20,6 +20,13 @@ using namespace std;
 class PaintPP {
     private:
 
+    enum FiltersImage{
+        White,
+        Blue,
+        Green,
+        Red
+    };
+
     static auto paintCoordinates(vectorStructure<PointImage> vectorMove, Image* imageCanvas, int grossorE, Color colorPaint)->Image*; //paint-funcion-auxiliar-erase-line-draw-figure
 
     static vectorStructure<PointImage> rectLine(vectorStructure<PointImage> coordinates,int distance,vectorDireccion lineDireccion);
@@ -62,6 +69,16 @@ class PaintPP {
     void changeCurrentImage();
 
     void checkEraseHistory();
+
+    void changedColor(Image *imageCanvas, FiltersImage setFilter);
+
+    Color filterWhite();
+
+    Color filterBlue(Color colorTemp);
+
+    Color filterGreen(Color colorTemp);
+
+    Color filterRed(Color colorTemp);
 
 public:
 

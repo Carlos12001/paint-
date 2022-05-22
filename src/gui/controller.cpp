@@ -271,7 +271,7 @@ void MainWindow::chooseOption(){
 
 void MainWindow::openImage(){
     QString pathInput = QInputDialog::getText(this,
-                                              "Ingrese el nombre del imagen",
+                                              "Ingresa el nombre del imagen",
                                               "Recuerde que la iamgen tiene que encontrar a la par del ejecutable.");
     string pathImage;
     pathImage = pathInput.toStdString();
@@ -369,7 +369,7 @@ void MainWindow::saveAction() {
     setEnableFalse();
     QString pathInput = QInputDialog::getText(this,
                                               "Ingrese el nombre del imagen",
-                                              "El nombre no puede empezar canva_ ");
+                                              "El nombre no puede empezar canvas_ ");
     string pathImage;
     pathImage = pathInput.toStdString();
     pathImage = paintPP->stringCheckCanvas(pathImage);
@@ -382,14 +382,32 @@ void MainWindow::openAction() {
 
 void MainWindow::filterBAction() {
     setEnableFalse();
+
+    paintPP->doFilterBImage();
+    printCurrentImage();
+    checkUndo();
+    checkRedo();
+    update();
 }
 
 void MainWindow::filterRAction() {
     setEnableFalse();
+
+    paintPP->doFilterRImage();
+    printCurrentImage();
+    checkUndo();
+    checkRedo();
+    update();
 }
 
 void MainWindow::filterGAction() {
     setEnableFalse();
+
+    paintPP->doFilterGImage();
+    printCurrentImage();
+    checkUndo();
+    checkRedo();
+    update();
 }
 
 void MainWindow::drawAction() {
@@ -430,10 +448,10 @@ void MainWindow::setEnableFalse(){
 void MainWindow::selectColorAction() {
     QColor defaultColor = QColor(colorSelect.g, colorSelect.b, colorSelect.a, colorSelect.r);
     QColor qColor = QColorDialog::getColor(defaultColor, this, "Chose color");
-    if(qColor.isValid())
-        colorSelect =  Color(qColor.alpha(), qColor.red(), qColor.green(), qColor.blue());
-    else
-        colorSelect = Color(255, 0, 0, 0);
+    colorSelect = qColor.isValid() ?
+            Color(qColor.alpha(), qColor.red(), qColor.green(), qColor.blue())
+            :
+            Color(255, 0, 0, 0);
 }
 
 void MainWindow::thicknessAction() {
