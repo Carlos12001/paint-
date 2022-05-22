@@ -358,11 +358,11 @@ void MainWindow::undoAction() {
 
 void MainWindow::redoAction() {
     setEnableFalse();
-//
+    paintPP->redoImage();
     checkUndo();
     checkRedo();
     restartVectorMove();
-//    printCurrentImage();
+    printCurrentImage();
     update();
 }
 

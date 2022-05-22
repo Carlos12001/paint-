@@ -338,7 +338,7 @@ void PaintPP::checkEraseHistory(){
         }
         readyRedo = false;
     }
-    readyUndo =  (positionInHistory>=1) && positionInHistory%10!=0;
+    readyUndo =  (positionInHistory>=1) &&positionInHistory!=0 && positionInHistory%10!=0;
 }
 
 void PaintPP::vectorPrint(vectorStructure<PointImage>vectorMove){
@@ -372,5 +372,14 @@ void PaintPP::undoImage() {
         }
         readyRedo = true;
     }
+    readyUndo =  (positionInHistory>=1) &&positionInHistory!=0 && positionInHistory%10!=0;
+}
+
+void PaintPP::redoImage() {
+    if(readyRedo && positionInHistory<historyImage.size()-1){
+        currentImage->readImage(historyImage.getElement(++positionInHistory)+string(".bmp"), currentImage);
+        readyRedo = positionInHistory<historyImage.size()-1;
+    }
+    readyUndo =  (positionInHistory>=1) &&positionInHistory!=0 && positionInHistory%10!=0;
 }
 
