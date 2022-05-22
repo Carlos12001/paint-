@@ -304,8 +304,8 @@ void PaintPP::saveImage(string path) {
 
 void PaintPP::drawImage(vectorStructure<PointImage> vectorMove, int thickness, Color color){
     checkEraseHistory();
-    auto newer = pencil(vectorMove, currentImage, thickness, color);
-    changeCurrentImage(newer);
+//    newer = Image::readImage("anime.bmp");
+    changeCurrentImage(pencil(vectorMove, currentImage, thickness, color));
 }
 
 void PaintPP::changeCurrentImage(Image* newer) {

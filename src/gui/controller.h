@@ -69,7 +69,7 @@ private:
 
     bool enablePaintFill = false;
 
-    Color colorSelect = Color(0,0,0,255);
+    Color colorSelect = Color(255,0,0,0);
     
     int thickness = 5;
 

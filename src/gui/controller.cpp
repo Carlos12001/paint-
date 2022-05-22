@@ -135,13 +135,12 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event) {
     if(enableDraw){
         getInformationMouseMove = false;
         paintPP->drawImage(vectorMove, thickness, colorSelect);
-
-        QPen pen2(QColor(255, 0, 0));
         printCurrentImage();
-        mPainter->setPen(pen2);
-        for (int i = 0; i < 600; ++i) {
-            mPainter->drawPoint(500,i);
-        }
+//        QPen pen2(QColor(255, 0, 0));
+//        mPainter->setPen(pen2);
+//        for (int i = 0; i < 600; ++i) {
+//            mPainter->drawPoint(500,i);
+//        }
         restartVectorMove();
     }
     else if (enableErase){
@@ -400,7 +399,7 @@ void MainWindow::selectColorAction() {
     if(qColor.isValid())
         colorSelect =  Color(qColor.alpha(), qColor.red(), qColor.green(), qColor.blue());
     else
-        colorSelect = Color(255, 255, 255, 255);
+        colorSelect = Color(255, 0, 0, 0);
 }
 
 void MainWindow::thicknessAction() {
