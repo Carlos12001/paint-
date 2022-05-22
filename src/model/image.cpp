@@ -203,6 +203,48 @@ auto Image::readImage(const string &path)->Image*{
     return image;
 }
 
+auto Image::readImage(const string &path, Image* image)->Image*{
+    ifstream file;
+    file.open(path, ios::in | ios::binary);
+
+    if(!file.is_open()){
+        Utilities::printMessageFatal("File doesn't can open. The path of the file was " + path);
+    }
+    Utilities::printMessageInfo(string("We could open the file ") + path);
+
+    unsigned char fileHeader[fileHeaderSize];
+    file.read(reinterpret_cast<char*>(fileHeader), fileHeaderSize);
+
+    if(fileHeader[0]!='B' or fileHeader[1]!='M'){
+        file.close();
+        Utilities::printMessageFatal("File isn't an bitmap. The path of the file was " + path);
+    }
+    Utilities::printMessageInfo(string("The file is .bmp type"));
+
+    unsigned char informationHeader[informationHeaderSize];
+    file.read(reinterpret_cast<char*>(informationHeader), informationHeaderSize);
+
+//    const int fileSizeN = fileHeader[2] + (fileHeader[3] << 8) + (fileHeader[4] << 16) + (fileHeader[5] << 24);
+
+    const int widthN = informationHeader[4] + (informationHeader[5] << 8) + (informationHeader[6] << 16) + (informationHeader[7] << 24);
+
+    const int heightN = informationHeader[8] + (informationHeader[9] << 8) + (informationHeader[10] << 16) + (informationHeader[11] << 24);
+
+
+    int paddingAmount = (((4 - (widthN * bitePerPixel) % 4) % 4));
+    for (int j = 0; j < heightN; ++j) {
+        for (int i = 0; i < widthN; ++i) {
+            unsigned char color[] = {0, 0, 0, 1};
+            file.read(reinterpret_cast<char*>(color), bitePerPixel);
+            image->setColor(Color(color[3],color[2], color[1], color[0]), i, j);
+        }
+        file.ignore(paddingAmount);
+    }
+    file.close();
+    Utilities::printMessageInfo("The file was created.");
+    return image;
+}
+
 vectorStructure<Color> Image::getColors() {
     return colors;
 }
