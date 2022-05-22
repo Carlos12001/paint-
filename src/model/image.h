@@ -75,7 +75,7 @@ public:
 
     static auto readImage(const string& path) -> Image*;
 
-    static auto Image::readImage(const string &path, Image* image)->Image*;
+    static auto readImage(const string &path, Image* image)->Image*;
 
     int getWidth();
 

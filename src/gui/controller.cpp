@@ -145,8 +145,8 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event) {
     }
     else if (enableErase){
         getInformationMouseMove = false;
-//        paintPP->eraseImage(vectorMove, thickness);
-//        printCurrentImage();
+        paintPP->eraseImage(vectorMove, thickness);
+        printCurrentImage();
         restartVectorMove();
     }
     else if (enableChopFree){

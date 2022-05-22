@@ -347,3 +347,10 @@ void PaintPP::vectorPrint(vectorStructure<PointImage>vectorMove){
     }
     cout << endl;
 }
+
+void PaintPP::eraseImage(vectorStructure<PointImage> vectorMove, int thickness) {
+    checkEraseHistory();
+    changeCurrentImage();
+    erase(vectorMove, currentImage, thickness);
+}
+
