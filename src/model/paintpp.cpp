@@ -324,9 +324,11 @@ bool PaintPP::getReadyRedo() {
 }
 
 void PaintPP::checkEraseHistory(){
-    if(readyRedo&&false){
+    cout << endl << endl <<"-------antes iteration----\n"<< positionInHistory << endl << historyImage.size() << endl << endl;
+    if(readyRedo){
         auto& tmp = historyImage;
-        int final = tmp.size();
+        tmp.pop();
+        int final = tmp.size()-1;
         for (int i = positionInHistory; i < final; ++i) {
             string command = "rm ";
             command += tmp.getElement(i) + ".bmp";
@@ -339,10 +341,11 @@ void PaintPP::checkEraseHistory(){
         readyRedo = false;
     }
     readyUndo =  (positionInHistory>=1) &&positionInHistory!=0 && positionInHistory%10!=0;
+    cout << endl << endl <<"-------despues iteration----"<< positionInHistory << endl << historyImage.size() << endl << endl;
 }
 
 void PaintPP::vectorPrint(vectorStructure<PointImage>vectorMove){
-    cout << "-----------Vector MOVE----------"<< endl;
+    cout << "-----------Vector MOVE----------\n"<< endl;
     for (int i = 0; i < vectorMove.size(); ++i) {
         cout << "(" << vectorMove.getElement(i).x << "," << vectorMove.getElement(i).y << ")" << "\t";
     }
