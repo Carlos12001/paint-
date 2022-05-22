@@ -17,10 +17,12 @@ public:
             image = dfs(startPoint,color, newColor, image);
         return image;
     }
+private:
     static auto dfs(PointImage startPoint, Color color,
                                            Color newColor, Image* image)->Image*{
             Utilities::printMessageInfo("add x:" + to_string(startPoint.x)  + "y: " + to_string(startPoint.y));
             queue<PointImage> coords;
+            int diferenceColor = 20;
             int width = image->getWidth();
             int height = image->getHeight();
             coords.push(PointImage(startPoint.x, startPoint.y));
@@ -34,7 +36,11 @@ public:
                 for(int k =0;k<4;k++){
                     int x = startCoordX + e[k][0];
                     int y = startCoordY + e[k][1];
-                    if (x >=0 && y >= 0 && x < width && y < height && (image->getColor(x, y).r == startColor.r && image->getColor(x, y).g == startColor.g && image->getColor(x, y).b == startColor.b && image->getColor(x, y).a == startColor.a)){
+                    if (x >=0 && y >= 0 && x < width && y < height &&
+                    ((startColor.r-diferenceColor < (image->getColor(x, y).r) && image->getColor(x,y).r < startColor.r + diferenceColor)
+                    && (startColor.g-diferenceColor < (image->getColor(x, y).g) && image->getColor(x,y).g < startColor.g+diferenceColor)
+                    && (startColor.b-diferenceColor < image->getColor(x, y).b && image->getColor(x,y).b < startColor.b+diferenceColor)
+                    && (startColor.a-diferenceColor < image->getColor(x, y).a && image->getColor(x,y).a < startColor.a+diferenceColor))){
                         image->setColor(newColor,x,y);
                         coords.push(PointImage(x, y));
                     }
