@@ -9,6 +9,7 @@
 #include "QApplication"
 #include "gui/controller.h"
 #include "model/paintpp.h"
+#include "utils/bfsPaintFill.h"
 #include <iostream>
 using namespace std;
 #include "model/image.h"
