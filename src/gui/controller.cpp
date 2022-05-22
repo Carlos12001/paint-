@@ -145,6 +145,23 @@ void MainWindow::mousePressEvent(QMouseEvent *event) {
     }
     else if(enableFigureRectangle){
         restartVectorMove();
+        int width = 100;
+        width = QInputDialog::getInt(this, tr("Select width"),
+                                     tr("Select width:"),
+                                     100, 100, 400, 1);
+        int height = 100;
+        height = QInputDialog::getInt(this, tr("Select height"),
+                                      tr("Select height:"),
+                                      100, 100, 400, 1);
+        addElementVectorMove(event->pos().rx(), event->pos().ry());
+        paintPP->createRectangleImage(vectorMove.getElement(0), thickness, colorSelect, width, height);
+        printCurrentImage();
+        restartVectorMove();
+        update();
+
+    }
+    else if(enableFigureTriangle){
+        restartVectorMove();
         int size = 100;
         size = QInputDialog::getInt(this, tr("Select size"),
                                     tr("Select size:"),
@@ -154,26 +171,6 @@ void MainWindow::mousePressEvent(QMouseEvent *event) {
         printCurrentImage();
         restartVectorMove();
         update();
-
-    }
-    else if(enableFigureTriangle){
-        restartVectorMove();
-        int width = 100;
-        width = QInputDialog::getInt(this, tr("Select width"),
-                                     tr("Select width:"),
-                                     100, 100, 400, 1);
-        addElementVectorMove(event->pos().rx(), event->pos().ry());
-        paintPP->createSquareImage(vectorMove.getElement(0), thickness, colorSelect, width);
-        int height = 100;
-        height = QInputDialog::getInt(this, tr("Select height"),
-                                     tr("Select height:"),
-                                     100, 100, 400, 1);
-        addElementVectorMove(event->pos().rx(), event->pos().ry());
-        paintPP->createRectangleImage(vectorMove.getElement(0), thickness, colorSelect, width, height);
-        printCurrentImage();
-        restartVectorMove();
-        update();
-
     }
     else if(enableColorPicker){
         restartVectorMove();

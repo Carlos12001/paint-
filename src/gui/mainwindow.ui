@@ -443,14 +443,14 @@ background-color: rgb(255,0,0);</string>
     </property>
     <property name="font">
      <font>
-      <pointsize>6</pointsize>
+      <pointsize>5</pointsize>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/PaintIcons/triangle.png);</string>
+     <string notr="true"/>
     </property>
     <property name="text">
-     <string/>
+     <string>Rectangle</string>
     </property>
    </widget>
    <widget class="QPushButton" name="triangleButton">
@@ -468,10 +468,10 @@ background-color: rgb(255,0,0);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">image: url(:/PaintIcons/triangle.png);</string>
     </property>
     <property name="text">
-     <string>Rectangle</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="lineButton">
