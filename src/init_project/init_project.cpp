@@ -11,5 +11,9 @@
  * @param argv
  */
 void InitProject::start(int argc, char* argv[]) {
-    Tester::programWindow(argc, argv);
+    QApplication app =  QApplication(argc, argv);
+    MainWindow w;
+    w.initGUIPaintPP();
+    w.show();
+    app.exec();
 }

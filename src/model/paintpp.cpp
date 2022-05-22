@@ -230,13 +230,17 @@ auto PaintPP::figureThreeLines(PointImage coord, Image *imageCanvas, int grossor
 }
 
 PaintPP::PaintPP(int width, int height) {
-    historyImage.addElement(getNextHistoryName());
+    string name = getNextHistoryName();
+    historyImage.addElement(name);
     createEmptyCanvas(width, height);
+    saveImage(name);
 }
 
 PaintPP::PaintPP(string pathImage) {
-    historyImage.addElement(getNextHistoryName());
+    string name = getNextHistoryName();
+    historyImage.addElement(name);
     createImageCanvas(pathImage);
+    saveImage(name);
 }
 
 void PaintPP::createEmptyCanvas(int width, int height){
