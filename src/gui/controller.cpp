@@ -50,6 +50,20 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
             SLOT(thicknessAction()));
     connect(ui->tickness3RadioButton, SIGNAL(clicked()), this,
             SLOT(thicknessAction()));
+    this->ui->openButton->setVisible(false);
+    this->ui->openButton->setEnabled(false);
+
+    this->ui->paintfillButton->setVisible(false);
+    this->ui->paintfillButton->setEnabled(false);
+
+    this->ui->magicSelectButton->setVisible(false);
+    this->ui->magicSelectButton->setEnabled(false);
+
+    this->ui->chopFreeButton->setVisible(false);
+    this->ui->chopFreeButton->setEnabled(false);
+
+    this->ui->chopSquareButton->setVisible(false);
+    this->ui->chopSquareButton->setEnabled(false);
 }
 
 MainWindow::~MainWindow(){
