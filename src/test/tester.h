@@ -31,9 +31,11 @@ public:
 
     [[maybe_unused]] static void deleteNullPointers();
 
-    static void eraseImageTest1();
+    [[maybe_unused]] static void eraseImageTest1();
 
-    [[maybe_unused]]     static void BFSTest();
+    [[maybe_unused]] static void BFSTest();
+
+    [[maybe_unused]] static void testEraseListDouble();
 };
 
 

@@ -230,12 +230,12 @@ auto PaintPP::figureThreeLines(PointImage coord, Image *imageCanvas, int grossor
 }
 
 PaintPP::PaintPP(int width, int height) {
-    historyImage->append(&historyImage, getNextHistoryName());
+    historyImage.addElement(getNextHistoryName());
     createEmptyCanvas(width, height);
 }
 
 PaintPP::PaintPP(string pathImage) {
-    historyImage->append(&historyImage, getNextHistoryName());
+    historyImage.addElement(getNextHistoryName());
     createImageCanvas(pathImage);
 }
 
@@ -271,12 +271,11 @@ vectorStructure<Color> PaintPP::getColorOfCurrentImage() {
 }
 
 string PaintPP::getNextHistoryName(){
-    return string("canvas_") + to_string(++counterImage);
+    return string("canvas_") + to_string(++positionInHistory);
 }
 
 PaintPP::~PaintPP() {
     delete currentImage;
-    delete historyImage;
 }
 
 int PaintPP::getWidthCanvas(){
@@ -288,7 +287,7 @@ int PaintPP::getHeightCanvas(){
 }
 
 int PaintPP::getCounterImage() {
-    return counterImage;
+    return positionInHistory;
 }
 
 void PaintPP::saveImage(string path) {
@@ -309,17 +308,11 @@ void PaintPP::drawImage(vectorStructure<PointImage> vectorMove, int thickness, C
 }
 
 void PaintPP::changeCurrentImage() {
-    string name = historyImage->data;
+    string name = historyImage.getElement(positionInHistory);
+    cout << name << endl;
     saveImage(name);
     readyUndo = true;
-    historyImage->append(&historyImage, getNextHistoryName());
-    if(historyImage->nextNode!= nullptr){
-        Utilities::printMessageInfo("The new path is " + historyImage->nextNode->data);
-        historyImage = historyImage->nextNode;
-    }
-    else{
-        Utilities::printMessageError("The next node is null and the current node is: " + historyImage->data);
-    }
+    historyImage.addElement(getNextHistoryName());
 }
 
 bool PaintPP::getReadyUndo(){
@@ -333,15 +326,14 @@ bool PaintPP::getReadyRedo() {
 void PaintPP::checkEraseHistory(){
     if(readyRedo){
         auto& tmp = historyImage;
-        while (tmp!=nullptr){
+        int final = tmp.size();
+        for (int i = positionInHistory; i < final; ++i) {
             string command = "rm ";
-            command += tmp->data + ".bmp";
+            command += tmp.getElement(i) + ".bmp";
             char * cstr = new char [command.length()+1];
             strcpy(cstr, command.c_str());
             system(cstr);
-            tmp = tmp->prevNode;
-            counterImage--;
-            delete tmp->nextNode;
+            tmp.pop();
             delete[] cstr;
         }
         readyRedo = false;

@@ -98,7 +98,9 @@ using namespace std;
         vectorMove.pop();
         cout << "Deleting an element\t";
     }
-}[[maybe_unused]]void Tester::eraseImageTest1() {
+}
+
+[[maybe_unused]] [[maybe_unused]]void Tester::eraseImageTest1() {
     /**
     string path1 = "canvas3.bmp";
     auto ImageEdit = Image::readImage(path1);
@@ -121,4 +123,52 @@ using namespace std;
 [[maybe_unused]] void Tester::BFSTest(){
     // Create a graph given in the above diagram
 
+}
+
+[[maybe_unused]] void Tester::testEraseListDouble(){
+    doublyLinkedList<string>* tmp =  nullptr;
+    tmp->append(&tmp, "0");
+    for (int i = 1; i < 10; ++i) {
+        tmp->append(&tmp, to_string(i));
+        tmp = tmp->nextNode;
+    }
+    auto iterator = tmp;
+    for (int i = 0; i < 10; ++i) {
+        cout << iterator->data << "\t";
+        if(i!=9)
+            iterator = iterator->prevNode;
+        tmp = iterator;
+    }
+    cout << endl << endl<< endl<< endl;
+    tmp = tmp->nextNode->nextNode; //2
+    cout << tmp->data<< endl<< endl<< endl;
+    tmp = tmp->nextNode; //3
+    auto anterior = tmp->prevNode; //2
+    cout << tmp->data << endl<< endl<< endl;
+    delete tmp;
+    tmp = NULL;
+    tmp = anterior;//2
+//    iterator = tmp;
+//    for (int i = 0; i < 10; ++i) {
+//        if(iterator!=nullptr) {
+//            cout << iterator->data << "\t";
+//            iterator = iterator->prevNode;
+//            tmp = iterator;
+//        }
+//    }
+    if(tmp->nextNode==NULL){
+        cout << "es nulo";
+    }
+    else{
+        cout << "NO nulo  ";
+    }
+
+    tmp->append(&tmp, "X");
+    iterator = tmp->nextNode;
+    for (int i = 0; i < 3; ++i) {
+        if(iterator!= nullptr) {
+            cout << iterator->data << "\t";
+            iterator = iterator->prevNode;
+        }
+    }
 }

@@ -43,13 +43,13 @@ class PaintPP {
 
     static auto figureTriangle(PointImage coord, Image *imageCanvas, int grossorE, Color colorSelect, int side)-> Image*;
 
-    int counterImage = 0;
+    int positionInHistory = -1;
 
     bool readyUndo = false;
 
     bool readyRedo = false;
 
-    doublyLinkedList<string>* historyImage = nullptr;
+    vectorStructure<string> historyImage;
 
     Image* currentImage = nullptr;
 
