@@ -83,7 +83,7 @@ public:
 
     void eraseImage(vectorStructure<PointImage> vectorMove, int thickness);
 
-    void createLineImage(PointImage* arrayPoints, int thickness);
+    void createLineImage(vectorStructure<PointImage> vectorMove, int thickness, Color color);
 
     void magicSelectImage(PointImage pointCickled);
 

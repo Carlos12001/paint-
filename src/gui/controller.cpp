@@ -89,7 +89,20 @@ void MainWindow::mousePressEvent(QMouseEvent *event) {
         getInformationMouseMove = true;
     }
     else if(enableLine){
-
+        counterClicks++;
+        if(counterClicks==2){
+            counterClicks = 0;
+            addElementVectorMove(event->pos().rx(), event->pos().ry());
+            paintPP->createLineImage(vectorMove, thickness, colorSelect);
+            restartVectorMove();
+            printCurrentImage();
+        }
+        else if(1 == counterClicks) {
+            addElementVectorMove(event->pos().rx(), event->pos().ry());
+        }
+        else{
+            restartVectorMove();
+        }
     }
     else if(enableMagicSelect){
 
@@ -136,11 +149,6 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event) {
         getInformationMouseMove = false;
         paintPP->drawImage(vectorMove, thickness, colorSelect);
         printCurrentImage();
-//        QPen pen2(QColor(255, 0, 0));
-//        mPainter->setPen(pen2);
-//        for (int i = 0; i < 600; ++i) {
-//            mPainter->drawPoint(500,i);
-//        }
         restartVectorMove();
     }
     else if (enableErase){

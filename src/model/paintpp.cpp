@@ -354,3 +354,9 @@ void PaintPP::eraseImage(vectorStructure<PointImage> vectorMove, int thickness) 
     erase(vectorMove, currentImage, thickness);
 }
 
+void PaintPP::createLineImage(vectorStructure<PointImage> vectorMove, int thickness, Color color) {
+    checkEraseHistory();
+    changeCurrentImage();
+    pen(vectorMove, currentImage, thickness, color);
+}
+
