@@ -124,6 +124,8 @@ public:
     void vectorPrint(vectorStructure<PointImage> vectorMove);
 
     void removeHistory();
+
+    string stringCheckCanvas(string text);
 };
 
 

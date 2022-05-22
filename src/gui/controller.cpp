@@ -300,10 +300,6 @@ void MainWindow::chopFreeAction() {
     enableChopFree = true;
 }
 
-void MainWindow::filterBAction() {
-    setEnableFalse();
-}
-
 void MainWindow::eraseAction() {
     setEnableFalse();
 
@@ -368,9 +364,20 @@ void MainWindow::redoAction() {
 
 void MainWindow::saveAction() {
     setEnableFalse();
+    QString pathInput = QInputDialog::getText(this,
+                                              "Ingrese el nombre del imagen",
+                                              "El nombre no puede empezar canva_ ");
+    string pathImage;
+    pathImage = pathInput.toStdString();
+    pathImage = paintPP->stringCheckCanvas(pathImage);
+    paintPP->saveImage(pathImage);
 }
 
 void MainWindow::openAction() {
+    setEnableFalse();
+}
+
+void MainWindow::filterBAction() {
     setEnableFalse();
 }
 

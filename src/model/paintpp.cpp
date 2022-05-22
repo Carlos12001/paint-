@@ -109,7 +109,7 @@ auto PaintPP::pen(vectorStructure<PointImage> vectorTwoCordinates, Image *imageC
 
     int distance = (int)sqrt(pow((vectorTwoCordinates.getElement(0).x)-(vectorTwoCordinates.getElement(1).x),2)
             +pow((vectorTwoCordinates.getElement(0).y)-(vectorTwoCordinates.getElement(1).y),2));
-    Utilities::printMessageInfo(to_string(distance) + "Distance");
+//    Utilities::printMessageInfo(to_string(distance) + "Distance");
     vectorStructure<PointImage> Move = PaintPP::rectLine(vectorTwoCordinates,distance,lineDireccion);
     imageCanvas = PaintPP::paintCoordinates(Move,imageCanvas,grossorE,colorSelect);
     return imageCanvas;
@@ -310,7 +310,6 @@ void PaintPP::drawImage(vectorStructure<PointImage> vectorMove, int thickness, C
 
 void PaintPP::changeCurrentImage() {
     string name = historyImage.getElement(positionInHistory);
-    cout << name << endl;
     saveImage(name);
     readyUndo = true;
     historyImage.addElement(getNextHistoryName());
@@ -325,7 +324,6 @@ bool PaintPP::getReadyRedo() {
 }
 
 void PaintPP::checkEraseHistory(){
-    cout << endl << endl <<"-------antes iteration----\n"<< positionInHistory << endl << historyImage.size() << endl << endl;
     if(readyRedo){
         auto& tmp = historyImage;
         tmp.pop();
@@ -342,7 +340,6 @@ void PaintPP::checkEraseHistory(){
         readyRedo = false;
     }
     readyUndo =  (positionInHistory>=1) &&positionInHistory!=0 && positionInHistory%10!=0;
-    cout << endl << endl <<"-------despues iteration----"<< positionInHistory << endl << historyImage.size() << endl << endl;
 }
 
 void PaintPP::vectorPrint(vectorStructure<PointImage>vectorMove){
@@ -393,4 +390,20 @@ void PaintPP::removeHistory(){
     strcpy(cstr, command.c_str());
     system(cstr);
     delete[] cstr;
+}
+
+string PaintPP::stringCheckCanvas(string text){
+
+    for (std::string::size_type i = 0; i < text.size(); ++i) {
+        char chr = text[i];
+        if(i==0&&chr=='c') continue;
+        else if (i==1&&chr=='a') continue;
+        else if (i==2&&chr=='n') continue;
+        else if (i==3&&chr=='v') continue;
+        else if (i==4&&chr=='a') continue;
+        else if (i==5&&chr=='s') continue;
+        else if (i==6&&chr=='_') return "";
+        else return text;
+    }
+    return text;
 }
