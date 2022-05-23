@@ -15,7 +15,9 @@ using namespace std;
 #include <cstdlib>
 #include "point_image.h"
 
-
+/**
+ * THe real paint pp aplication
+ */
 class PaintPP {
     private:
 

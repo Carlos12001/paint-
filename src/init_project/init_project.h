@@ -5,7 +5,9 @@
 #ifndef PAINT_INIT_PROJECT_H
 #define PAINT_INIT_PROJECT_H
 
-
+/**
+ * THe init of the project
+ */
 class InitProject {
 public:
     /**

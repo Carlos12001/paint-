@@ -8,7 +8,9 @@
 using namespace std;
 #include <cstdlib>
 
-
+/**
+ * THe class with method utils
+ */
 class Utilities {
 
 public:
