@@ -5,11 +5,25 @@
 #include "image.h"
 #include "utils/vectorStructure.h"
 
+/**
+ * create empty color
+ */
 Color::Color():r(255), g(255), b(255), a(255){}
 
-
+/**
+ * set color
+ * @param a the alpha
+ * @param r the red
+ * @param g the green
+ * @param b the blue
+ */
 Color::Color(float r, float g, float b, float a):r(r), g(g), b(b), a(a) {}
 
+/**
+ * create the image
+ * @param width the width
+ * @param height the height
+ */
 Image::Image(int width, int height):
 width(width), height(height),
 paddingAmount(((4 - (width * bitePerPixel) % 4) % 4)),
@@ -20,13 +34,24 @@ Color Image::getColor(int x, int y) {
     return colors.getElement(y * width + x);
 }
 
+/**
+ * the delete function
+ */
 Image::~Image() = default;
 
+/**
+ * set the color
+ * @param color the color to set
+ */
 void Image::setColor(const Color &color, int i, int j){
     colors.addElement(color, j * width + i);
     return;
 }
 
+/**
+ * @brief Import the image. Doesn't working.
+ * @param path The path of the image.
+ */
 void Image::exportImage(const string& path) {
     ofstream file;
     file.open(path, ios::out | ios::binary);
@@ -135,6 +160,12 @@ void Image::exportImage(const string& path) {
     return;
 }
 
+/**
+ * @brief Create an white image with size width x height.
+ * @param widthN Width of the image.
+ * @param heightN Height of the image.
+ * @return The white image created.
+ */
 auto Image::createImageEmpty(int widthN, int heightN)-> Image * {
     auto image = new Image(widthN, heightN);
     for (int j = 0; j < heightN; ++j) {
@@ -146,19 +177,38 @@ auto Image::createImageEmpty(int widthN, int heightN)-> Image * {
     return image;
 }
 
+/**
+ * get the width
+ * @return the width
+ */
 int Image::getWidth(){
     return width;
 }
 
+/**
+ * get the height
+ * @return the height
+ */
 int Image::getHeight(){
     return height;
 }
 
-void Image::setColor(const Color &color) {
+/**
+ * set the color in position
+ * @param color the color to set
+ * @param i positon x
+ * @param j position y
+ */
+[[maybe_unused]] void Image::setColor(const Color &color) {
     colors.addElement(color);
     return;
 }
 
+/**
+ * the read image
+ * @param path the path of image
+ * @return return the new image
+ */
 auto Image::readImage(const string &path)->Image*{
     Image* image;
 
@@ -203,6 +253,12 @@ auto Image::readImage(const string &path)->Image*{
     return image;
 }
 
+/**
+ * the read image into old image
+ * @param path the path of image
+ * @param image the old image
+ * @return return the new image
+ */
 auto Image::readImage(const string &path, Image*& image)->Image*&{
     ifstream file;
     file.open(path, ios::in | ios::binary);
@@ -245,6 +301,10 @@ auto Image::readImage(const string &path, Image*& image)->Image*&{
     return image;
 }
 
+/**
+ * the colors
+ * @return the colors
+ */
 vectorStructure<Color> Image::getColors() {
     return colors;
 }
