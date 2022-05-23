@@ -1,7 +1,10 @@
 #include "controller.h"
 #include "./ui_mainwindow.h"
 
-
+/**
+ * counstor
+ * @param parent the parent
+ */
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
     connect((ui->openButton), SIGNAL(clicked()), this,
@@ -63,6 +66,9 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     this->ui->chopSquareButton->setEnabled(false);
 }
 
+/**
+ * the destructor
+ */
 MainWindow::~MainWindow(){
     delete ui;
     delete paintPP;
@@ -70,6 +76,9 @@ MainWindow::~MainWindow(){
     delete canvasImage;
 }
 
+/**
+ * init the GUI paint pp
+ */
 void MainWindow::initGUIPaintPP(){
     chooseOption();
     canvasImage = new QImage(1280,720, QImage::Format_ARGB32_Premultiplied);
@@ -81,12 +90,20 @@ void MainWindow::initGUIPaintPP(){
     return;
 }
 
+/**
+ * event to set canvas
+ * @param event event qt
+ */
 void MainWindow::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     painter.drawImage(minimumMoveX, minimumMoveY, *canvasImage);
     event->accept();
 }
 
+/**
+ * event to mouse click mouse
+ * @param event event qt
+ */
 void MainWindow::mousePressEvent(QMouseEvent *event) {
     checkUndo();
     checkRedo();
@@ -187,6 +204,10 @@ void MainWindow::mousePressEvent(QMouseEvent *event) {
     event->accept();
 }
 
+/**
+ * event to move mouse
+ * @param event event qt
+ */
 void MainWindow::mouseMoveEvent(QMouseEvent *event) {
     checkUndo();
     checkRedo();
@@ -199,6 +220,10 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event) {
     }
 }
 
+/**
+ * event relase mouse
+ * @param event event qt
+ */
 void MainWindow::mouseReleaseEvent(QMouseEvent *event) {
     if(enableDraw){
         getInformationMouseMove = false;
@@ -224,6 +249,9 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event) {
     update();
 }
 
+/**
+ * print the current image
+ */
 void MainWindow::printCurrentImage(){
     auto colors = paintPP->getColorOfCurrentImage();
     int width =  paintPP->getWidthCanvas();
@@ -242,12 +270,20 @@ void MainWindow::printCurrentImage(){
     }
 }
 
+/**
+ * restart the vecot r move
+ */
 void MainWindow::restartVectorMove(){
     while (vectorMove.size()!=0){
         vectorMove.pop();
     }
 }
 
+/**
+ * add element to vector move
+ * @param i postion x
+ * @param j position y
+ */
 void MainWindow::addElementVectorMove(int i, int j){
     bool canAdded = true;
     canAdded = canAdded && i>= minimumMoveX;
@@ -261,6 +297,9 @@ void MainWindow::addElementVectorMove(int i, int j){
 
 }
 
+/**
+ * print the vector move
+ */
 [[maybe_unused]] void  MainWindow::printVectorMove(){
     for (int i = 0; i < vectorMove.size() ; ++i) {
         cout << "(";
@@ -271,6 +310,10 @@ void MainWindow::addElementVectorMove(int i, int j){
     cout<<"\n--------------------------------\n";
 }
 
+/**
+ * select the width
+ * @return the width selected
+ */
 int MainWindow::selectWidth(){
     bool ok = false;
     int width = QInputDialog::getInt(this, tr("Select width"),
@@ -284,6 +327,10 @@ int MainWindow::selectWidth(){
     }
 }
 
+/**
+ * select the height
+ * @return the height selected
+ */
 int MainWindow::selectHeight(){
     bool ok = false;
     int height = QInputDialog::getInt(this, tr("Select height"),
@@ -297,6 +344,9 @@ int MainWindow::selectHeight(){
     }
 }
 
+/**
+ * chosee the option
+ */
 void MainWindow::chooseOption(){
     QMessageBox msgBox;
     msgBox.setText("You want to open an image o create an empty canvas.");
@@ -317,6 +367,9 @@ void MainWindow::chooseOption(){
     }
 }
 
+/**
+ * open an image of paint pp
+ */
 void MainWindow::openImage(){
     QString pathInput = QInputDialog::getText(this,
                                               "Ingresa el nombre del imagen",
@@ -327,72 +380,108 @@ void MainWindow::openImage(){
         paintPP = new PaintPP(pathImage);
 }
 
+/**
+ * crate the empty canvas of paint pp
+ */
 void MainWindow::createEmptyCanvas(){
     int width = selectWidth();
     int height = selectHeight();
     paintPP = new PaintPP(width, height);
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::magicSelectAction() {
     setEnableFalse();
 
     enableMagicSelect = true;
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::chopSquareAction() {
     setEnableFalse();
 
     enableChopSquare = true;
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::chopFreeAction() {
     setEnableFalse();
 
     enableChopFree = true;
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::eraseAction() {
     setEnableFalse();
 
     enableErase = true;
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::lineAction() {
     setEnableFalse();
 
     enableLine = true;
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::figureSquareAction() {
     setEnableFalse();
 
     enableFigureSquare = true;
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::figureTriangleAction() {
     setEnableFalse();
 
     enableFigureTriangle = true;
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::figureRectangleAction() {
     setEnableFalse();
 
     enableFigureRectangle = true;
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::colorPickerAction() {
     setEnableFalse();
 
     enableColorPicker = true;
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::paintFillAction() {
     setEnableFalse();
 
     enablePaintFill = true;
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::undoAction() {
     setEnableFalse();
     paintPP->undoImage();
@@ -403,6 +492,9 @@ void MainWindow::undoAction() {
     update();
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::redoAction() {
     setEnableFalse();
     paintPP->redoImage();
@@ -413,6 +505,9 @@ void MainWindow::redoAction() {
     update();
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::saveAction() {
     setEnableFalse();
     QString pathInput = QInputDialog::getText(this,
@@ -424,10 +519,16 @@ void MainWindow::saveAction() {
     paintPP->saveImage(pathImage);
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::openAction() {
     setEnableFalse();
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::filterBAction() {
     setEnableFalse();
 
@@ -439,6 +540,9 @@ void MainWindow::filterBAction() {
     update();
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::filterRAction() {
     setEnableFalse();
 
@@ -450,6 +554,9 @@ void MainWindow::filterRAction() {
     update();
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::filterGAction() {
     setEnableFalse();
 
@@ -461,12 +568,18 @@ void MainWindow::filterGAction() {
     update();
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::drawAction() {
     setEnableFalse();
 
     enableDraw = true;
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::rotateAction() {
     setEnableFalse();
     paintPP->rotateImage();
@@ -477,6 +590,9 @@ void MainWindow::rotateAction() {
     update();
 }
 
+/**
+ * set false all enable or cans
+ */
 void MainWindow::setEnableFalse(){
 
     enableDraw = false;
@@ -502,6 +618,9 @@ void MainWindow::setEnableFalse(){
     enablePaintFill = false;
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::selectColorAction() {
     QColor defaultColor = QColor(colorSelect.g, colorSelect.b, colorSelect.a, colorSelect.r);
     QColor qColor = QColorDialog::getColor(defaultColor, this, "Chose color");
@@ -511,6 +630,9 @@ void MainWindow::selectColorAction() {
             Color(255, 0, 0, 0);
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::thicknessAction() {
     if(ui->tickness1RadioButton->isChecked())
         thickness = 5;
@@ -522,6 +644,9 @@ void MainWindow::thicknessAction() {
         thickness = 5;
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::checkUndo(){
     if(paintPP->getReadyUndo()){
         ui->undoButton->setEnabled(true);
@@ -533,6 +658,9 @@ void MainWindow::checkUndo(){
     }
 }
 
+/**
+ * Set enable magic true
+ */
 void MainWindow::checkRedo() {
     if(paintPP->getReadyRedo()){
         ui->redoButton->setEnabled(true);
