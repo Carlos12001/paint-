@@ -10,6 +10,7 @@
 #include "gui/controller.h"
 #include "model/paintpp.h"
 #include "utils/bfsPaintFill.h"
+#include "utils/MagicSelect.h"
 #include <iostream>
 using namespace std;
 #include "model/image.h"
