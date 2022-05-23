@@ -10,6 +10,13 @@
 #include <queue>
 class bfsPaintFill{
 public:
+    /**
+     * Get a point to the canvas, check if the color is the same and if isnt call the function that use BFS to paint the coords.
+     * @param startPoint
+     * @param newColor
+     * @param image
+     * @return
+     */
     static auto paintFill(PointImage startPoint,Color newColor, Image *image)->Image*{
         Color color = image->getColor(startPoint.x,startPoint.y);
         Utilities::printMessageInfo("check x:" + to_string(color.g)  + "y: " + to_string(newColor.g));
@@ -18,6 +25,14 @@ public:
         return image;
     }
 private:
+    /**
+     * paint the image that the user give and return the image painted with the coords.
+     * @param startPoint
+     * @param color
+     * @param newColor
+     * @param image
+     * @return
+     */
     static auto dfs(PointImage startPoint, Color color,
                                            Color newColor, Image* image)->Image*{
             Utilities::printMessageInfo("add x:" + to_string(startPoint.x)  + "y: " + to_string(startPoint.y));

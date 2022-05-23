@@ -15,6 +15,9 @@ private:
     int numberOfElement;
 
 public:
+    /*
+     * Create a vector Structure with defect data.
+     */
     vectorStructure(){
         addressVector = new T[1];
         storageCapacity = 1;
@@ -36,6 +39,9 @@ public:
             numberOfElement++;
         }
     };
+    /*
+     * Add element to the vector that you create
+     */
     void addElement(T data, int location){
         if(location == numberOfElement) {
             addElement(data);
@@ -43,6 +49,11 @@ public:
             addressVector[location] = data;
         }
     };
+    /**
+     * get the element to the location that give, is work with index
+     * @param elementLocation
+     * @return
+     */
     T getElement(int elementLocation){
         if(elementLocation < numberOfElement) {
             return addressVector[elementLocation];
@@ -51,15 +62,29 @@ public:
             exit(-1);
         }
     };
+    /**
+     * delete the last element that give
+     */
     void pop(){
         numberOfElement --;
     };
+    /**
+     * return the size of the vector
+     * @return
+     */
     int size(){
         return numberOfElement;
     };
+    /**
+     * return the capacity of the vector
+     * @return
+     */
     int getCapacity(){
         return storageCapacity;
     };
+    /**
+     * print the vector entire.
+     */
     void showVector(){
         for(int index = 0; index<numberOfElement; index++){
             cout << addressVector[index] << "";
