@@ -5,10 +5,11 @@
 #include "init_project.h"
 #include "utils/utilities.h"
 #include "test/tester.h"
+
 /**
- * gasdjdsjvpioxbnljd
- * @param argc
- * @param argv
+ * init the project
+ * @param argc argument number
+ * @param argv the argument
  */
 void InitProject::start(int argc, char* argv[]) {
     QApplication app =  QApplication(argc, argv);

@@ -8,6 +8,11 @@
 
 class InitProject {
 public:
+    /**
+     * init the project
+     * @param argc argument number
+     * @param argv the argument
+     */
     static void start(int argc, char* argv[]);
 };
 
