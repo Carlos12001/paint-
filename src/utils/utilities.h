@@ -11,20 +11,35 @@ using namespace std;
 
 class Utilities {
 
-    static auto getIsStartedLog()-> bool&{
-        static bool isStartedLog = false;
-        return isStartedLog;
-    };
-
 public:
+
+    /**
+ * Call cow.
+ */
     static void callCow();
 
+/**
+ * Print log messafe
+ * @param message message
+ */
     static void printMessageInfo(string message);
-
+/**
+ * PRint waarning
+ * @param message warning
+ */
     static void printMessageWarning(string message);
 
+
+/**
+ * PRint wrror
+ * @param message the ererorr
+ */
     static void printMessageError(string message);
 
+    /**
+ * PRint a fatal
+ * @param message the fatal messagfe
+ */
     static void printMessageFatal(string message);
 
 };
