@@ -53,9 +53,6 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     this->ui->openButton->setVisible(false);
     this->ui->openButton->setEnabled(false);
 
-    this->ui->paintfillButton->setVisible(false);
-    this->ui->paintfillButton->setEnabled(false);
-
     this->ui->magicSelectButton->setVisible(false);
     this->ui->magicSelectButton->setEnabled(false);
 
@@ -179,7 +176,12 @@ void MainWindow::mousePressEvent(QMouseEvent *event) {
         colorSelect = Color(colorSelect.r, colorSelect.g, colorSelect.b, colorSelect.a);
     }
     else if(enablePaintFill){
-
+        restartVectorMove();
+        addElementVectorMove(event->pos().rx(), event->pos().ry());
+        paintPP->paintFill(vectorMove.getElement(0), colorSelect);
+        printCurrentImage();
+        restartVectorMove();
+        update();
     }
 
     event->accept();

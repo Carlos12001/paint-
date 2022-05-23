@@ -100,11 +100,7 @@ public:
 
     void createLineImage(vectorStructure<PointImage> vectorMove, int thickness, Color color);
 
-    void magicSelectImage(PointImage pointCickled);
-
-    void chopSquareImage(PointImage* arrayPoints);
-
-    void chopFreeImage(vectorStructure<PointImage> vectorMove);
+    void magicSelectImage(PointImage pointClick);
 
     void createSquareImage(PointImage pointCickled,int tickness, Color color,int size);
 
@@ -114,15 +110,13 @@ public:
 
     Color getPicker(PointImage pointCickled);
 
-    void paintFill(vectorStructure<PointImage> vectorMove, Color color);
+    void paintFill(PointImage click, Color color);
 
     void saveImage(string pathImage);
 
     void redoImage();
 
     void undoImage();
-
-    void openImage(string pathImage);
 
     void doFilterRImage();
 

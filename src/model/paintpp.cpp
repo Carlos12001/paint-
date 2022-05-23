@@ -5,6 +5,7 @@
 #include <cstring>
 #include "paintpp.h"
 #include "utils/vectorStructure.h"
+#include "utils/bfsPaintFill.h"
 
 auto PaintPP::paintCoordinates(vectorStructure<PointImage> vectorMove, Image *imageCanvas,
                                int grossorE, Color colorPaint) -> Image * {
@@ -509,4 +510,10 @@ void PaintPP::rotateImage(){
             currentImage->setColor(colors.getElement(j*widthN+i), widthN-i, heightN-j);
         }
     }
+}
+
+void PaintPP::paintFill(PointImage click, Color color) {
+    checkEraseHistory();
+    changeCurrentImage();
+    bfsPaintFill::paintFill(click, color, currentImage);
 }
