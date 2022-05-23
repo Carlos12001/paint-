@@ -7,6 +7,14 @@
 #include "utils/vectorStructure.h"
 #include "utils/bfsPaintFill.h"
 
+/**
+     * DO the paint in the image
+     * @param vectorMove the move
+     * @param imageCanvas imagen to draw
+     * @param grossorE the thickness
+     * @param colorPaint the color
+     * @return image changed
+     */
 auto PaintPP::paintCoordinates(vectorStructure<PointImage> vectorMove, Image *imageCanvas,
                                int grossorE, Color colorPaint) -> Image * {
     int WIDTH = imageCanvas->getWidth();
@@ -76,6 +84,12 @@ auto PaintPP::paintCoordinates(vectorStructure<PointImage> vectorMove, Image *im
     return imageCanvas;
 }
 
+/**
+     * simulatoin of vector move
+     * @param positionX num x
+     * @param positionY num y
+     * @return the vector
+     */
 vectorStructure<PointImage> PaintPP::mouseMovement(int positionX, int positionY) {
     vectorStructure<PointImage> eraseMove;
     for(int startx = 1; startx < positionX; startx++)
@@ -83,18 +97,41 @@ vectorStructure<PointImage> PaintPP::mouseMovement(int positionX, int positionY)
     return eraseMove;
 }
 
+/**
+     * erase in image
+     * @param vectorMove the vector
+     * @param imageCanvas the image to erease
+     * @param grossorE the thickness
+     * @return the image changed
+     */
 auto PaintPP::erase(vectorStructure<PointImage> vectorMove, Image *imageCanvas, int grossorE)->Image* {
     Color colorErase = Color(255,255,255,255);
     imageCanvas = PaintPP::paintCoordinates(vectorMove,imageCanvas,grossorE, colorErase);
     return imageCanvas;
 }
 
+/**
+    * draw  in image
+    * @param vectorMove the vector
+    * @param imageCanvas the image to change
+    * @param grossorE the thickness
+    * @param colorSelect the color
+    * @return the image changed
+    */
 auto PaintPP::pencil(vectorStructure<PointImage> vectorMove, Image *imageCanvas, int grossorE,
                      Color colorSelect) -> Image * {
     imageCanvas = PaintPP::paintCoordinates(vectorMove,imageCanvas,grossorE,colorSelect);
     return imageCanvas;
 }
 
+/**
+    * draw line in image
+    * @param vectorMove the vector
+    * @param imageCanvas the image to change
+    * @param grossorE the thickness
+    * @param colorSelect the color
+    * @return the image changed
+    */
 auto PaintPP::pen(vectorStructure<PointImage> vectorTwoCordinates, Image *imageCanvas, int grossorE,
                   Color colorSelect) -> Image * {
     vectorDireccion lineDireccion(false,false,false,false);
@@ -116,6 +153,13 @@ auto PaintPP::pen(vectorStructure<PointImage> vectorTwoCordinates, Image *imageC
     return imageCanvas;
 }
 
+/**
+     * do the rect line
+     * @param coordinates the 2 coordnates
+     * @param distance the distances
+     * @param lineDireccion the direction of line
+     * @return image chanfged
+     */
 vectorStructure<PointImage> PaintPP::rectLine(vectorStructure<PointImage> coordinates, int distance,vectorDireccion lineDireccion) {
     vectorStructure<PointImage> allCoordinates;
     for(int allDistance = 0;allDistance < distance;allDistance++ ){
@@ -179,6 +223,16 @@ vectorStructure<PointImage> PaintPP::rectLine(vectorStructure<PointImage> coordi
     return allCoordinates;
 }
 
+/**
+     * chenck the four line for square and rectangle
+     * @param coord the coordinate center
+     * @param imageCanvas the image to draw
+     * @param grossorE the thickness
+     * @param colorSelect the color to paint
+     * @param Side the num of side
+     * @param Bottom the num of bottom
+     * @return  image to  draw
+     */
 auto PaintPP::figureFourLines(PointImage coord, Image *imageCanvas, int grossorE, Color colorSelect, int side,int bottom) -> Image * {
     vectorStructure<PointImage> SquareVertices;
     vectorStructure<PointImage>Square;
@@ -198,21 +252,55 @@ auto PaintPP::figureFourLines(PointImage coord, Image *imageCanvas, int grossorE
     return imageCanvas;
 }
 
+/**
+    * draw figure square in image
+    * @param vectorMove the vector
+    * @param imageCanvas the image to change
+    * @param grossorE the thickness
+    * @param colorSelect the color
+    * @return the image changed
+    */
 auto PaintPP::figureSquare(PointImage coord, Image *imageCanvas, int grossorE, Color colorSelect, int Size) -> Image * {
     imageCanvas = PaintPP::figureFourLines(coord,imageCanvas,grossorE,colorSelect,Size,Size);
     return imageCanvas;
 }
 
+/**
+    * draw figure rectangle in image
+    * @param vectorMove the vector
+    * @param imageCanvas the image to change
+    * @param grossorE the thickness
+    * @param colorSelect the color
+    * @return the image changed
+    */
 auto PaintPP::figureRectangle(PointImage coord, Image *imageCanvas, int grossorE, Color colorSelect, int side,int bottom) -> Image * {
     imageCanvas = PaintPP::figureFourLines(coord,imageCanvas,grossorE,colorSelect,side,bottom);
     return imageCanvas;
 }
 
+/**
+    * draw figure triangle in image
+    * @param vectorMove the vector
+    * @param imageCanvas the image to change
+    * @param grossorE the thickness
+    * @param colorSelect the color
+    * @return the image changed
+    */
 auto PaintPP::figureTriangle(PointImage coord, Image *imageCanvas, int grossorE, Color colorSelect, int side) -> Image * {
     imageCanvas = PaintPP::figureThreeLines(coord, imageCanvas, grossorE, colorSelect, side);
     return imageCanvas;
 }
 
+/**
+    * chenck the four line for square and rectangle
+     * @param coord the coordinate center
+     * @param imageCanvas the image to draw
+     * @param grossorE the thickness
+     * @param colorSelect the color to paint
+     * @param Side the num of side
+     * @param Bottom the num of bottom
+     * @return  image to  draw
+     */
 auto PaintPP::figureThreeLines(PointImage coord, Image *imageCanvas, int grossorE, Color colorSelect,
                                int base) -> Image * {
     vectorStructure<PointImage> Vertices;
@@ -230,6 +318,11 @@ auto PaintPP::figureThreeLines(PointImage coord, Image *imageCanvas, int grossor
     return imageCanvas;
 }
 
+/**
+     * Create the inital canvas
+     * @param width the width
+     * @param height the height
+     */
 PaintPP::PaintPP(int width, int height) {
     string name = getNextHistoryName();
     historyImage.addElement(name);
@@ -237,6 +330,10 @@ PaintPP::PaintPP(int width, int height) {
     saveImage(name);
 }
 
+/**
+     * Create the inital canvas
+     * @param pathImage the path
+     */
 PaintPP::PaintPP(string pathImage) {
     string name = getNextHistoryName();
     historyImage.addElement(name);
@@ -244,6 +341,11 @@ PaintPP::PaintPP(string pathImage) {
     saveImage(name);
 }
 
+/**
+     * Create image white
+     * @param width width
+     * @param height height
+     */
 void PaintPP::createEmptyCanvas(int width, int height){
     if(width<=1280 && height<= 720){
         currentImage = Image::createImageEmpty(width,height);
@@ -256,6 +358,10 @@ void PaintPP::createEmptyCanvas(int width, int height){
     return;
 }
 
+/**
+    * Create image to read
+    * @param path the path
+    */
 void PaintPP::createImageCanvas(string path){
     ifstream file;
     file.open(path, ios::in | ios::binary);
@@ -271,27 +377,47 @@ void PaintPP::createImageCanvas(string path){
     return;
 }
 
+/**
+     * GEt a vectorcolors
+     * @return the vectorcolors
+     */
 vectorStructure<Color> PaintPP::getColorOfCurrentImage() {
     return currentImage->getColors();
 }
 
+/**
+     * GEt the next history name
+     */
 string PaintPP::getNextHistoryName(){
     return string("canvas_") + to_string(++positionInHistory);
 }
 
+/**
+     * The destructor
+     */
 PaintPP::~PaintPP() {
     removeHistory();
     delete currentImage;
 }
 
+/**
+     * the width
+     */
 int PaintPP::getWidthCanvas(){
     return currentImage->getWidth();
 }
 
+/**
+     * the height
+     */
 int PaintPP::getHeightCanvas(){
     return currentImage->getHeight();
 }
 
+/**
+     * Save image
+     * @param pathImage the path of image
+     */
 void PaintPP::saveImage(string path) {
 //    auto path = historyImage->data;
     if(string("").compare(path)){
@@ -303,12 +429,21 @@ void PaintPP::saveImage(string path) {
     }
 }
 
+/**
+     * Draw canvas
+     * @param vectorMove the move in image
+     * @param thickness the thickness
+     * @param color the color
+     */
 void PaintPP::drawImage(vectorStructure<PointImage> vectorMove, int thickness, Color color){
     checkEraseHistory();
     changeCurrentImage();
     pencil(vectorMove, currentImage, thickness, color);
 }
 
+/**
+     * cHANGE THE CURRENT IMAGE
+     */
 void PaintPP::changeCurrentImage() {
     string name = historyImage.getElement(positionInHistory);
     saveImage(name);
@@ -316,14 +451,25 @@ void PaintPP::changeCurrentImage() {
     historyImage.addElement(getNextHistoryName());
 }
 
+/**
+     * Get is ready undo
+     * @return is ready undo
+     */
 bool PaintPP::getReadyUndo(){
     return readyUndo;
 }
 
+/**
+     * GEt is reeady redo
+     * @return
+     */
 bool PaintPP::getReadyRedo() {
     return readyRedo;
 }
 
+/**
+     * delete next history non necesary
+     */
 void PaintPP::checkEraseHistory(){
     if(readyRedo){
         auto& tmp = historyImage;
@@ -343,6 +489,10 @@ void PaintPP::checkEraseHistory(){
     readyUndo =  (positionInHistory>=1) &&positionInHistory!=0 && positionInHistory%10!=0;
 }
 
+/**
+     * PRint vector move
+     * @param vectorMove the vecotr to print
+     */
 [[maybe_unused]] void PaintPP::vectorPrint(vectorStructure<PointImage>vectorMove){
     cout << "-----------Vector MOVE----------\n"<< endl;
     for (int i = 0; i < vectorMove.size(); ++i) {
@@ -351,18 +501,32 @@ void PaintPP::checkEraseHistory(){
     cout << endl;
 }
 
+/**
+     * Erase canvas
+     * @param vectorMove the move in image
+     * @param thickness the thickness
+     */
 void PaintPP::eraseImage(vectorStructure<PointImage> vectorMove, int thickness) {
     checkEraseHistory();
     changeCurrentImage();
     erase(vectorMove, currentImage, thickness);
 }
 
+/**
+     * Draw line canvas
+     * @param vectorMove the 2 points in image
+     * @param thickness the thickness
+     * @param color the color
+     */
 void PaintPP::createLineImage(vectorStructure<PointImage> vectorMove, int thickness, Color color) {
     checkEraseHistory();
     changeCurrentImage();
     pen(vectorMove, currentImage, thickness, color);
 }
 
+/**
+     * DO the undo
+     */
 void PaintPP::undoImage() {
     if(readyUndo){
         if(!readyRedo){
@@ -377,6 +541,9 @@ void PaintPP::undoImage() {
     readyUndo =  (positionInHistory>=1) &&positionInHistory!=0 && positionInHistory%10!=0;
 }
 
+/**
+     * DO the redo
+     */
 void PaintPP::redoImage() {
     if(readyRedo && positionInHistory<historyImage.size()-1){
         currentImage->readImage(historyImage.getElement(++positionInHistory)+string(".bmp"), currentImage);
@@ -385,6 +552,9 @@ void PaintPP::redoImage() {
     readyUndo =  (positionInHistory>=1) &&positionInHistory!=0 && positionInHistory%10!=0;
 }
 
+/**
+     * Delte history
+     */
 void PaintPP::removeHistory(){
     string command = "rm canvas_*";
     char * cstr = new char [command.length()+1];
@@ -393,6 +563,9 @@ void PaintPP::removeHistory(){
     delete[] cstr;
 }
 
+/**
+     * Check is name is canvas_
+     */
 string PaintPP::stringCheckCanvas(string text){
 
     for (std::string::size_type i = 0; i < text.size(); ++i) {
@@ -409,10 +582,20 @@ string PaintPP::stringCheckCanvas(string text){
     return text;
 }
 
+/**
+     * Get a color
+     * @param pointCickled  the position
+     * @return the color piked
+     */
 Color PaintPP::getPicker(PointImage pointCickled) {
     return currentImage->getColor(pointCickled.x, pointCickled.y);
 }
 
+/**
+     * change yhe color image
+     * @param imageCanvas the image
+     * @param setFilter the filter
+     */
 void PaintPP::changedColor(Image *imageCanvas, PaintPP::FiltersImage setFilter) {
     for (int j = 0; j < imageCanvas->getHeight(); ++j) {
         for (int i = 0; i < imageCanvas->getWidth(); ++i) {
@@ -440,65 +623,123 @@ void PaintPP::changedColor(Image *imageCanvas, PaintPP::FiltersImage setFilter) 
 
 }
 
+/**
+     * filter white
+     * @return the white color
+     */
 Color PaintPP::filterWhite() {
     return Color(255, 255, 255, 255);
 }
 
+/**
+     * fiklter blue
+     * @param colorTemp color to change
+     * @return the color changed
+     */
 Color PaintPP::filterBlue(Color colorTemp) {
     return Color(colorTemp.b, colorTemp.r, colorTemp.a, colorTemp.g);
 }
 
+/**
+     * fiklter green
+     * @param colorTemp color to change
+     * @return the color changed
+     */
 Color PaintPP::filterGreen(Color colorTemp) {
     return Color(colorTemp.g, colorTemp.g, colorTemp.r, colorTemp.g);
 }
 
+/**
+     * fiklter red
+     * @param colorTemp color to change
+     * @return the color changed
+     */
 Color PaintPP::filterRed(Color colorTemp) {
     return Color(colorTemp.a, colorTemp.r, colorTemp.b, colorTemp.a);
 }
 
+/**
+     * Set the filter red
+     */
 void PaintPP::doFilterRImage() {
     checkEraseHistory();
     changeCurrentImage();
     changedColor(currentImage, FiltersImage::Red);
 }
 
+/**
+     * Set the filter green
+     */
 void PaintPP::doFilterGImage() {
     checkEraseHistory();
     changeCurrentImage();
     changedColor(currentImage, FiltersImage::Green);
 }
 
+/**
+     * Set the filter blue
+     */
 void PaintPP::doFilterBImage() {
     checkEraseHistory();
     changeCurrentImage();
     changedColor(currentImage, FiltersImage::Blue);
 }
 
+/**
+     * Make image white
+     */
 void PaintPP::clearAllCanvasImage() {
     checkEraseHistory();
     changeCurrentImage();
     changedColor(currentImage, FiltersImage::White);
 }
 
+/**
+     * Draw square canvas
+     * @param vectorMove the move in image
+     * @param thickness the thickness
+     * @param color the color
+     * @param pointCickled  the position
+     * @param size the size of figure
+     */
 void PaintPP::createSquareImage(PointImage pointCickled,int tickness, Color color,int size) {
     checkEraseHistory();
     changeCurrentImage();
     figureSquare(pointCickled,currentImage, tickness, color, size);
 }
 
+/**
+    * Draw triangle canvas
+    * @param vectorMove the move in image
+    * @param thickness the thickness
+    * @param color the color
+    * @param pointCickled  the position
+    * @param size the size of figure
+    */
 void PaintPP::createTriangleImage(PointImage pointCickled,int tickness, Color color,int size) {
     checkEraseHistory();
     changeCurrentImage();
     figureTriangle(pointCickled,currentImage, tickness, color, size);
 }
 
+/**
+    * Draw square canvas
+    * @param vectorMove the move in image
+    * @param thickness the thickness
+    * @param color the color
+    * @param pointCickled  the position
+    * @param size the size of figure
+     * @param size2 the size2 of figure
+    */
 void PaintPP::createRectangleImage(PointImage pointCickled,int tickness, Color color,int size, int size2) {
     checkEraseHistory();
     changeCurrentImage();
     figureRectangle(pointCickled,currentImage, tickness, color, size, size2);
 }
 
-
+/**
+     * ROtate the image
+     */
 void PaintPP::rotateImage(){
     checkEraseHistory();
     changeCurrentImage();
@@ -512,6 +753,11 @@ void PaintPP::rotateImage(){
     }
 }
 
+/**
+     * Fill the image
+     * @param click the position
+     * @param color the color
+     */
 void PaintPP::paintFill(PointImage click, Color color) {
     checkEraseHistory();
     changeCurrentImage();
