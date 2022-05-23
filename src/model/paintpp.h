@@ -13,7 +13,6 @@ using namespace std;
 #include <fstream>
 #include <math.h>
 #include <cstdlib>
-#include "utils/vectorMovement.h"
 #include "point_image.h"
 
 

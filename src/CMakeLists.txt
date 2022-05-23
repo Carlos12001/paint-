@@ -19,7 +19,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 file(GLOB_RECURSE SOURCE_FILES true "./*.cpp" "./*.h" "./*.ui" "./*.qrc")
 
 # Var PROJECT_SOURCES
-set(PROJECT_SOURCES ${SOURCE_FILES} utils/vectorMovement.cpp utils/vectorMovement.h utils/bfsPaintFill.h)
+set(PROJECT_SOURCES ${SOURCE_FILES})
 
 # Copying Files
 #add_custom_target(COPY_IMAGES)
