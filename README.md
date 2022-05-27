@@ -4,6 +4,8 @@ Paint++-JALLAC means Paint++ version Joan, Allan, Carlos.
 
 # Link Repository Github
 
+Link:
+
 https://github.com/Carlos12001/paintpp
 
 # Documentation External
@@ -17,6 +19,13 @@ https://drive.google.com/file/d/1F2leOtUQ7yJDzbBiFIOAkLFuh5SauI6P/view?usp=shari
 Link:
 
 https://drive.google.com/file/d/1WN5ylXQg2RybVWmUSg-BcLOYDW047wlJ/view?usp=sharing
+
+# Jira
+
+Link:
+
+https://achen031199.atlassian.net/jira/projects
+
 
 # Dependencies
 
@@ -117,9 +126,6 @@ sudo apt-get install -y google-glog
 - Try to commit when you finished a function.
 - Don't merge into a pattern branch, ask always first.
 - When you are going to merge a branch create a new branch for do the merge.
-
-# Jira
-[[Repository in Jira]](https://achen031199.atlassian.net/jira/projects)
 
 
 # Importan Information
