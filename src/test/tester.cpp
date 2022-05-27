@@ -122,16 +122,11 @@ using namespace std;
     // Create a graph given in the above diagram
     string path1 = "canvas3.bmp";
     auto Imagebfs = Image::readImage(path1);
-    //auto Imagebfs = Image::createImageEmpty(200,200);
-    //Imagebfs = PaintPP::figureSquare(PointImage(50,50),Imagebfs,5,Color(255,0,200,0),100);
-    //Imagebfs = PaintPP::figureSquare(PointImage(50,70),Imagebfs,5,Color(255,0,200,0),50);
-    PointImage cord = PointImage(175,55);
-    //PointImage cord2 = PointImage(70,75);
-    //PointImage cord3 = PointImage(60,55);
-    //Imagebfs = bfsPaintFill::paintFill(cord,Color(255,255,0,0),Imagebfs);
-    //Imagebfs = bfsPaintFill::paintFill(cord2,Color(255,200,255,0),Imagebfs);
-    //Imagebfs = bfsPaintFill::paintFill(cord3,Color(255,0,0,255),Imagebfs);
-    Imagebfs = MagicSelect::magicSelect(cord,Imagebfs);
-    Imagebfs->exportImage("canvas6.bmp");
+    vectorStructure<PointImage> cords;
+    cords.addElement(PointImage(100,100));
+    cords.addElement(PointImage(700,500));
+    Imagebfs = rectanSelect::rectangleSelect(cords,Imagebfs,1);
+    Imagebfs->exportImage("rectSelect.bmp");
+
 
 }

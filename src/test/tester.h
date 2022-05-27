@@ -11,6 +11,7 @@
 #include "model/paintpp.h"
 #include "utils/bfsPaintFill.h"
 #include "utils/MagicSelect.h"
+#include "utils/rectanSelect.h"
 #include <iostream>
 using namespace std;
 #include "model/image.h"
