@@ -7,6 +7,7 @@
 
 #include <QApplication>
 #include "gui/controller.h"
+
 /**
  * THe init of the project
  */
