@@ -2,10 +2,8 @@
 // Created by carlo on 5/3/22.
 //
 
-#include <cstring>
 #include "paintpp.h"
-#include "utils/vectorStructure.h"
-#include "utils/bfsPaintFill.h"
+
 
 /**
      * DO the paint in the image
@@ -90,7 +88,7 @@ auto PaintPP::paintCoordinates(vectorStructure<PointImage> vectorMove, Image *im
      * @param positionY num y
      * @return the vector
      */
-vectorStructure<PointImage> PaintPP::mouseMovement(int positionX, int positionY) {
+[[maybe_unused]] vectorStructure<PointImage> PaintPP::mouseMovement(int positionX, int positionY) {
     vectorStructure<PointImage> eraseMove;
     for(int startx = 1; startx < positionX; startx++)
         eraseMove.addElement(PointImage(startx,startx));
@@ -645,7 +643,7 @@ Color PaintPP::filterBlue(Color colorTemp) {
      * @param colorTemp color to change
      * @return the color changed
      */
-Color PaintPP::filterGreen(Color colorTemp) {
+[[maybe_unused]] Color PaintPP::filterGreen(Color colorTemp) {
     return Color(colorTemp.g, colorTemp.g, colorTemp.r, colorTemp.g);
 }
 
@@ -654,7 +652,7 @@ Color PaintPP::filterGreen(Color colorTemp) {
      * @param colorTemp color to change
      * @return the color changed
      */
-Color PaintPP::filterRed(Color colorTemp) {
+[[maybe_unused]] Color PaintPP::filterRed(Color colorTemp) {
     return Color(colorTemp.a, colorTemp.r, colorTemp.b, colorTemp.a);
 }
 
@@ -688,7 +686,7 @@ void PaintPP::doFilterBImage() {
 /**
      * Make image white
      */
-void PaintPP::clearAllCanvasImage() {
+[[maybe_unused]] void PaintPP::clearAllCanvasImage() {
     checkEraseHistory();
     changeCurrentImage();
     changedColor(currentImage, FiltersImage::White);
@@ -762,4 +760,82 @@ void PaintPP::paintFill(PointImage click, Color color) {
     checkEraseHistory();
     changeCurrentImage();
     bfsPaintFill::paintFill(click, color, currentImage);
+}
+
+/**
+ * do chop qaure
+ * @param vectorMove vector move two poitns
+ */
+void PaintPP::squareChop(vectorStructure<PointImage> vectorMove) {
+    checkEraseHistory();
+    changeCurrentImage();
+    rectangleSelect(vectorMove,currentImage,1);
+}
+
+auto PaintPP::rectangleSelect(vectorStructure<PointImage> vectorTwoCordinates, Image *imageCanvas, int grossorE) -> Image * {
+    {
+        Color colorSelect = Color(128, 128, 128, 128);
+        int distancex = 0;
+        int distancey = 0;
+        if (vectorTwoCordinates.getElement(0).x < vectorTwoCordinates.getElement(1).x) {
+            distancex = vectorTwoCordinates.getElement(1).x - vectorTwoCordinates.getElement(0).x;
+        } else {
+            distancex = vectorTwoCordinates.getElement(0).x - vectorTwoCordinates.getElement(1).x;
+        }
+        if (vectorTwoCordinates.getElement(0).y < vectorTwoCordinates.getElement(1).y) {
+            distancey = vectorTwoCordinates.getElement(1).y - vectorTwoCordinates.getElement(0).y;
+        } else {
+            distancey = vectorTwoCordinates.getElement(0).y - vectorTwoCordinates.getElement(1).y;
+        }
+
+        vectorStructure<PointImage> Move = rectangleSelectAux(vectorTwoCordinates, distancex, distancey);
+        imageCanvas = pencil(Move, imageCanvas, grossorE, colorSelect);
+        return imageCanvas;
+    }
+}
+
+vectorStructure<PointImage>
+PaintPP::rectangleSelectAux(vectorStructure<PointImage> coordinates, int distancex, int distancey) {
+    vectorStructure<PointImage> allCoordinates;
+    vectorStructure<PointImage> temp;
+    temp = coordinates;
+    if(coordinates.getElement(0).x < coordinates.getElement(1).x){
+        while(distancex > 0){
+            //Utilities::printMessageInfo("x1: " + to_string(temp.getElement(0).x));
+            //Utilities::printMessageInfo("x2: " + to_string(coordinates.getElement(1).x));
+            allCoordinates.addElement(PointImage(temp.getElement(0).x, temp.getElement(0).y));
+            allCoordinates.addElement(PointImage(temp.getElement(1).x, temp.getElement(1).y));
+            temp.addElement(PointImage(temp.getElement(0).x + 1, temp.getElement(0).y), 0);
+            temp.addElement(PointImage(temp.getElement(1).x - 1, temp.getElement(1).y), 1);
+            distancex -= 1;
+        }}else{
+        while(distancex > 0) {
+            allCoordinates.addElement(PointImage(temp.getElement(0).x, temp.getElement(0).y));
+            allCoordinates.addElement(PointImage(temp.getElement(1).x, temp.getElement(1).y));
+            temp.addElement(PointImage(temp.getElement(1).x+1,temp.getElement(1).y),1);
+            temp.addElement(PointImage(temp.getElement(0).x-1,temp.getElement(0).y),0);
+            distancex -= 1;
+        }}
+    temp = coordinates;
+    if(coordinates.getElement(0).y < coordinates.getElement(1).y){
+        while(distancey > 0){
+            Utilities::printMessageInfo("y1: " + to_string(temp.getElement(0).y));
+            Utilities::printMessageInfo("y2: " + to_string(temp.getElement(1).y));
+            allCoordinates.addElement(PointImage(temp.getElement(0).x,temp.getElement(0).y));
+            allCoordinates.addElement(PointImage(temp.getElement(1).x,temp.getElement(1).y));
+
+            temp.addElement(PointImage(temp.getElement(0).x,temp.getElement(0).y+1),0);
+            temp.addElement(PointImage(temp.getElement(1).x,temp.getElement(1).y-1),1);
+            distancey -= 1;
+        }}else{
+        while(distancey > 0) {
+
+            allCoordinates.addElement(PointImage(temp.getElement(0).x,temp.getElement(0).y));
+            allCoordinates.addElement(PointImage(temp.getElement(1).x,temp.getElement(1).y));
+            temp.addElement(PointImage(temp.getElement(1).x, temp.getElement(1).y + 1), 1);
+            temp.addElement(PointImage(temp.getElement(0).x, temp.getElement(0).y - 1), 0);
+            distancey -= 1;
+        }
+    }
+    return allCoordinates;
 }

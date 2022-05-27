@@ -61,9 +61,6 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
     this->ui->chopFreeButton->setVisible(false);
     this->ui->chopFreeButton->setEnabled(false);
-
-    this->ui->chopSquareButton->setVisible(false);
-    this->ui->chopSquareButton->setEnabled(false);
 }
 
 /**
@@ -143,7 +140,26 @@ void MainWindow::mousePressEvent(QMouseEvent *event) {
 
     }
     else if(enableChopSquare){
-
+        counterClicks++;
+        if(counterClicks==2){
+            counterClicks = 0;
+            addElementVectorMove(event->pos().rx(), event->pos().ry());
+            PointImage p1 = vectorMove.getElement(0);
+            PointImage p2 = vectorMove.getElement(1);
+            restartVectorMove();
+            vectorMove.addElement(p1);
+            vectorMove.addElement(p2);
+            paintPP->squareChop(vectorMove);
+            restartVectorMove();
+            printCurrentImage();
+        }
+        else if(1 == counterClicks) {
+            addElementVectorMove(event->pos().rx(), event->pos().ry());
+        }
+        else{
+            restartVectorMove();
+            counterClicks = 0;
+        }
     }
     else if(enableChopFree){
         restartVectorMove();
@@ -177,7 +193,6 @@ void MainWindow::mousePressEvent(QMouseEvent *event) {
         printCurrentImage();
         restartVectorMove();
         update();
-
     }
     else if(enableFigureTriangle){
         restartVectorMove();

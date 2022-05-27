@@ -6,14 +6,17 @@
 #define PAINT_PAINT_PP_H
 #include <iostream>
 using namespace std;
+#include <fstream>
+#include <math.h>
+#include <cstdlib>
+#include <cstring>
+#include "point_image.h"
+#include "utils/vectorStructure.h"
+#include "utils/bfsPaintFill.h"
 #include "utils/doublyLinkedList.h"
 #include "utils/vectorStructure.h"
 #include "utils/utilities.h"
 #include "image.h"
-#include <fstream>
-#include <math.h>
-#include <cstdlib>
-#include "point_image.h"
 
 /**
  * THe real paint pp aplication
@@ -80,7 +83,7 @@ class PaintPP {
      * @param positionY num y
      * @return the vector
      */
-    static vectorStructure<PointImage> mouseMovement(int positionX, int positionY);
+    [[maybe_unused]] static vectorStructure<PointImage> mouseMovement(int positionX, int positionY);
 
     /**
      * erase in image
@@ -197,6 +200,10 @@ class PaintPP {
      */
     void changedColor(Image *imageCanvas, FiltersImage setFilter);
 
+    auto static rectangleSelect(vectorStructure<PointImage> vectorTwoCordinates, Image *imageCanvas, int grossorE) -> Image *;
+
+    static vectorStructure<PointImage>rectangleSelectAux(vectorStructure<PointImage> coordinates, int distancex, int distancey);
+
     /**
      * filter white
      * @return the white color
@@ -215,14 +222,14 @@ class PaintPP {
      * @param colorTemp color to change
      * @return the color changed
      */
-    Color filterGreen(Color colorTemp);
+    [[maybe_unused]] Color filterGreen(Color colorTemp);
 
     /**
      * fiklter red
      * @param colorTemp color to change
      * @return the color changed
      */
-    Color filterRed(Color colorTemp);
+    [[maybe_unused]] Color filterRed(Color colorTemp);
 
 public:
 
@@ -374,7 +381,7 @@ public:
     /**
      * Make image white
      */
-    void clearAllCanvasImage();
+    [[maybe_unused]] void clearAllCanvasImage();
 
     /**
      * Get is ready undo
@@ -400,19 +407,25 @@ public:
     void removeHistory();
 
     /**
+     * do chop qaure
+     * @param vectorMove vector move two poitns
+     */
+    void squareChop(vectorStructure<PointImage> vectorMove);
+
+    /**
      * Check is name is canvas_
      */
     string stringCheckCanvas(string text);
 
-/**
-* draw  in image
-* @param vectorMove the vector
-* @param imageCanvas the image to change
-* @param grossorE the thickness
-* @param colorSelect the color
-* @return the image changed
-*/
-static auto pencil(vectorStructure<PointImage> vectorMove, Image* imageCanvas,int grossorE, Color colorSelect)->Image*;
+    /**
+    * draw  in image
+    * @param vectorMove the vector
+    * @param imageCanvas the image to change
+    * @param grossorE the thickness
+    * @param colorSelect the color
+    * @return the image changed
+    */
+    static auto pencil(vectorStructure<PointImage> vectorMove, Image* imageCanvas,int grossorE, Color colorSelect)->Image*;
 };
 
 
