@@ -182,7 +182,7 @@ vectorStructure<PointImage> PaintPP::rectLine(vectorStructure<PointImage> coordi
                 allCoordinates.addElement(PointImage(coordinates.getElement(1).x - allDistance,
                                                          coordinates.getElement(1).y + allDistance));
             }
-            if(lineDireccion.Horizontal) {
+            else if(lineDireccion.Horizontal) {
                 allCoordinates.addElement(PointImage(coordinates.getElement(1).x - allDistance,
                                                          coordinates.getElement(1).y));
             }
