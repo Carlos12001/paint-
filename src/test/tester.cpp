@@ -121,6 +121,14 @@ using namespace std;
 }
 
 [[maybe_unused]] void Tester::BFSTest(){
+    // Create a graph given in the above diagram
+    string path1 = "canvas3.bmp";
+    auto Imagebfs = Image::readImage(path1);
+    vectorStructure<PointImage> cords;
+    cords.addElement(PointImage(100,100));
+    cords.addElement(PointImage(700,500));
+    Imagebfs = rectanSelect::rectangleSelect(cords,Imagebfs,1);
+    Imagebfs->exportImage("rectSelect.bmp");
 //    // Create a graph given in the above diagram
 //    string path1 = "canvas3.bmp";
 //    auto Imagebfs = Image::readImage(path1);
