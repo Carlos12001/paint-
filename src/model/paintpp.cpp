@@ -852,3 +852,13 @@ vectorStructure<PointImage> PaintPP::rectangleSelectAux(vectorStructure<PointIma
     }
     return allCoordinates;
 }
+
+/**
+     * Magic select
+     * @param pointClick the position
+     */
+void PaintPP::magicSelectImage(PointImage pointClick) {
+    checkEraseHistory();
+    changeCurrentImage();
+    bfsPaintFill::paintFill(pointClick, Color(255, 255, 255, 255), currentImage);
+}

@@ -56,9 +56,6 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     this->ui->openButton->setVisible(false);
     this->ui->openButton->setEnabled(false);
 
-    this->ui->magicSelectButton->setVisible(false);
-    this->ui->magicSelectButton->setEnabled(false);
-
     this->ui->chopFreeButton->setVisible(false);
     this->ui->chopFreeButton->setEnabled(false);
 }
@@ -137,7 +134,12 @@ void MainWindow::mousePressEvent(QMouseEvent *event) {
         }
     }
     else if(enableMagicSelect){
-
+        restartVectorMove();
+        addElementVectorMove(event->pos().rx(), event->pos().ry());
+        paintPP->magicSelectImage(vectorMove.getElement(0));
+        printCurrentImage();
+        restartVectorMove();
+        update();
     }
     else if(enableChopSquare){
         counterClicks++;
