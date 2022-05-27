@@ -200,8 +200,22 @@ class PaintPP {
      */
     void changedColor(Image *imageCanvas, FiltersImage setFilter);
 
+    /**
+     * RTHE chop square
+     * @param vectorTwoCordinates the 2 points image
+     * @param imageCanvas the image to chamge
+     * @param grossorE the thicness
+     * @return the image changed
+     */
     auto static rectangleSelect(vectorStructure<PointImage> vectorTwoCordinates, Image *imageCanvas, int grossorE) -> Image *;
 
+    /**
+     * THe aux for chop rect
+     * @param coordinates the cordenate
+     * @param distancex distcnce X
+     * @param distancey dsitance Y
+     * @return the move ment
+     */
     static vectorStructure<PointImage>rectangleSelectAux(vectorStructure<PointImage> coordinates, int distancex, int distancey);
 
     /**

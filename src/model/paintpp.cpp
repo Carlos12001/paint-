@@ -772,6 +772,13 @@ void PaintPP::squareChop(vectorStructure<PointImage> vectorMove) {
     rectangleSelect(vectorMove,currentImage,1);
 }
 
+/**
+ * RTHE chop square
+ * @param vectorTwoCordinates the 2 points image
+ * @param imageCanvas the image to chamge
+ * @param grossorE the thicness
+ * @return the image changed
+ */
 auto PaintPP::rectangleSelect(vectorStructure<PointImage> vectorTwoCordinates, Image *imageCanvas, int grossorE) -> Image * {
     {
         Color colorSelect = Color(128, 128, 128, 128);
@@ -794,8 +801,14 @@ auto PaintPP::rectangleSelect(vectorStructure<PointImage> vectorTwoCordinates, I
     }
 }
 
-vectorStructure<PointImage>
-PaintPP::rectangleSelectAux(vectorStructure<PointImage> coordinates, int distancex, int distancey) {
+/**
+ * THe aux for chop rect
+ * @param coordinates the cordenate
+ * @param distancex distcnce X
+ * @param distancey dsitance Y
+ * @return the move ment
+ */
+vectorStructure<PointImage> PaintPP::rectangleSelectAux(vectorStructure<PointImage> coordinates, int distancex, int distancey) {
     vectorStructure<PointImage> allCoordinates;
     vectorStructure<PointImage> temp;
     temp = coordinates;
