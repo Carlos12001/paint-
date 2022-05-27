@@ -123,6 +123,11 @@ void MainWindow::mousePressEvent(QMouseEvent *event) {
         if(counterClicks==2){
             counterClicks = 0;
             addElementVectorMove(event->pos().rx(), event->pos().ry());
+            PointImage p1 = vectorMove.getElement(0);
+            PointImage p2 = vectorMove.getElement(1);
+            restartVectorMove();
+            vectorMove.addElement(p1);
+            vectorMove.addElement(p2);
             paintPP->createLineImage(vectorMove, thickness, colorSelect);
             restartVectorMove();
             printCurrentImage();
