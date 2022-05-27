@@ -5,6 +5,8 @@
 #ifndef PAINT_INIT_PROJECT_H
 #define PAINT_INIT_PROJECT_H
 
+#include <QApplication>
+#include "gui/controller.h"
 /**
  * THe init of the project
  */

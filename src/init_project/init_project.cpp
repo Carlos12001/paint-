@@ -3,8 +3,6 @@
 //
 
 #include "init_project.h"
-#include "utils/utilities.h"
-#include "test/tester.h"
 
 /**
  * init the project
