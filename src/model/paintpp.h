@@ -92,15 +92,7 @@ class PaintPP {
     static auto erase(vectorStructure<PointImage> vectorMove, Image* imageCanvas,int grossorE)->Image*; //erease
 
 
-    /**
-    * draw  in image
-    * @param vectorMove the vector
-    * @param imageCanvas the image to change
-    * @param grossorE the thickness
-    * @param colorSelect the color
-    * @return the image changed
-    */
-    static auto pencil(vectorStructure<PointImage> vectorMove, Image* imageCanvas,int grossorE, Color colorSelect)->Image*; //draw
+    //draw
 
 
     /**
@@ -411,6 +403,16 @@ public:
      * Check is name is canvas_
      */
     string stringCheckCanvas(string text);
+
+/**
+* draw  in image
+* @param vectorMove the vector
+* @param imageCanvas the image to change
+* @param grossorE the thickness
+* @param colorSelect the color
+* @return the image changed
+*/
+static auto pencil(vectorStructure<PointImage> vectorMove, Image* imageCanvas,int grossorE, Color colorSelect)->Image*;
 };
 
 
